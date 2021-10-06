@@ -22,7 +22,7 @@ class Intervals {
 Interface ObserverIntervals{
 }
 
-class Observable {
+abstract class Observable {
 }
 
 class Clock {
