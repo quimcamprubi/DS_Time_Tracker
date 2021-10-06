@@ -1,0 +1,58 @@
+@startuml 
+
+skinparam classAttributeIconSize 0
+skinparam linetype polyline
+
+abstract class Component {
++public ComputeComponentDuration()
+}
+
+class Project extends Component {
++public ComputeComponentDuration()
+}
+
+
+class Task extends Component {
++public ComputeComponentDuration()
+}
+
+class Intervals {
+}
+
+Interface ObserverIntervals{
+}
+
+class Observable {
+}
+
+class Clock {
+}
+
+class Client{
+}
+
+class DataManager{  
++public SaveUserData()  
++private LoadUserData()
++public ComponentTotalDuration()
+}
+
+Interface ObserverComponent{
+}
+
+Class Printer{
+}
+
+DataManager -down-> "*" Component: Contains
+Project --> "*" Component
+Client -left-> DataManager
+Task -left-> "*" Intervals:Contains
+Clock .down.> Observable
+Observable -Down-> "*" ObserverIntervals
+Intervals -left-> ObserverIntervals
+Component -left-> ObserverComponent
+Observable -right-> "*" ObserverComponent
+DataManager -left-> Printer
+Task -[hidden]right-> Project
+
+@enduml
