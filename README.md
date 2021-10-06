@@ -1,2 +1,2 @@
 # DS_Time_Tracker
- Time Tracker Java Application
+ Java application that tracks time and organizes it into tasks and projects.
