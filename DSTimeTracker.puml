@@ -4,16 +4,16 @@ skinparam classAttributeIconSize 0
 skinparam linetype polyline
 
 abstract class Component {
-+ public ComputeComponentDuration()
++ ComputeComponentDuration()
 }
 
 class Project extends Component {
-+ public ComputeComponentDuration()
++ ComputeComponentDuration()
 }
 
 
 class Task extends Component {
-+ public ComputeComponentDuration()
++ ComputeComponentDuration()
 }
 
 class Intervals {
@@ -26,18 +26,19 @@ abstract class Observable {
 }
 
 class Clock {
-- private uniqueInstance
-- private Clock()
+- uniqueInstance
+- Clock()
 + getInstance()
 }
 
 class Client{
++ Main()
 }
 
 class DataManager{  
-+ public SaveUserData()
-- private LoadUserData()
-+ public ComponentTotalDuration()
++ SaveUserData()
+- LoadUserData()
++ ComponentTotalDuration()
 }
 
 Class Printer{
