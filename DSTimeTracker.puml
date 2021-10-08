@@ -4,40 +4,40 @@ skinparam classAttributeIconSize 0
 skinparam linetype polyline
 
 abstract class Component {
-+public ComputeComponentDuration()
++ public ComputeComponentDuration()
 }
 
 class Project extends Component {
-+public ComputeComponentDuration()
++ public ComputeComponentDuration()
 }
 
 
 class Task extends Component {
-+public ComputeComponentDuration()
++ public ComputeComponentDuration()
 }
 
 class Intervals {
 }
 
-Interface ObserverIntervals{
+Interface Observer{
 }
 
 abstract class Observable {
 }
 
 class Clock {
+- private uniqueInstance
+- private Clock()
++ getInstance()
 }
 
 class Client{
 }
 
 class DataManager{  
-+public SaveUserData()  
-+private LoadUserData()
-+public ComponentTotalDuration()
-}
-
-Interface ObserverComponent{
++ public SaveUserData()
+- private LoadUserData()
++ public ComponentTotalDuration()
 }
 
 Class Printer{
@@ -48,10 +48,8 @@ Project --> "*" Component
 Client -left-> DataManager
 Task -left-> "*" Intervals:Contains
 Clock .down.> Observable
-Observable -Down-> "*" ObserverIntervals
-Intervals -left-> ObserverIntervals
-Component -left-> ObserverComponent
-Observable -right-> "*" ObserverComponent
+Observable -Down-> "*" Observer
+Intervals -left-> Observer
 DataManager -left-> Printer
 Task -[hidden]right-> Project
 
