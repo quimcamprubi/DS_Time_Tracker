@@ -5,18 +5,23 @@ skinparam linetype polyline
 
 abstract class Component {
 + ComputeComponentDuration()
++ updateTime()
 }
 
 class Project extends Component {
 + ComputeComponentDuration()
++ updateTime()
 }
 
 
 class Task extends Component {
 + ComputeComponentDuration()
++ updateTime()
 }
 
-class Intervals {
+class Interval {
+- parent
++ updateTime()
 }
 
 Interface Observer{
@@ -47,10 +52,10 @@ Class Printer{
 DataManager -down-> "*" Component: Contains
 Project --> "*" Component
 Client -left-> DataManager
-Task -left-> "*" Intervals:Contains
+Task -left-> "*" Interval:Contains
 Clock .down.> Observable
 Observable -Down-> "*" Observer
-Intervals -left-> Observer
+Interval -left-> Observer
 DataManager -left-> Printer
 Task -[hidden]right-> Project
 
