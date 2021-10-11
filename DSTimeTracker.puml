@@ -5,31 +5,48 @@ skinparam linetype polyline
 
 abstract class Component {
 + ComputeComponentDuration()
++ GetChild()
++ RemoveChild()
++ AddChild()
 }
 
 class Project extends Component {
+- Name: string
+- Description: string
 + ComputeComponentDuration()
++ GetChild()
++ RemoveChild()
++ AddChild()
 }
 
 class Visitor{
-+VisitInterval(Intervals)
++ VisitInterval(Intervals)
 }
 
 class Task extends Component {
+- Name: string
+- Description: string
+- Intervals: Intervals[]
 + ComputeComponentDuration()
++ StartInterval()
++ EndInterval()
 }
 
 class Intervals {
--CurrentTime
--StartTime
--EndTime
+- CurrentTime
+- StartTime
+- EndTime
 +accept(Visitor v)
 }
 
 Interface Observer{
++ Update()
 }
 
 abstract class Observable {
++ RegisterObserver()
++ RemoveObserver()
++ NotifyObserver()
 }
 
 class Clock {
@@ -49,17 +66,18 @@ class DataManager{
 }
 
 Class Printer{
++ Print()
 }
 
 Visitor <-right- DataManager
-DataManager -down-> "*" Component: Contains
-Project --> "*" Component
-Client -left-> DataManager
-Task -left-> "*" Intervals:Contains
+DataManager "1" -down-> "*" Component: Contains
+Project "1" --> "*" Component
+Client "*" -left-> "1" DataManager
+Task "1" -left-> "*" Intervals:Contains
 Clock .down.> Observable
-Observable -Down-> "*" Observer
+Observable "1" -Down-> "*" Observer
 Intervals -left-> Observer
-DataManager -up-> Printer
+DataManager "*" -up-> "1" Printer
 Task -[hidden]right-> Project
 
 @enduml
