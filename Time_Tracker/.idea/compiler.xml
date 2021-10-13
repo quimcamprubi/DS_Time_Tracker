@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DS_Time_Tracker" />
+        <module name="Time_Tracker" />
       </profile>
     </annotationProcessing>
   </component>
