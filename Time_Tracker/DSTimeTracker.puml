@@ -45,6 +45,7 @@ Interface Observer{
 }
 
 abstract class Observable {
+- Observer: Observers[]
 + registerObserver()
 + removeObserver()
 + notifyObserver()
