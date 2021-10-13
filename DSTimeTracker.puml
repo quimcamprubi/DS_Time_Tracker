@@ -4,69 +4,72 @@ skinparam classAttributeIconSize 0
 skinparam linetype polyline
 
 abstract class Component {
-+ ComputeComponentDuration()
-+ GetChild()
-+ RemoveChild()
-+ AddChild()
++ computeComponentDuration()
++ getChild()
++ getParent()
++ removeChild()
++ addChild()
 }
 
 class Project extends Component {
 - Name: string
 - Description: string
-+ ComputeComponentDuration()
-+ GetChild()
-+ RemoveChild()
-+ AddChild()
++ computeProjectDuration()
++ getChild()
++ getParent()
++ removeChild()
++ addChild()
 }
 
 class Visitor{
-+ VisitInterval(Intervals)
++ visitInterval(Intervals)
 }
 
 class Task extends Component {
 - Name: string
 - Description: string
 - Intervals: Intervals[]
-+ ComputeComponentDuration()
-+ StartInterval()
-+ EndInterval()
++ getParent()
++ computeTaskDuration()
++ startInterval()
++ endInterval()
 }
 
 class Intervals {
-- CurrentTime
-- StartTime
-- EndTime
-+accept(Visitor v)
+- currentTime
+- startTime
+- endTime
++ accept(Visitor v)
 }
 
 Interface Observer{
-+ Update()
++ update()
 }
 
 abstract class Observable {
-+ RegisterObserver()
-+ RemoveObserver()
-+ NotifyObserver()
++ registerObserver()
++ removeObserver()
++ notifyObserver()
 }
 
 class Clock {
 - uniqueInstance
-- Clock()
+- clock()
 + getInstance()
 }
 
 class Client{
-+ Main()
++ main()
 }
 
 class DataManager{  
-+ SaveUserData()
-- LoadUserData()
-+ ComponentTotalDuration()
++ saveUserData()
+- loadUserData()
++ computeTotalDuration()
 }
 
 Class Printer{
-+ Print()
++ print()
 }
 
 Visitor <-right- DataManager
