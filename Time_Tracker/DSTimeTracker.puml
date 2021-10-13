@@ -4,34 +4,29 @@ skinparam classAttributeIconSize 0
 skinparam linetype polyline
 
 abstract class Component {
+- Name: string
+- Description: string
 + computeComponentDuration()
-+ getChild()
 + getParent()
+}
+
+class Project extends Component {
++ getChild()
 + removeChild()
 + addChild()
 }
 
-class Project extends Component {
-- Name: string
-- Description: string
-+ computeProjectDuration()
-+ getChild()
-+ removeChild()
-+ addChild()
+
+class Task extends Component {
+- Intervals: Intervals[]
++ startInterval()
++ endInterval()
 }
 
 class Visitor{
 + visitInterval(Intervals)
 }
 
-class Task extends Component {
-- Name: string
-- Description: string
-- Intervals: Intervals[]
-+ computeTaskDuration()
-+ startInterval()
-+ endInterval()
-}
 
 class Intervals {
 - currentTime
