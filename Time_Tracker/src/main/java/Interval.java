@@ -1,7 +1,7 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Interval {
+public class Interval implements Observer{
     // ----- ATTRIBUTES -----
     private LocalDateTime startTime; // Update double class to dateTime when CV is up
     private LocalDateTime endTime;
@@ -24,5 +24,13 @@ public class Interval {
 
     public LocalDateTime getCurrentTime() {
         return this.currentTime;
+    }
+
+    public void setCurrentTime(LocalDateTime currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    public void update(){
+        //TODO
     }
 }
