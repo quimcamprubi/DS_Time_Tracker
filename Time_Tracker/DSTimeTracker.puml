@@ -16,7 +16,6 @@ class Project extends Component {
 - Description: string
 + computeProjectDuration()
 + getChild()
-+ getParent()
 + removeChild()
 + addChild()
 }
@@ -29,7 +28,6 @@ class Task extends Component {
 - Name: string
 - Description: string
 - Intervals: Intervals[]
-+ getParent()
 + computeTaskDuration()
 + startInterval()
 + endInterval()
