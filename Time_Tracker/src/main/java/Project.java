@@ -21,4 +21,8 @@ public class Project extends Component {
     public void removeChild(Component child) {
         this.components.remove(child);
     }
+
+    public void acceptVisitor(Visitor v) {
+        //TODO;
+    }
 }

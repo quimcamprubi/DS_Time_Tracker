@@ -9,11 +9,16 @@ public class Task extends Component{
         super(name, description, parent);
     }
 
+    // ----- METHODS -----
     public void startInterval() {
         //TODO
     }
 
     public void endInterval() {
         //TODO
+    }
+
+    public void acceptVisitor(Visitor v) {
+        //TODO;
     }
 }

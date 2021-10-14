@@ -16,6 +16,7 @@ class Project extends Component {
 + getChildren()
 + removeChild()
 + addChild()
++ acceptVisitor()
 }
 
 
@@ -23,6 +24,7 @@ class Task extends Component {
 - Intervals: Intervals[]
 + startInterval()
 + endInterval()
++ acceptVisitor()
 }
 
 class Visitor{
