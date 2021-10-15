@@ -1,7 +1,8 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Observable;
 
-public class Interval implements Observer{
+public class Interval implements java.util.Observer{
     // ----- ATTRIBUTES -----
     private LocalDateTime startTime; // Update double class to dateTime when CV is up
     private LocalDateTime endTime;
@@ -14,8 +15,7 @@ public class Interval implements Observer{
     }
 
     public void endInterval() {
-        this.endTime = this.currentTime;
-        this.duration = Duration.between(startTime, endTime);
+        this.endTime = this.startTime + this.duration;
     }
 
     public void accept(Visitor visitor) {
@@ -30,7 +30,9 @@ public class Interval implements Observer{
         this.currentTime = currentTime;
     }
 
-    public void update(){
-        //TODO
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
+
 }

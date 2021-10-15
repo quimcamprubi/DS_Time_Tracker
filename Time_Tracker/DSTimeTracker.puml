@@ -27,10 +27,21 @@ class Task extends Component {
 + acceptVisitor()
 }
 
-class Visitor{
+Interface Visitor{
++ visitTask()
++ visitProject()
 + visitInterval(Intervals)
 }
 
+class searchProject {
++ visitTask()
++ visitProject()
+}
+
+class savetoJSON {
++ visitTask()
++ visitProject()
+}
 
 class Interval{
 - currentTime
@@ -38,20 +49,23 @@ class Interval{
 - endTime
 + getCurrentTime()
 - setCurrentTime()
-+ accept(Visitor v)
-
-}
-
-Interface Observer{
 + update()
+
 }
 
-abstract class Observable {
-- Observer: Observers[]
-+ registerObserver()
-+ removeObserver()
-+ notifyObserver()
+package java.util <<Folder>> {
+    Interface Observer{
+    + update()
+    }
+
+    abstract class Observable {
+    - Observer: Observers[]
+    + addObserver()
+    + deleteObserver()
+    + notifyObserver()
+    }
 }
+
 
 class Clock {
 - uniqueInstance
@@ -69,19 +83,16 @@ class DataManager{
 + computeTotalDuration()
 }
 
-Class Printer{
-+ print()
-}
 
-Visitor <-right- DataManager
 DataManager "1" -down-> "*" Component: Contains
-Project "1" --> "*" Component
-Client "*" -left-> "1" DataManager
+Project "1" -up-> "*" Component
+Client "*" -down-> "1" DataManager
 Task "1" -left-> "*" Interval:Contains
-Clock .down.> Observable
+Clock -down-|> Observable
 Observable "1" -Down-> "*" Observer
-Interval -left-> Observer
-DataManager "*" -up-> "1" Printer
+Interval -up-|> Observer
 Task -[hidden]right-> Project
+searchProject .up.|> Visitor
+savetoJSON .up.|> Visitor
 
 @enduml
