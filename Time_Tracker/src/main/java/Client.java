@@ -10,7 +10,7 @@ public class Client {
         Clock clock = Clock.getInstance();
 
         // make a small tree of projects and tasks
-        Project root = new Project("root", new ArrayList<String>(),null);
+        Project root = new Project("root", new ArrayList<String>("tag"),null);
         Project p1 = new Project("P1", new ArrayList<String>(), root);
         Project p2 = new Project("P2", new ArrayList<String>(), root);
         Task t1 = new Task("T1", new ArrayList<String>(), root);

@@ -15,7 +15,7 @@ public abstract class Component {
     // ----- CONSTRUCTOR -----
     public Component(String name, ArrayList<String> tags, Component parent) {
         this.name = name;
-        this.tags = new ArrayList<String>();
+        this.tags = tags;
         this.parent = parent;
         if (this.parent != null) this.parent.addChild(this);
     }
@@ -37,5 +37,15 @@ public abstract class Component {
         this.endTime = endTime;
         if (this.parent != null) updateParentInformation(startTime, endTime);
 
+    }
+
+    @Override
+    public String toString() {
+        String parentName;
+        if (this.parent == null) parentName = null;
+        else parentName = this.parent.getName();
+        return String.format("%-10s %-10s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(),
+                this.name, parentName, this.startTime,
+                this.endTime, Utils.roundDuration(this.duration));
     }
 }

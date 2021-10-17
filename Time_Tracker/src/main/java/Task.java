@@ -18,7 +18,6 @@ public class Task extends Component{
     public void stop(){
         Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
         lastInterval.endInterval();
-        this.setEndTime(lastInterval.getEndTime());
     }
 
     @Override
@@ -36,18 +35,6 @@ public class Task extends Component{
     @Override
     public void addChild(Component component){};
 
-
-    public void startInterval() {
-        //TODO
-    }
-
-    public void addDuration(Duration duration) {
-        //TODO
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        //TODO
-    }
 
     public void acceptVisitor(Visitor visitor) {
         visitor.visitTask(this);
