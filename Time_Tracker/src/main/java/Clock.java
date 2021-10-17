@@ -10,7 +10,7 @@ public class Clock extends java.util.Observable{
     private Timer timer;
     private static Clock uniqueInstance;
 
-    private void Clock() {
+    private Clock() {
         this.timer = new Timer("Timer");
         this.timerTask = new TimerTask() {
             @Override

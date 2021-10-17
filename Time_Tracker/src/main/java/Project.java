@@ -20,7 +20,7 @@ public class Project extends Component {
             taskDuration = taskDuration.plus(component.getDuration());
         }
         this.setDuration(taskDuration);
-        if (this.getParent() != null)this.updateParentDuration();
+        if (this.getParent() != null) this.getParent().updateParentDuration();
     }
 
     public ArrayList<Component> getChildren() {

@@ -27,7 +27,7 @@ public class Task extends Component{
             taskDuration = taskDuration.plus(interval.getDuration());
         }
         this.setDuration(taskDuration);
-        if (this.getParent() != null)this.updateParentDuration();
+        if (this.getParent() != null) this.getParent().updateParentDuration();
     }
 
 

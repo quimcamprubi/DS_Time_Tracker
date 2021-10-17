@@ -36,7 +36,7 @@ public abstract class Component {
     public void updateParentInformation(LocalDateTime startTime, LocalDateTime endTime){
         if (this.startTime == null) this.startTime = startTime;
         this.endTime = endTime;
-        if (this.parent != null) updateParentInformation(startTime, endTime);
+        if (this.parent != null) this.parent.updateParentInformation(startTime, endTime);
     }
 
     @Override
