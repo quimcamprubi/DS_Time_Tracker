@@ -22,23 +22,26 @@ public abstract class Component {
     }
 
     // ----- METHODS -----
-    public abstract void addChild(Component component);
-    public abstract void acceptVisitor(Visitor visitor);
-
-    public abstract void updateParentDuration();
-
+    // Setters and Getters
     public String getName() { return this.name; }
     public Component getParent() {return this.parent;}
     public Duration getDuration(){return this.duration;}
-
     public void setDuration(Duration duration){this.duration = duration;}
 
+    // Abstract methods
+    public abstract void addChild(Component component);
+    public abstract void acceptVisitor(Visitor visitor);
+    public abstract void updateParentDuration();
+
+    // Function used to propagate information to the parent of the Component. It is used to update the time and duration
+    // from the bottom to the top of the tree.
     public void updateParentInformation(LocalDateTime startTime, LocalDateTime endTime){
         if (this.startTime == null) this.startTime = startTime;
         this.endTime = endTime;
         if (this.parent != null) this.parent.updateParentInformation(startTime, endTime);
     }
 
+    // Function that casts the Component's information into a formatted string
     @Override
     public String toString() {
         String parentName;

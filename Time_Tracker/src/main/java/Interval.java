@@ -16,8 +16,11 @@ public class Interval implements java.util.Observer{
         Clock.getInstance().addObserver(this);
     }
 
-
+    // ----- METHODS -----
+    // Getters
     public Duration getDuration() { return this.duration; }
+    public LocalDateTime getEndTime(){return this.endTime;}
+    public LocalDateTime getStartTime(){return this.startTime;}
 
     public void endInterval() {
         //this.parent.addDuration(this.duration);
@@ -26,22 +29,23 @@ public class Interval implements java.util.Observer{
 
     }
 
-    public LocalDateTime getEndTime(){return this.endTime;}
-    public LocalDateTime getStartTime(){return this.startTime;}
-
     public void acceptVisitor(Visitor visitor) {
         visitor.visitInterval(this);
     }
+
     @Override
     public String toString() {
         return String.format("%-21s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(), this.parent.getName(),
                 this.startTime, this.endTime, Utils.roundDuration(this.duration));
     }
 
+    // The update method is called by the Observable (Clock). In this function, we update the current duration of the Interval,
+    // as well as the end time (and the start time, but only the first time).  Then, we propagate the infromation upwards.
+    // updateParentDuration and updateParentInformation are used to calculate the duration and the start and end times of the Components above.
     @Override
     public void update(Observable o, Object arg) {
         this.endTime = (LocalDateTime) arg;
-        if(this.startTime == null){this.startTime = this.endTime;}
+        if(this.startTime == null) { this.startTime = this.endTime; }
         this.duration = Duration.between(this.startTime, this.endTime);
         this.parent.updateParentDuration();
         this.parent.updateParentInformation(this.startTime, this.endTime);
@@ -51,7 +55,5 @@ public class Interval implements java.util.Observer{
             root = root.getParent();
         }
         PrintTree.getInstance(null).print(root);
-
     }
-
 }

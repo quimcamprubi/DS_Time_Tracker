@@ -12,21 +12,23 @@ public class Clock extends java.util.Observable{
 
     private Clock() {
         this.timer = new Timer("Timer");
+        this.tick = 1000;
         this.timerTask = new TimerTask() {
             @Override
             public void run() {
                 timeScheduler();
             }
         };
-        timer.scheduleAtFixedRate(this.timerTask, 0,1000);
+        timer.scheduleAtFixedRate(this.timerTask, 0,this.tick);
     }
 
-    //Singleton implementation
+    // Singleton implementation
     public static Clock getInstance() {
         if (uniqueInstance == null) {uniqueInstance = new Clock();}
         return uniqueInstance;
     }
 
+    // Function that notifies the Clock's observers with the current time.
     private void timeScheduler(){
         setChanged();
         notifyObservers(LocalDateTime.now());
