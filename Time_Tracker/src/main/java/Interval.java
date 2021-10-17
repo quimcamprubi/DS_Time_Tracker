@@ -46,6 +46,11 @@ public class Interval implements java.util.Observer{
         this.parent.updateParentDuration();
         this.parent.updateParentInformation(this.startTime, this.endTime);
         //call print visitor
+        Component root = this.parent;
+        while(root.getParent() != null){
+            root = root.getParent();
+        }
+        PrintTree.getInstance(null).print(root);
 
     }
 

@@ -17,6 +17,7 @@ public abstract class Component {
         this.name = name;
         this.tags = tags;
         this.parent = parent;
+        this.duration = Duration.ZERO;
         if (this.parent != null) this.parent.addChild(this);
     }
 
@@ -36,13 +37,12 @@ public abstract class Component {
         if (this.startTime == null) this.startTime = startTime;
         this.endTime = endTime;
         if (this.parent != null) updateParentInformation(startTime, endTime);
-
     }
 
     @Override
     public String toString() {
         String parentName;
-        if (this.parent == null) parentName = null;
+        if (this.parent == null) parentName = "null";
         else parentName = this.parent.getName();
         return String.format("%-10s %-10s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(),
                 this.name, parentName, this.startTime,

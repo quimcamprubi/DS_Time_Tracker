@@ -10,12 +10,16 @@ public class Client {
         Clock clock = Clock.getInstance();
 
         // make a small tree of projects and tasks
-        Project root = new Project("root", new ArrayList<String>("tag"),null);
-        Project p1 = new Project("P1", new ArrayList<String>(), root);
-        Project p2 = new Project("P2", new ArrayList<String>(), root);
-        Task t1 = new Task("T1", new ArrayList<String>(), root);
-        Task t2 = new Task("T2", new ArrayList<String>(), p1);
-        Task t3 = new Task("T3", new ArrayList<String>(), p2);
+        ArrayList<String> tags= new ArrayList<String>();
+        tags.add("tag1");
+        tags.add("tag2");
+
+        Project root = new Project("root", tags,null);
+        Project p1 = new Project("P1", tags, root);
+        Project p2 = new Project("P2", tags, root);
+        Task t1 = new Task("T1", tags, root);
+        Task t2 = new Task("T2", tags, p1);
+        Task t3 = new Task("T3", tags, p2);
 
         // make the printer
         PrintTree printer = PrintTree.getInstance(root);

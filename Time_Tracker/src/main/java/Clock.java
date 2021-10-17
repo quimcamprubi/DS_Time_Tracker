@@ -11,7 +11,6 @@ public class Clock extends java.util.Observable{
     private static Clock uniqueInstance;
 
     private void Clock() {
-        this.tick = 1000;
         this.timer = new Timer("Timer");
         this.timerTask = new TimerTask() {
             @Override
@@ -19,7 +18,7 @@ public class Clock extends java.util.Observable{
                 timeScheduler();
             }
         };
-        timer.scheduleAtFixedRate(this.timerTask, 0,this.tick);
+        timer.scheduleAtFixedRate(this.timerTask, 0,1000);
     }
 
     //Singleton implementation
