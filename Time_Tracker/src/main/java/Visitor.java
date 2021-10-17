@@ -1,3 +1,3 @@
-public class Visitor {
+public interface Visitor {
     //TODO
 }

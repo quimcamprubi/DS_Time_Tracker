@@ -5,21 +5,31 @@ import java.util.TimerTask;
 
 public class Clock extends java.util.Observable{
 
-    private Long tick; //Precision in seconds
+    private int tick; //Precision in seconds
     private TimerTask timerTask;
     private Timer timer;
+    private static Clock uniqueInstance;
 
-    public void Clock() {
-        this.tick = 2000L;
+    private void Clock() {
+        this.tick = 1000;
         this.timer = new Timer("Timer");
         this.timerTask = new TimerTask() {
             @Override
             public void run() {
-                notifyObservers(LocalDateTime.now());
+                timeScheduler();
             }
         };
-        timer.schedule(this.timerTask, this.tick);
+        timer.scheduleAtFixedRate(this.timerTask, 0,this.tick);
     }
 
-    //TODO Singleton implementation
+    //Singleton implementation
+    public static Clock getInstance() {
+        if (uniqueInstance == null) {uniqueInstance = new Clock();}
+        return uniqueInstance;
+    }
+
+    private void timeScheduler(){
+        setChanged();
+        notifyObservers(LocalDateTime.now());
+    }
 }

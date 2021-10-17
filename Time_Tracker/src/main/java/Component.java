@@ -1,24 +1,22 @@
 import java.time.Duration;
+import java.util.ArrayList;
 
 public abstract class Component {
     // ----- ATTRIBUTES -----
     private String name;
-    private String description;
+    private ArrayList<String> tags;
     private Component parent;
     private Duration componentDuration;
 
     // ----- CONSTRUCTOR -----
-    public Component(String name, String description, Component parent) {
+    public Component(String name, ArrayList<String> tags, Component parent) {
         this.name = name;
-        this.description = description;
+        this.tags = new ArrayList<String>();
         this.parent = parent;
     }
 
     // ----- METHODS -----
-    public Duration computeComponentDuration() {
-        //TODO
-        return this.componentDuration;
-    }
+    public abstract Duration computeComponentDuration();
 
     public Component getParent() {
         return this.parent;

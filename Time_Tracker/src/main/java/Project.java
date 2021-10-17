@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.util.ArrayList;
 
 public class Project extends Component {
@@ -5,11 +6,21 @@ public class Project extends Component {
     private ArrayList<Component> components;
 
     // ----- CONSTRUCTOR -----
-    public Project(String name, String description, Component parent) {
-        super(name, description, parent);
+    public Project(String name, ArrayList<String> tags, Component parent) {
+        super(name, tags, parent);
+        this.components = new ArrayList<Component>();
     }
 
     // ----- METHODS -----
+    @Override
+    public Duration computeComponentDuration(){
+        Duration duration = Duration.ZERO;
+        for (Component component : this.components){
+            duration = duration.plus(component.computeComponentDuration());
+        }
+        return duration;
+    }
+
     public ArrayList<Component> getChildren() {
         return this.components;
     }

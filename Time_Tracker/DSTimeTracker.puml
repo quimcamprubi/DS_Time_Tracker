@@ -33,7 +33,7 @@ Interface Visitor{
 + visitInterval(Intervals)
 }
 
-class searchProject {
+class printTree {
 + visitTask()
 + visitProject()
 }
