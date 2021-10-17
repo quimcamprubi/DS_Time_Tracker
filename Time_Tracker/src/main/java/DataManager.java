@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class DataManager {// Methods
     // ----- ATTRIBUTES -----
-    private Printer printer;
     private ArrayList<Component> components; // Chosen ArrayList due to higher speed than List
     private Duration totalDuration;
 
@@ -12,6 +11,7 @@ public class DataManager {// Methods
     }
 
     // ----- METHODS -----
+
     public void saveUserData() {
         //TODO
     }
@@ -20,8 +20,5 @@ public class DataManager {// Methods
         //TODO
     }
 
-    public Duration computeTotalDuration() {
-        //TODO
-        return this.totalDuration;
-    }
+
 }

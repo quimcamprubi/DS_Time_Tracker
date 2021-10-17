@@ -5,6 +5,7 @@ public class Project extends Component {
     // ----- ATTRIBUTES -----
     private ArrayList<Component> components;
 
+
     // ----- CONSTRUCTOR -----
     public Project(String name, ArrayList<String> tags, Component parent) {
         super(name, tags, parent);
@@ -13,18 +14,20 @@ public class Project extends Component {
 
     // ----- METHODS -----
     @Override
-    public Duration computeComponentDuration(){
-        Duration duration = Duration.ZERO;
-        for (Component component : this.components){
-            duration = duration.plus(component.computeComponentDuration());
+    public void updateParentDuration(){
+        Duration taskDuration = Duration.ZERO;
+        for (Component component : this.components) {
+            taskDuration = taskDuration.plus(component.getDuration());
         }
-        return duration;
+        this.setDuration(taskDuration);
+        if (this.getParent() != null)this.updateParentDuration();
     }
 
     public ArrayList<Component> getChildren() {
         return this.components;
     }
 
+    @Override
     public void addChild(Component child) {
         this.components.add(child);
     }
@@ -33,7 +36,10 @@ public class Project extends Component {
         this.components.remove(child);
     }
 
-    public void acceptVisitor(Visitor v) {
-        //TODO;
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitProject(this);
+        for(Component component : this.components){
+            component.acceptVisitor(visitor);
+        }
     }
 }

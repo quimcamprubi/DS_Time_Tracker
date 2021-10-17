@@ -7,7 +7,6 @@ abstract class Component {
 - Name: string
 - Description: string
 - Component: parent
-+ computeComponentDuration()
 + getParent()
 }
 
@@ -86,13 +85,13 @@ class DataManager{
 
 DataManager "1" -down-> "*" Component: Contains
 Project "1" -up-> "*" Component
-Client "*" -down-> "1" DataManager
+Client "1" -down-> "*" Component
 Task "1" -left-> "*" Interval:Contains
 Clock -down-|> Observable
 Observable "1" -Down-> "*" Observer
 Interval -up-|> Observer
 Task -[hidden]right-> Project
-searchProject .up.|> Visitor
+printTree .up.|> Visitor
 savetoJSON .up.|> Visitor
 
 @enduml

@@ -13,21 +13,29 @@ public class Task extends Component{
     }
 
     // ----- METHODS -----
-    @Override
-    public Duration computeComponentDuration(){
-        Duration duration = Duration.ZERO;
-        for (Interval interval : this.intervals){
-            duration = duration.plus(interval.getDuration());
-        }
-        return duration;
-    }
-
     public void start(){this.intervals.add(new Interval(this));}
 
     public void stop(){
-        this.intervals.get(this.intervals.size() - 1).endInterval();
-
+        Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
+        lastInterval.endInterval();
+        this.setEndTime(lastInterval.getEndTime());
     }
+
+    @Override
+    public void updateParentDuration(){
+        Duration taskDuration = Duration.ZERO;
+        for (Interval interval : this.intervals) {
+            taskDuration = taskDuration.plus(interval.getDuration());
+        }
+        this.setDuration(taskDuration);
+        if (this.getParent() != null)this.updateParentDuration();
+    }
+
+
+
+    @Override
+    public void addChild(Component component){};
+
 
     public void startInterval() {
         //TODO
@@ -41,7 +49,10 @@ public class Task extends Component{
         //TODO
     }
 
-    public void acceptVisitor(Visitor v) {
-        //TODO;
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitTask(this);
+        for(Interval interval : this.intervals){
+            interval.acceptVisitor(visitor);
+        }
     }
 }

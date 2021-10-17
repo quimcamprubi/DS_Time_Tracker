@@ -9,26 +9,33 @@ public class Interval implements java.util.Observer{
     private Duration duration;
     private Task parent;
 
+
     // ----- CONSTRUCTOR -----
     public Interval(Task parent){
         this.parent = parent;
         Clock.getInstance().addObserver(this);
     }
 
+
+    public Duration getDuration() { return this.duration; }
+
     public void endInterval() {
-        this.duration = Duration.between(this.startTime, this.endTime);
         //this.parent.addDuration(this.duration);
         //this.parent.setEndTime(this.endTime);
         Clock.getInstance().deleteObserver(this);
 
     }
 
-    public Duration getDuration(){return this.duration;}
     public LocalDateTime getEndTime(){return this.endTime;}
     public LocalDateTime getStartTime(){return this.startTime;}
 
-    public void accept(Visitor visitor) {
-        //TODO
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitInterval(this);
+    }
+    @Override
+    public String toString() {
+        return String.format("%-21s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(), this.parent.getName(),
+                this.startTime, this.endTime, Utils.roundDuration(this.duration));
     }
 
     @Override
@@ -36,6 +43,8 @@ public class Interval implements java.util.Observer{
         this.endTime = (LocalDateTime) arg;
         if(this.startTime == null){this.startTime = this.endTime;}
         this.duration = Duration.between(this.startTime, this.endTime);
+        this.parent.updateParentDuration();
+        this.parent.updateParentInformation(this.startTime, this.endTime);
         //call print visitor
 
     }

@@ -1,3 +1,5 @@
 public interface Visitor {
-    //TODO
+    void visitTask(Task task);
+    void visitProject(Project project);
+    void visitInterval(Interval interval);
 }
