@@ -19,7 +19,6 @@ abstract class Component {
 }
 
 class Project extends Component {
-- Component: Components[]
 + getChildren()
 + addChild(child: Component)
 + removeChild(child: Component)
@@ -28,7 +27,6 @@ class Project extends Component {
 }
 
 class Task extends Component {
-- intervals: Intervals[]
 + start()
 + stop()
 + updateParentDuration()
@@ -102,12 +100,12 @@ class DataManager {
 + computeTotalDuration()
 }
 
-DataManager "1" -down-> "*" Component: Contains
-Project "1" -up-> "*" Component
-Client "1" -down-> "*" Component
-Task "1" -left-> "*" Interval:Contains
+DataManager "1" *-down-> "n" Component: components
+Project "1" *-up-> "n" Component: components
+Client "1" *-down-> "n" Component
+Task "1" *-left-> "n" Interval: intervals
 Clock -down-|> Observable
-Observable "1" -Down-> "*" Observer
+Observable "1" -Down-> "n" Observer
 Interval -up-|> Observer
 Task -[hidden]right-> Project
 printTree .up.|> Visitor
