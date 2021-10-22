@@ -12,7 +12,7 @@ public class Clock extends java.util.Observable{
 
     private Clock() {
         this.timer = new Timer("Timer");
-        this.tick = 1000;
+        this.tick = 2000;
         this.timerTask = new TimerTask() {
             @Override
             public void run() {
