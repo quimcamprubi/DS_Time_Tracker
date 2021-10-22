@@ -4,37 +4,51 @@ skinparam classAttributeIconSize 0
 skinparam linetype polyline
 
 abstract class Component {
-- Name: string
-- Description: string
-- Component: parent
+- Name: String
+- tags: String[]
+- parent: Component
+- duration: Duration
+- startTime: LocalDateTime
+- endTime: LocalDateTime
 + getParent()
++ getName()
++ getDuration()
++ setDuration(duration: Duration)
++ updateParentInformation(startTime: LocalDateTime, endTime: LocalDateTime
++ toString()
 }
 
 class Project extends Component {
 - Component: Components[]
 + getChildren()
-+ removeChild()
-+ addChild()
-+ acceptVisitor()
++ addChild(child: Component)
++ removeChild(child: Component)
++ updateParentDuration()
++ acceptVisitor(visitor: Visitor)
 }
 
-
 class Task extends Component {
-- Intervals: Intervals[]
-+ startInterval()
-+ endInterval()
-+ acceptVisitor()
+- intervals: Intervals[]
++ start()
++ stop()
++ updateParentDuration()
++ acceptVisitor(visitor: Visitor)
 }
 
 Interface Visitor{
-+ visitTask()
-+ visitProject()
-+ visitInterval(Intervals)
++ visitTask(task: Task)
++ visitProject(project: Project)
++ visitInterval(interval: Interval)
 }
 
 class printTree {
-+ visitTask()
-+ visitProject()
+- uniqueInstance
+- PrintTree(root: Component)
++ getInstance(root: Component)
++ visitTask(task: Task)
++ visitProject(project: Project)
++ visitInterval(interval: Interval)
++ print(root: Component)
 }
 
 class savetoJSON {
@@ -43,13 +57,16 @@ class savetoJSON {
 }
 
 class Interval{
-- currentTime
-- startTime
-- endTime
-+ getCurrentTime()
-- setCurrentTime()
-+ update()
-
+- startTime: LocalDateTime
+- endTime: LocalDateTime
+- duration: Duration
+- parent: Task
++ getDuration()
++ getStartTime()
++ getEndTime()
++ endInterval()
++ update(o: Observable, arg: Object)
++ toString()
 }
 
 package java.util <<Folder>> {
@@ -65,23 +82,25 @@ package java.util <<Folder>> {
     }
 }
 
-
 class Clock {
-- uniqueInstance
-- clock()
+- uniqueInstance: Clock
+- tick: Int
+- timerTask: TimerTask
+- timer: Timer
+- Clock()
 + getInstance()
+- timeScheduler()
 }
 
-class Client{
+class Client {
 + main()
 }
 
-class DataManager{  
+class DataManager {
 + saveUserData()
 - loadUserData()
 + computeTotalDuration()
 }
-
 
 DataManager "1" -down-> "*" Component: Contains
 Project "1" -up-> "*" Component
