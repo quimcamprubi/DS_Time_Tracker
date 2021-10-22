@@ -33,16 +33,13 @@ public class Task extends Component{
         if (this.getParent() != null) this.getParent().updateParentDuration();
     }
 
-
-
-    @Override
-    public void addChild(Component component){};
-
-
     public void acceptVisitor(Visitor visitor) {
         visitor.visitTask(this);
         for(Interval interval : this.intervals){
             interval.acceptVisitor(visitor);
         }
     }
+
+    @Override
+    public void addChild(Component component){};
 }

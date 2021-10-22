@@ -13,6 +13,7 @@ public class PrintTree implements Visitor {
         root.acceptVisitor(this);
         System.out.println("\n");
     }
+
     @Override
     public void visitProject(Project project) {
         System.out.println(project.toString());
