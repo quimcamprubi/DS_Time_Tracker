@@ -11,6 +11,8 @@ public class Client {
 
 
         // make a small tree of projects and tasks
+        Task rootTask = new Task("root",  new ArrayList<String>(), null);
+
         Project root = new Project("software design",  new ArrayList<String>( Arrays.asList("java", "flutter") ),null);
         Project p1 = new Project("software testing",  new ArrayList<String>( Arrays.asList("c++", "Java", "python") ), null);
         Project p2 = new Project("databases",  new ArrayList<String>( Arrays.asList("SQL", "python", "C++") ), null);
@@ -31,30 +33,42 @@ public class Client {
         // from now on
 
         // test it
+        System.out.println(String.format("%-35s %-30s %-30s %-1s", "", "initial date","final date", "duration"));
+        System.out.println("start test");
         Thread.sleep(2000);
 
+        System.out.println("transportation starts");
         t1.start();
+        rootTask.start();//root activity also starts and ends at the end of the test
         Thread.sleep(4000);
+        System.out.println("transportation stops");
         t1.stop();
 
         Thread.sleep(2000);
 
+        System.out.println("first list starts");
         t2.start();
         Thread.sleep(6000);
 
+        System.out.println("second list starts");
         t3.start();
         Thread.sleep(4000);
 
+        System.out.println("first list stops");
         t2.stop();
 
         Thread.sleep(2000);
+        System.out.println("second list stops");
         t3.stop();
 
         Thread.sleep(2000);
 
+        System.out.println("transportation starts");
         t1.start();
         Thread.sleep(4000);
+        System.out.println("transportation stops");
         t1.stop();
+        rootTask.stop();
 
         // optionally, stop the clock
         // ...

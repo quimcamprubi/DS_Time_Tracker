@@ -1,5 +1,6 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Observable;
 
 public class Interval implements java.util.Observer{
@@ -35,8 +36,14 @@ public class Interval implements java.util.Observer{
 
     @Override
     public String toString() {
-        return String.format("%-21s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(), this.parent.getName(),
-                this.startTime, this.endTime, Utils.roundDuration(this.duration));
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String typeClass = this.getClass().getSimpleName() + ":";
+        String parentName = this.parent == null ? "null": this.parent.getName();
+        String startTime = this.startTime == null ? "null": this.startTime.format(timeFormat);
+        String endTime = this.endTime == null ? "null": this.endTime.format(timeFormat);
+
+        return String.format("%-31s %-30s %-30s %-5d", typeClass, startTime, endTime, Utils.roundDuration(this.duration));
     }
 
     // The update method is called by the Observable (Clock). In this function, we update the current duration of the Interval,

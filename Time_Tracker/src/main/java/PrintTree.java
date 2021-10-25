@@ -11,7 +11,7 @@ public class PrintTree implements Visitor {
 
     public void print(Component root) {
         root.acceptVisitor(this);
-        System.out.println("\n");
+        //System.out.println("\n");
     }
 
     @Override

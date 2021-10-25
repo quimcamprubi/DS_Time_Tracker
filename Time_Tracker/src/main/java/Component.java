@@ -1,5 +1,6 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public abstract class Component {
@@ -44,11 +45,16 @@ public abstract class Component {
     // Function that casts the Component's information into a formatted string
     @Override
     public String toString() {
-        String parentName;
-        if (this.parent == null) parentName = "null";
-        else parentName = this.parent.getName();
-        return String.format("%-10s %-10s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(),
-                this.name, parentName, this.startTime,
-                this.endTime, Utils.roundDuration(this.duration));
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String typeClass = this.getClass().getSimpleName() + ":";
+        String name = this.name == null ? "null": this.name;
+        //String parentName = this.parent == null ? "null": this.parent.getName();
+        String startTime = this.startTime == null ? "null": this.startTime.format(timeFormat);
+        String endTime = this.endTime == null ? "null": this.endTime.format(timeFormat);
+
+
+        return String.format("%-10s %-20s %-30s %-30s %-5d", typeClass,
+                name, startTime, endTime, Utils.roundDuration(this.duration));
     }
 }
