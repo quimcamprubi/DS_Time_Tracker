@@ -37,12 +37,14 @@ public class Client {
         System.out.println("start test");
         Thread.sleep(2000);
 
-        System.out.println("transportation starts");
+
         t1.start();
+        System.out.println("transportation starts");
         rootTask.start();//root activity also starts and ends at the end of the test
         Thread.sleep(4000);
-        System.out.println("transportation stops");
         t1.stop();
+        System.out.println("transportation stops");
+
 
         Thread.sleep(2000);
 

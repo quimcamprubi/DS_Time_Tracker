@@ -52,7 +52,8 @@ public class Interval implements java.util.Observer{
     @Override
     public void update(Observable o, Object arg) {
         this.endTime = (LocalDateTime) arg;
-        if(this.startTime == null) { this.startTime = this.endTime; }
+        if(this.startTime == null) this.startTime = Clock.getInstance().getCurrentTime(); //added Pep try
+        //if(this.startTime == null) { this.startTime = this.endTime; }
         this.duration = Duration.between(this.startTime, this.endTime);
         this.parent.updateParentDuration();
         this.parent.updateParentInformation(this.startTime, this.endTime);

@@ -28,6 +28,10 @@ public class Clock extends java.util.Observable{
         return uniqueInstance;
     }
 
+    public LocalDateTime getCurrentTime(){
+        return LocalDateTime.now();
+    }
+
     // Function that notifies the Clock's observers with the current time.
     private void timeScheduler(){
         setChanged();
