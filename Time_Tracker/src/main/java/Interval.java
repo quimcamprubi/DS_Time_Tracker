@@ -11,7 +11,6 @@ public class Interval implements java.util.Observer{
     private Duration duration;
     private Task parent;
 
-
     // ----- CONSTRUCTOR -----
     public Interval(Task parent){
         this.parent = parent;
@@ -50,7 +49,7 @@ public class Interval implements java.util.Observer{
 
     // The update method is called by the Observable (Clock). In this function, we update the current duration of the Interval,
     // as well as the end time (and the start time, but only the first time).  Then, we propagate the infromation upwards.
-    // updateParentDuration and updateParentInformation are used to calculate the duration and the start and end times of the Components above.
+    // updateParentDuration and updateParentInformation are used to calculate the duration and the start and end times of the Activities above.
     @Override
     public void update(Observable o, Object arg) {
         this.endTime = (LocalDateTime) arg;

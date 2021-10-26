@@ -1,13 +1,13 @@
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Task extends Component{
+public class Task extends Activity {
     // ----- ATTRIBUTES -----
     private ArrayList<Interval> intervals;
 
     // ----- CONSTRUCTOR -----
-    public Task(String name, ArrayList<String> tags, Component parent) {
+    public Task(String name, ArrayList<String> tags, Activity parent) {
         super(name, tags, parent);
         this.intervals = new ArrayList<Interval>();
     }
@@ -22,7 +22,7 @@ public class Task extends Component{
 
     // Function used to update the Interval's parent's duration. After the Interval is updated with a Clock update call,
     // the Interval calls this function to propagate the duration from the bottom to the top of the tree. At first, it updates
-    // its parent Task, but the Task then propagates the information upwards to any type of Component.
+    // its parent Task, but the Task then propagates the information upwards to any type of Activity.
     @Override
     public void updateParentDuration(){
         Duration taskDuration = Duration.ZERO;
@@ -38,5 +38,5 @@ public class Task extends Component{
     }
 
     @Override
-    public void addChild(Component component){};
+    public void addChild(Activity activity){};
 }

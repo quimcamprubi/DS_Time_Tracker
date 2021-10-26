@@ -3,10 +3,10 @@
 skinparam classAttributeIconSize 0
 skinparam linetype polyline
 
-abstract class Component {
+abstract class Activity {
 - Name: String
 - tags: String[]
-- parent: Component
+- parent: Activity
 - duration: Duration
 - startTime: LocalDateTime
 - endTime: LocalDateTime
@@ -18,15 +18,15 @@ abstract class Component {
 + toString()
 }
 
-class Project extends Component {
+class Project extends Activity {
 + getChildren()
-+ addChild(child: Component)
-+ removeChild(child: Component)
++ addChild(child: Activity)
++ removeChild(child: Activity)
 + updateParentDuration()
 + acceptVisitor(visitor: Visitor)
 }
 
-class Task extends Component {
+class Task extends Activity {
 + start()
 + stop()
 + updateParentDuration()
@@ -41,12 +41,12 @@ Interface Visitor{
 
 class printTree {
 - uniqueInstance
-- PrintTree(root: Component)
-+ getInstance(root: Component)
+- PrintTree(root: Activity)
++ getInstance(root: Activity)
 + visitTask(task: Task)
 + visitProject(project: Project)
 + visitInterval(interval: Interval)
-+ print(root: Component)
++ print(root: Activity)
 }
 
 class savetoJSON {
@@ -100,9 +100,9 @@ class DataManager {
 + computeTotalDuration()
 }
 
-DataManager "1" *-down-> "n" Component: components
-Project "1" *-up-> "n" Component: components
-Client "1" *-down-> "n" Component
+DataManager "1" *-down-> "n" Activity: Activities
+Project "1" *-up-> "n" Activity: Activities
+Client "1" *-down-> "n" Activity
 Task "1" *-left-> "n" Interval: intervals
 Clock -down-|> Observable
 Observable "1" -Down-> "n" Observer

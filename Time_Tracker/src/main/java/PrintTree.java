@@ -15,14 +15,14 @@ public class PrintTree implements Visitor {
     @Override
     public void visitProject(Project project) {
         System.out.println(project.toString());
-        Component parent = project.getParent();
+        Activity parent = project.getParent();
         if (parent != null) parent.acceptVisitor(this);
     }
 
     @Override
     public void visitTask(Task task) {
         System.out.println(task.toString());
-        Component parent = task.getParent();
+        Activity parent = task.getParent();
         if (parent != null) parent.acceptVisitor(this);
     }
 
