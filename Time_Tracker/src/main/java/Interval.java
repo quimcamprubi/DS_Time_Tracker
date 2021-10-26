@@ -53,8 +53,8 @@ public class Interval implements java.util.Observer{
     @Override
     public void update(Observable o, Object arg) {
         this.endTime = (LocalDateTime) arg;
-        if(this.startTime == null) this.startTime = Clock.getInstance().getCurrentTime().minus(2, ChronoUnit.SECONDS); //added Pep try
-        //if(this.startTime == null) { this.startTime = this.endTime; }
+        //if(this.startTime == null) this.startTime = Clock.getInstance().getCurrentTime().minus(2, ChronoUnit.SECONDS); //added Pep try
+        if(this.startTime == null) { this.startTime = this.endTime.minus(2, ChronoUnit.SECONDS); }
         this.duration = (this.duration == null) ? Duration.of(2, ChronoUnit.SECONDS): Duration.between(this.startTime, this.endTime); //must be 2 at the creation of the task
         this.parent.updateParentDuration();
         this.parent.updateParentInformation(this.startTime, this.endTime);
