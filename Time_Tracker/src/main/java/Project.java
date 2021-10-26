@@ -38,9 +38,6 @@ public class Project extends Component {
     }
 
     public void acceptVisitor(Visitor visitor) {
-        for(Component component : this.components){
-            component.acceptVisitor(visitor);
-        }
         visitor.visitProject(this);
     }
 }

@@ -21,8 +21,9 @@ public class Interval implements java.util.Observer{
     // ----- METHODS -----
     // Getters
     public Duration getDuration() { return this.duration; }
-    public LocalDateTime getEndTime(){return this.endTime;}
-    public LocalDateTime getStartTime(){return this.startTime;}
+    public LocalDateTime getEndTime() { return this.endTime; }
+    public LocalDateTime getStartTime() { return this.startTime; }
+    public Task getParent() { return this.parent; }
 
     public void endInterval() {
         //this.parent.addDuration(this.duration);
@@ -55,14 +56,10 @@ public class Interval implements java.util.Observer{
         this.endTime = (LocalDateTime) arg;
         //if(this.startTime == null) this.startTime = Clock.getInstance().getCurrentTime().minus(2, ChronoUnit.SECONDS); //added Pep try
         if(this.startTime == null) { this.startTime = this.endTime.minus(2, ChronoUnit.SECONDS); }
-        this.duration = (this.duration == null) ? Duration.of(2, ChronoUnit.SECONDS): Duration.between(this.startTime, this.endTime); //must be 2 at the creation of the task
+        this.duration = Duration.between(this.startTime, this.endTime);
         this.parent.updateParentDuration();
         this.parent.updateParentInformation(this.startTime, this.endTime);
         //call print visitor
-        Component root = this.parent;
-        while(root.getParent() != null){
-            root = root.getParent();
-        }
-        PrintTree.getInstance(null).print(root);
+        PrintTree.getInstance().print(this);
     }
 }

@@ -34,9 +34,6 @@ public class Task extends Component{
     }
 
     public void acceptVisitor(Visitor visitor) {
-        for(Interval interval : this.intervals){
-            interval.acceptVisitor(visitor);
-        }
         visitor.visitTask(this);
     }
 
