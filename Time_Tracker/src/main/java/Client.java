@@ -27,7 +27,7 @@ public class Client {
         Task t5 = new Task("first milestone",  new ArrayList<String>( Arrays.asList("Java", "IntelliJ") ), p4);
 
         // make the printer
-        PrintTree printer = PrintTree.getInstance(root);
+         PrintTree printer = PrintTree.getInstance(root);
 
         // the printer will periodically print the whole tree
         // from now on
@@ -35,7 +35,7 @@ public class Client {
         // test it
         System.out.println(String.format("%-35s %-30s %-30s %-1s", "", "initial date","final date", "duration"));
         System.out.println("start test");
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
 
 
         t1.start();
@@ -43,10 +43,9 @@ public class Client {
         rootTask.start();//root activity also starts and ends at the end of the test
         Thread.sleep(4000);
         t1.stop();
-        System.out.println("transportation stops");
-
 
         Thread.sleep(2000);
+        System.out.println("transportation stops");
 
         System.out.println("first list starts");
         t2.start();

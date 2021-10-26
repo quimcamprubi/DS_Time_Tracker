@@ -34,10 +34,10 @@ public class Task extends Component{
     }
 
     public void acceptVisitor(Visitor visitor) {
-        visitor.visitTask(this);
         for(Interval interval : this.intervals){
             interval.acceptVisitor(visitor);
         }
+        visitor.visitTask(this);
     }
 
     @Override
