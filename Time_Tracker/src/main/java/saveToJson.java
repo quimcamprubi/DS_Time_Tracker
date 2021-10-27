@@ -91,6 +91,7 @@ public class saveToJson implements Visitor{
             obj2.put("EndTime", interval.getEndTime());
             Intervals.put(obj2);
         }
+        obj.put("Intervals", Intervals);
     }
 
     @Override
