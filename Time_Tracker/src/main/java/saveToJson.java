@@ -89,6 +89,7 @@ public class saveToJson implements Visitor{
             JSONObject obj2 = new JSONObject();
             obj2.put("StartTime", interval.getStartTime());
             obj2.put("EndTime", interval.getEndTime());
+            obj2.put("Duration", interval.getDuration().toSeconds());
             Intervals.put(obj2);
         }
         obj.put("Intervals", Intervals);

@@ -14,7 +14,7 @@ public class Task extends Activity {
 
     // ----- METHODS -----
     // Methods to start and stop intervals
-    public void start(){this.intervals.add(new Interval(this));}
+    public void start(){ this.intervals.add(new Interval(this)); }
     public void stop(){
         Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
         lastInterval.endInterval();
