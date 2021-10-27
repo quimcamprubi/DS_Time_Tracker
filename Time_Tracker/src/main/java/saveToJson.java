@@ -12,7 +12,7 @@ public class saveToJson implements Visitor{
     }
 
     //Access to the tree root to start the saving object creation
-    public JSONObject store(Project project) {
+    public JSONArray store(Project project) {
         JSONObject obj = new JSONObject();
         arr.put(obj);
 
@@ -36,10 +36,10 @@ public class saveToJson implements Visitor{
                 ((Task) a).acceptVisitor(this);
             }
         }
-        return obj;
+        return arr;
     }
 
-    //Access each project node in order to reacces his childs
+    //Access each project node in order to re access his children
     @Override
     public void visitProject(Project project) {
         JSONObject obj = new JSONObject();
@@ -67,7 +67,7 @@ public class saveToJson implements Visitor{
         }
     }
 
-    //Acess a child and recover not only his info but his intervals
+    //Access a child and recover not only his info but his intervals
     @Override
     public void visitTask(Task task) {
         JSONObject obj = new JSONObject();

@@ -1,3 +1,4 @@
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileWriter;
@@ -21,7 +22,7 @@ public class DataManager {// Methods
         try {
             saveToJson TreeRecovery = saveToJson.getInstance();
             FileWriter f = new FileWriter("out.json", false);
-            JSONObject data = TreeRecovery.store(project);
+            JSONArray data = TreeRecovery.store(project);
 
             f.write(data.toString());
             f.write("\n");
