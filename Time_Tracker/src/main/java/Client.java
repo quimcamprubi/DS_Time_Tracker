@@ -10,7 +10,7 @@ public class Client {
         Clock clock = Clock.getInstance();
         // make the printer
         PrintTree printer = PrintTree.getInstance();
-
+        DataManager saveloader = new DataManager();
         Project root = new Project("root", new ArrayList<String>(), null);
         Project softwareDesign = new Project("software design",  new ArrayList<String>( Arrays.asList("java", "flutter") ), root);
         Project softwareTesting = new Project("software testing",  new ArrayList<String>( Arrays.asList("c++", "Java", "python") ), root);
@@ -64,7 +64,7 @@ public class Client {
         Thread.sleep(4000);
         System.out.println("transportation stops");
         transportation.stop();
-
+        saveloader.saveUserData(root);
         // optionally, stop the clock
         // ...
     }

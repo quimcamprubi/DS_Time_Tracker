@@ -13,4 +13,12 @@
         <maven.compiler.target>12</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+    </dependencies>
+
 </project>

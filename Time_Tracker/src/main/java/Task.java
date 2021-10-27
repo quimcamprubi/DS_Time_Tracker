@@ -33,6 +33,7 @@ public class Task extends Activity {
         if (this.getParent() != null) this.getParent().updateParentDuration();
     }
 
+    public ArrayList<Interval> getIntervals(){return this.intervals;}
     public void acceptVisitor(Visitor visitor) {
         visitor.visitTask(this);
     }

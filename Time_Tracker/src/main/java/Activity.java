@@ -27,6 +27,11 @@ public abstract class Activity {
     public String getName() { return this.name; }
     public Activity getParent() {return this.parent;}
     public Duration getDuration(){return this.duration;}
+    public String getParsedStartTime(){return this.startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
+    public String getParsedEndTime(){return this.endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
+    public LocalDateTime getEndTime() {return endTime;}
+    public LocalDateTime getStartTime() {return startTime;}
+
     public void setDuration(Duration duration){this.duration = duration;}
 
     // Abstract methods

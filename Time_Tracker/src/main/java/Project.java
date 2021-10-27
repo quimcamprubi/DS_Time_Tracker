@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -36,7 +38,7 @@ public class Project extends Activity {
     public void removeChild(Activity child) {
         this.activities.remove(child);
     }
-
+    public ArrayList<Activity> getActivities(){ return this.activities;}
     public void acceptVisitor(Visitor visitor) {
         visitor.visitProject(this);
     }

@@ -5,8 +5,6 @@ public class PrintTree implements Visitor {
         return uniqueInstance;
     }
 
-    private PrintTree(){}
-
     public void print(Interval interval) {
         interval.acceptVisitor(this);
         //System.out.println("\n");
