@@ -34,10 +34,9 @@ public class Interval implements java.util.Observer{
     public String getParsedEndTime(){return this.endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
 
     public void endInterval() {
-        //this.parent.addDuration(this.duration);
-        //this.parent.setEndTime(this.endTime);
+        // this.parent.addDuration(this.duration);
+        // this.parent.setEndTime(this.endTime);
         Clock.getInstance().deleteObserver(this);
-
     }
 
     public void acceptVisitor(Visitor visitor) {
