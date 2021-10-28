@@ -1,0 +1,37 @@
+Printing both trees to compare them
+FIRST TREE:
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:51            26   
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:45            16   
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:45            16   
+activity:  first list           2021-10-28 21:09:33            2021-10-28 21:09:43            10   
+Interval:                       2021-10-28 21:09:33            2021-10-28 21:09:43            10   
+activity:  second list          2021-10-28 21:09:39            2021-10-28 21:09:45            6    
+Interval:                       2021-10-28 21:09:39            2021-10-28 21:09:45            6    
+activity:  project time tracker null                           null                           0    
+activity:  read handout         null                           null                           0    
+activity:  first milestone      null                           null                           0    
+activity:  software testing     null                           null                           0    
+activity:  databases            null                           null                           0    
+activity:  transportation       2021-10-28 21:09:25            2021-10-28 21:09:51            10   
+Interval:                       2021-10-28 21:09:25            2021-10-28 21:09:31            6    
+Interval:                       2021-10-28 21:09:47            2021-10-28 21:09:51            4    
+
+
+JSON TREE:
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:51            26   
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:45            16   
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:45            16   
+activity:  first list           2021-10-28 21:09:33            2021-10-28 21:09:43            10   
+Interval:                       2021-10-28 21:09:33            2021-10-28 21:09:43            10   
+activity:  second list          2021-10-28 21:09:39            2021-10-28 21:09:45            6    
+Interval:                       2021-10-28 21:09:39            2021-10-28 21:09:45            6    
+activity:  project time tracker null                           null                           0    
+activity:  read handout         null                           null                           0    
+activity:  first milestone      null                           null                           0    
+activity:  software testing     null                           null                           0    
+activity:  databases            null                           null                           0    
+activity:  transportation       2021-10-28 21:09:25            2021-10-28 21:09:51            10   
+Interval:                       2021-10-28 21:09:25            2021-10-28 21:09:31            6    
+Interval:                       2021-10-28 21:09:47            2021-10-28 21:09:51            4    
+
+Process finished with exit code 0

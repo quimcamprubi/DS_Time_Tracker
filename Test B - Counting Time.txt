@@ -1,0 +1,64 @@
+start test
+transportation starts
+Interval:                       2021-10-28 21:09:25            2021-10-28 21:09:27            2    
+activity:  transportation       2021-10-28 21:09:25            2021-10-28 21:09:27            2    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:27            2    
+Interval:                       2021-10-28 21:09:25            2021-10-28 21:09:29            4    
+activity:  transportation       2021-10-28 21:09:25            2021-10-28 21:09:29            4    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:29            4    
+Interval:                       2021-10-28 21:09:25            2021-10-28 21:09:31            6    
+activity:  transportation       2021-10-28 21:09:25            2021-10-28 21:09:31            6    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:31            6    
+transportation stops
+first list starts
+Interval:                       2021-10-28 21:09:33            2021-10-28 21:09:35            2    
+activity:  first list           2021-10-28 21:09:33            2021-10-28 21:09:35            2    
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:35            2    
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:35            2    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:35            8    
+Interval:                       2021-10-28 21:09:33            2021-10-28 21:09:37            4    
+activity:  first list           2021-10-28 21:09:33            2021-10-28 21:09:37            4    
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:37            4    
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:37            4    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:37            10   
+Interval:                       2021-10-28 21:09:33            2021-10-28 21:09:39            6    
+activity:  first list           2021-10-28 21:09:33            2021-10-28 21:09:39            6    
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:39            6    
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:39            6    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:39            12   
+second list starts
+Interval:                       2021-10-28 21:09:39            2021-10-28 21:09:41            2    
+activity:  second list          2021-10-28 21:09:39            2021-10-28 21:09:41            2    
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:41            8    
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:41            8    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:41            14   
+Interval:                       2021-10-28 21:09:33            2021-10-28 21:09:41            8    
+activity:  first list           2021-10-28 21:09:33            2021-10-28 21:09:41            8    
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:41            10   
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:41            10   
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:41            16   
+Interval:                       2021-10-28 21:09:39            2021-10-28 21:09:43            4    
+activity:  second list          2021-10-28 21:09:39            2021-10-28 21:09:43            4    
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:43            12   
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:43            12   
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:43            18   
+Interval:                       2021-10-28 21:09:33            2021-10-28 21:09:43            10   
+activity:  first list           2021-10-28 21:09:33            2021-10-28 21:09:43            10   
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:43            14   
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:43            14   
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:43            20   
+first list stops
+Interval:                       2021-10-28 21:09:39            2021-10-28 21:09:45            6    
+activity:  second list          2021-10-28 21:09:39            2021-10-28 21:09:45            6    
+activity:  problems             2021-10-28 21:09:33            2021-10-28 21:09:45            16   
+activity:  software design      2021-10-28 21:09:33            2021-10-28 21:09:45            16   
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:45            22   
+second list stops
+transportation starts
+Interval:                       2021-10-28 21:09:47            2021-10-28 21:09:49            2    
+activity:  transportation       2021-10-28 21:09:25            2021-10-28 21:09:49            8    
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:49            24   
+Interval:                       2021-10-28 21:09:47            2021-10-28 21:09:51            4    
+activity:  transportation       2021-10-28 21:09:25            2021-10-28 21:09:51            10   
+activity:  root                 2021-10-28 21:09:25            2021-10-28 21:09:51            26   
+transportation stops
