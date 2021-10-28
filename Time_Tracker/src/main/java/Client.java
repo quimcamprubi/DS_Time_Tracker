@@ -67,6 +67,9 @@ public class Client {
         saveloader.saveUserData(root);
         // optionally, stop the clock
         // ...
+
+        Activity loadedRoot = saveloader.loadUserData();
+
         System.exit(0);
     }
 }
