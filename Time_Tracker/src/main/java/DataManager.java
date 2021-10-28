@@ -91,6 +91,7 @@ public class DataManager {// Methods
                 endTime = LocalDateTime.parse(jsonEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                 duration = Duration.parse(jsonDuration);
             }
+            if (duration == null) duration = Duration.ZERO;
             String className = jsonActivity.getString("Class");
             String name = jsonActivity.getString("Name");
             String parent = jsonActivity.getString("Parent");
@@ -119,22 +120,17 @@ public class DataManager {// Methods
                         intervalStartTime = LocalDateTime.parse(jsonIntervalStartTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                         intervalEndTime = LocalDateTime.parse(jsonIntervalEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                     }
-                    /*LocalDateTime intervalStartTime = LocalDateTime.parse(jsonInterval.getString("StartTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                    LocalDateTime intervalEndTime = LocalDateTime.parse(jsonInterval.getString("EndTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));*/
                     task.addInterval(intervalStartTime, intervalEndTime);
                 }
                 loadedActivities.add(task);
             }
             else System.out.println("Error, one of the JSON objects is neither a Task nor a Project.");
         }
-        System.out.println(loadedActivities.size());
-
         for(Activity son : loadedActivities){
             Activity father = son.getParent();
-            if (father != null)
+            if (father != null && !loadedActivities.contains(son))
                 father.addChild(son);
         }
-
         return root;
     }
 }

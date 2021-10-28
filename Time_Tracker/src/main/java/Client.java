@@ -70,8 +70,12 @@ public class Client {
         // ...
         System.out.println("============================");
         Project loadedRoot = dataManager.loadUserData();
-        System.out.println("Printing whole tree after loading from JSON file");
         PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
+        System.out.println("Printing both trees to compare them");
+        System.out.println("FIRST TREE:");
+        printWholeTree.print(root);
+        System.out.println("\n");
+        System.out.println("JSON TREE:");
         printWholeTree.print(loadedRoot);
 
         System.exit(0);
