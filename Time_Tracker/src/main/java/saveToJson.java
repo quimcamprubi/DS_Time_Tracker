@@ -25,7 +25,7 @@ public class saveToJson implements Visitor{
         else{
             obj.put("StartTime", project.getParsedStartTime());
             obj.put("EndTime", project.getParsedEndTime());
-            obj.put("Duration", project.getDuration().toString());
+            obj.put("Duration", project.getDuration().toSeconds());
         }
         obj.put("Parent", "null");
         for (Activity a: project.getActivities()){
@@ -54,7 +54,7 @@ public class saveToJson implements Visitor{
         else{
             obj.put("StartTime", project.getParsedStartTime());
             obj.put("EndTime", project.getParsedEndTime());
-            obj.put("Duration", project.getDuration().toString());
+            obj.put("Duration", project.getDuration().toSeconds());
         }
         obj.put("Parent", project.getParent().getName());
         for (Activity a: project.getActivities()){
@@ -81,7 +81,7 @@ public class saveToJson implements Visitor{
         else{
             obj.put("StartTime", task.getParsedStartTime());
             obj.put("EndTime", task.getParsedEndTime());
-            obj.put("Duration", task.getDuration().toString());
+            obj.put("Duration", task.getDuration().toSeconds());
         }
         obj.put("Parent", task.getParent().getName());
         JSONArray Intervals = new JSONArray();
