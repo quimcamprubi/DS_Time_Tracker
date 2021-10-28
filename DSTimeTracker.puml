@@ -1,0 +1,148 @@
+@startuml 
+
+
+abstract class Activity {
+- Name: String
+- tags: ArrayList<String>
+- parent: Activity
+- duration: Duration
+- startTime: LocalDateTime
+- endTime: LocalDateTime
++ Activity(name: String, tags:ArrayList<String>, parent: Activity)
++ getName()
++ getParent()
++ getDuration()
++ getParsedStartTime()
++ getParsedEndTime()
++ getEndTime()
++ getStartTime()
++ setDuration(duration: Duration)
++ addChild(child: Activity)
++ acceptVisitor(visitor: Visitor)
++ updateParentDuration()
++ updateParentInformation(startTime: LocalDateTime, endTime: LocalDateTime
++ toString()
+}
+
+class Project extends Activity {
+- activities: ArrayList<Activity>
++ Project(name: String, tags: ArrayList<String>, parent: Activity)
++ updateParentDuration()
++ getChildren()
++ addChild(child: Activity)
++ removeChild(child: Activity)
++ getActivities()
++ acceptVisitor(visitor: Visitor)
+}
+
+class Task extends Activity {
+- intervals: ArrayList<Interval>
++ Task(name: String, tags: ArrayList<String>, parent: Activity)
++ start()
++ stop()
++ updateParentDuration()
++ getIntervals()
++ acceptVisitor(visitor: Visitor)
++ addChild(child: Activity)
+}
+
+Interface Visitor{
++ visitTask(task: Task)
++ visitProject(project: Project)
++ visitInterval(interval: Interval)
+}
+
+class printTree {
+- uniqueInstance
+- PrintTree()
++ getInstance()
++ print(root: Activity)
++ visitProject(project: Project)
++ visitTask(task: Task)
++ visitInterval(interval: Interval)
+}
+
+class printWholeTree {
+- uniqueInstance
+- PrintWholeTree()
++ getInstance()
++ print(root: Activity)
++ visitProject(project: Project)
++ visitTask(task: Task)
++ visitInterval(interval: Interval)
+}
+
+class savetoJSON {
+- uniqueInstance
++ getInstance()
++ store()
++ visitProject()
++ visitTask()
++ visitInterval()
+}
+
+
+class Interval{
+- startTime: LocalDateTime
+- endTime: LocalDateTime
+- duration: Duration
+- parent: Task
++ getDuration()
++ getEndTime()
++ getStartTime()
++ getParent()
++ getParsedStartTime()
++ getParsedEndTime()
++ endInterval()
++ acceptVisitor()
++ toString()
++ update(o: Observable, arg: Object)
+}
+
+package java.util <<Folder>> {
+    Interface Observer{
+    + update()
+    }
+
+    abstract class Observable {
+    - Observers: ArrayList<Observer>
+    + addObserver()
+    + deleteObserver()
+    + notifyObserver()
+    }
+}
+
+class Clock {
+- tick: Int
+- timerTask: TimerTask
+- timer: Timer
+- uniqueInstance: Clock
+- Clock()
++ getInstance()
+- timeScheduler()
+}
+
+class Client {
++ main()
+}
+
+class DataManager {
++ DataManager()
++ saveUserData()
+- loadUserData()
+- instantiateActivity(jsonActivity : JSONObject)
+}
+
+DataManager "1" *-down-> "n" Activity: Activities
+Project "1" *-up-> "n" Activity: Activities
+Client "1" *-down-> "n" Activity
+Task "1" *-left-> "n" Interval: intervals
+Clock -down-|> Observable
+Observable "1" -Down-> "n" Observer
+Interval -up-|> Observer
+Task -[hidden]right-> Project
+printTree .up.|> Visitor
+printWholeTree .up.|> Visitor
+savetoJSON .up.|> Visitor
+
+@enduml
