@@ -130,6 +130,7 @@ class DataManager {
 + DataManager()
 + saveUserData()
 - loadUserData()
+- instantiateActivity(jsonActivity : JSONObject)
 }
 
 DataManager "1" *-down-> "n" Activity: Activities
