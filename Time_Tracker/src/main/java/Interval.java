@@ -30,6 +30,8 @@ public class Interval implements java.util.Observer{
     public LocalDateTime getEndTime() { return this.endTime; }
     public LocalDateTime getStartTime() { return this.startTime; }
     public Task getParent() { return this.parent; }
+    public String getParsedStartTime(){return this.startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
+    public String getParsedEndTime(){return this.endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
 
     public void endInterval() {
         //this.parent.addDuration(this.duration);

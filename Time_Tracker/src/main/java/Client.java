@@ -11,8 +11,8 @@ public class Client {
         Clock clock = Clock.getInstance();
         // make the printer
         PrintTree printer = PrintTree.getInstance();
-        DataManager saveloader = new DataManager();
-        //Activity loadedRoot = saveloader.loadUserData();
+        DataManager dataManager = new DataManager();
+
         Project root = new Project("root", new ArrayList<String>(), null);
         Project softwareDesign = new Project("software design",  new ArrayList<String>( Arrays.asList("java", "flutter") ), root);
         Project softwareTesting = new Project("software testing",  new ArrayList<String>( Arrays.asList("c++", "Java", "python") ), root);
@@ -34,7 +34,6 @@ public class Client {
         // test it
         System.out.println(String.format("%-35s %-30s %-30s %-1s", "", "initial date","final date", "duration"));
         System.out.println("start test");
-        //Thread.sleep(2000);
 
         transportation.start();
         System.out.println("transportation starts");
@@ -66,10 +65,14 @@ public class Client {
         Thread.sleep(4000);
         System.out.println("transportation stops");
         transportation.stop();
-        saveloader.saveUserData(root);
+        dataManager.saveUserData(root);
         // optionally, stop the clock
         // ...
-
+        System.out.println("============================");
+        Project loadedRoot = dataManager.loadUserData();
+        System.out.println("Printing whole tree after loading from JSON file");
+        PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
+        printWholeTree.print(loadedRoot);
 
         System.exit(0);
     }

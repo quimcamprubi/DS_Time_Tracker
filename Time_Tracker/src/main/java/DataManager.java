@@ -6,10 +6,7 @@ import java.io.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class DataManager {// Methods
     // ----- ATTRIBUTES -----
@@ -57,40 +54,87 @@ public class DataManager {// Methods
         JSONArray jsonArray = new JSONArray(data);
         reader.close();
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonActivity = jsonArray.getJSONObject(1);
-            System.out.println(jsonActivity);
-            LocalDateTime startTime = LocalDateTime.parse(jsonActivity.getString("StartTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            LocalDateTime endTime = LocalDateTime.parse(jsonActivity.getString("EndTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            Duration duration = Duration.parse(jsonActivity.getString("Duration"));
+        // Arraylist of all activities (not in a tree)
+        ArrayList<Activity> loadedActivities = new ArrayList<Activity>();
+
+        // First, we load the root, which will be necessary to load the rest of the activities
+        JSONObject rootJsonActivity = jsonArray.getJSONObject(0);
+        LocalDateTime rootStartTime = LocalDateTime.parse(rootJsonActivity.getString("StartTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        LocalDateTime rootEndTime = LocalDateTime.parse(rootJsonActivity.getString("EndTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        Duration rootDuration = Duration.parse(rootJsonActivity.getString("Duration"));
+        String rootClassName = rootJsonActivity.getString("Class");
+        String rootName = rootJsonActivity.getString("Name");
+        String rootParent = rootJsonActivity.getString("Parent");
+        JSONArray tagsJsonArrayRoot = rootJsonActivity.getJSONArray("Tags");
+        ArrayList<String> rootTags = new ArrayList<String>();
+        for (int i = 0; i < tagsJsonArrayRoot.length(); i++) {
+            rootTags.add(tagsJsonArrayRoot.getJSONObject(i).getString("value"));
+        }
+        if (!Objects.equals(rootName, "root")) {
+            System.out.println("The JSON file contains an error with the tree's root. It may have been corrupted");
+            return null;
+        }
+        Project root = new Project(rootName, rootTags, null, rootDuration, rootStartTime, rootEndTime);
+        loadedActivities.add(root);
+
+        for (int i = 1; i < jsonArray.length(); i++) {
+            JSONObject jsonActivity = jsonArray.getJSONObject(i);
+            String jsonStartTime = jsonActivity.getString("StartTime");
+            String jsonEndTime = jsonActivity.getString("EndTime");
+            String jsonDuration = jsonActivity.getString("Duration");
+            LocalDateTime startTime = null;
+            LocalDateTime endTime = null;
+            Duration duration = null;
+            if (!Objects.equals(jsonStartTime, "null") && !Objects.equals(jsonEndTime, "null"))
+            {
+                startTime = LocalDateTime.parse(jsonStartTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                endTime = LocalDateTime.parse(jsonEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                duration = Duration.parse(jsonDuration);
+            }
             String className = jsonActivity.getString("Class");
             String name = jsonActivity.getString("Name");
             String parent = jsonActivity.getString("Parent");
-            String unparsedTags = jsonActivity.getString("Tags");
-            String splitedTags[] = unparsedTags.split(" ");
-            ArrayList<String> tags = new ArrayList<String>(Arrays.asList(splitedTags));
-            System.out.println(name);
-            switch (className) {
-                case "Project":
-                    //Project problems = new Project(name, tags , FORMATO PARENT ES STRING DEBERÍA SER ACTIVITY, duration, startTime, endTime);
-                    break;
-                case "Task":
-                    //Project task = new Task(name, tags , FORMATO PARENT ES STRING DEBERÍA SER ACTIVITY, duration, startTime, endTime);
-                    JSONArray Intervals = jsonActivity.getJSONArray("Intervals");
-                    for(int j = 0; j < Intervals.length(); j++){
-                        JSONObject jsonInterval = jsonArray.getJSONObject(i);
-                        //He indagado un poco y aparentemente el formato ISO_INSTANT es el predeterminado de LocalDateTime
-                        LocalDateTime intervalStartTime = LocalDateTime.parse(jsonInterval.getString("StartTime"), DateTimeFormatter.ISO_INSTANT);
-                        LocalDateTime intervalEndTime = LocalDateTime.parse(jsonInterval.getString("EndTime"), DateTimeFormatter.ISO_INSTANT);
-                        //objetotask.addInterval(intervalStartTime, intervalEndTime);
-                    }
-                    break;
-                default:
-                    System.out.println("Error, one of the JSON objects is neither a Task nor a Project.");
-                    break;
+            JSONArray tagsJsonArray = rootJsonActivity.getJSONArray("Tags");
+            ArrayList<String> tags = new ArrayList<String>();
+            for (int j = 0; j < tagsJsonArray.length(); j++) {
+                tags.add(tagsJsonArray.getJSONObject(j).getString("value"));
             }
 
+            Activity parentActivity = loadedActivities.stream().filter(x -> Objects.equals(x.getName(), parent)).findFirst().get();
+            if (className.equals("Project")) {
+                Project project = new Project(name, tags, parentActivity, duration, startTime, endTime);
+                loadedActivities.add(project);
+            }
+            else if (className.equals("Task")) {
+                Task task = new Task(name, tags, parentActivity, duration, startTime, endTime);
+                JSONArray intervals = jsonActivity.getJSONArray("Intervals");
+                for(int j = 0; j < intervals.length(); j++) {
+                    JSONObject jsonInterval = intervals.getJSONObject(j);
+                    LocalDateTime intervalStartTime = null;
+                    LocalDateTime intervalEndTime = null;
+                    String jsonIntervalStartTime = jsonInterval.getString("StartTime");
+                    String jsonIntervalEndTime = jsonInterval.getString("EndTime");
+                    if (!Objects.equals(jsonIntervalStartTime, "null") && !Objects.equals(jsonIntervalEndTime, "null"))
+                    {
+                        intervalStartTime = LocalDateTime.parse(jsonIntervalStartTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                        intervalEndTime = LocalDateTime.parse(jsonIntervalEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    }
+                    /*LocalDateTime intervalStartTime = LocalDateTime.parse(jsonInterval.getString("StartTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    LocalDateTime intervalEndTime = LocalDateTime.parse(jsonInterval.getString("EndTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));*/
+                    task.addInterval(intervalStartTime, intervalEndTime);
+                }
+                loadedActivities.add(task);
+            }
+            else System.out.println("Error, one of the JSON objects is neither a Task nor a Project.");
         }
-        return null;
+        System.out.println(loadedActivities.size());
+
+        for(Activity son : loadedActivities){
+            Activity father = son.getParent();
+            if (father != null)
+                father.addChild(son);
+        }
+
+        return root;
     }
 }
