@@ -1,6 +1,7 @@
 import org.json.JSONObject;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Project extends Activity {
@@ -11,6 +12,11 @@ public class Project extends Activity {
     // ----- CONSTRUCTOR -----
     public Project(String name, ArrayList<String> tags, Activity parent) {
         super(name, tags, parent);
+        this.activities = new ArrayList<Activity>();
+    }
+
+    public Project(String name, ArrayList<String> tags, Activity parent, Duration duration,  LocalDateTime startTime, LocalDateTime endTime) {
+        super(name, tags, parent, duration, startTime, endTime);
         this.activities = new ArrayList<Activity>();
     }
 

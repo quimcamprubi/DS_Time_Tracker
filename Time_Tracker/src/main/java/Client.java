@@ -1,9 +1,10 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Client {
     public static void main(String[] args) throws
-            InterruptedException {
+            InterruptedException, FileNotFoundException {
         // create and start the clock
         //...
 
@@ -11,6 +12,7 @@ public class Client {
         // make the printer
         PrintTree printer = PrintTree.getInstance();
         DataManager saveloader = new DataManager();
+        //Activity loadedRoot = saveloader.loadUserData();
         Project root = new Project("root", new ArrayList<String>(), null);
         Project softwareDesign = new Project("software design",  new ArrayList<String>( Arrays.asList("java", "flutter") ), root);
         Project softwareTesting = new Project("software testing",  new ArrayList<String>( Arrays.asList("c++", "Java", "python") ), root);
@@ -68,7 +70,6 @@ public class Client {
         // optionally, stop the clock
         // ...
 
-        Activity loadedRoot = saveloader.loadUserData();
 
         System.exit(0);
     }

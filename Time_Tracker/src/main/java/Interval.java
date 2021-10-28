@@ -17,6 +17,13 @@ public class Interval implements java.util.Observer{
         Clock.getInstance().addObserver(this);
     }
 
+    public Interval(Task parent, LocalDateTime startTime, LocalDateTime endTime){
+        this.parent = parent;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.duration = Duration.between(this.startTime, this.endTime);
+    }
+
     // ----- METHODS -----
     // Getters
     public Duration getDuration() { return this.duration; }

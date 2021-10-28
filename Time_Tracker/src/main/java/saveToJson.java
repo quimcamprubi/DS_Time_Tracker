@@ -15,7 +15,7 @@ public class saveToJson implements Visitor{
     public JSONArray store(Project project) {
         JSONObject obj = new JSONObject();
         arr.put(obj);
-
+        obj.put("Tags", project.getTags());
         obj.put("Name", project.getName());
         obj.put("Class", project.getClass().getSimpleName());
         if(project.getStartTime() == null){
@@ -44,7 +44,7 @@ public class saveToJson implements Visitor{
     public void visitProject(Project project) {
         JSONObject obj = new JSONObject();
         arr.put(obj);
-
+        obj.put("Tags", project.getTags());
         obj.put("Name", project.getName());
         obj.put("Class", project.getClass().getSimpleName());
         if(project.getStartTime() == null){
@@ -72,6 +72,7 @@ public class saveToJson implements Visitor{
     public void visitTask(Task task) {
         JSONObject obj = new JSONObject();
         arr.put(obj);
+        obj.put("Tags", task.getTags());
         obj.put("Name", task.getName());
         obj.put("Class", task.getClass().getSimpleName());
         if(task.getStartTime() == null){

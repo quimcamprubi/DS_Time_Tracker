@@ -22,8 +22,20 @@ public abstract class Activity {
         if (this.parent != null) this.parent.addChild(this);
     }
 
+    public Activity(String name, ArrayList<String> tags, Activity parent, Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+        this.name = name;
+        this.tags = tags;
+        this.parent = parent;
+        this.duration = duration;
+        this.endTime = endTime;
+        this.startTime = startTime;
+        if (this.parent != null) this.parent.addChild(this);
+    }
+
     // ----- METHODS -----
     // Setters and Getters
+
+    public ArrayList<String> getTags(){return tags;}
     public String getName() { return this.name; }
     public Activity getParent() {return this.parent;}
     public Duration getDuration(){return this.duration;}

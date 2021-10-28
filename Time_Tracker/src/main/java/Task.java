@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -12,12 +13,21 @@ public class Task extends Activity {
         this.intervals = new ArrayList<Interval>();
     }
 
+    public Task(String name, ArrayList<String> tags, Activity parent, Duration duration,  LocalDateTime startTime, LocalDateTime endTime) {
+        super(name, tags, parent, duration, startTime, endTime);
+        this.intervals = new ArrayList<Interval>();
+    }
+
     // ----- METHODS -----
     // Methods to start and stop intervals
     public void start(){ this.intervals.add(new Interval(this)); }
     public void stop(){
         Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
         lastInterval.endInterval();
+    }
+
+    public void addInterval(LocalDateTime startTime, LocalDateTime endTime){
+        this.intervals.add(new Interval(this, startTime, endTime));
     }
 
     // Function used to update the Interval's parent's duration. After the Interval is updated with a Clock update call,
