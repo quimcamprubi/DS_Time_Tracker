@@ -6,5 +6,8 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <excluded>
+      <root url="jar://$MAVEN_REPOSITORY$/org/json/json/20210307/json-20210307.jar!/" />
+    </excluded>
   </library>
 </component>
