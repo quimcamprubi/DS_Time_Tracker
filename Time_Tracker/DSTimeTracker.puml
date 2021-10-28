@@ -10,27 +10,44 @@ abstract class Activity {
 - duration: Duration
 - startTime: LocalDateTime
 - endTime: LocalDateTime
-+ getParent()
++ Activity(name: String, tags:String[], parent: Activity)
+
+
 + getName()
++ getParent()
 + getDuration()
++ getParsedStartTime()
++ getParsedEndTime()
++ getEndTime()
++ getStartTime()
 + setDuration(duration: Duration)
++ addChild(child: Activity)
++ acceptVisitor(visitor: Visitor)
++ updateParentDuration()
 + updateParentInformation(startTime: LocalDateTime, endTime: LocalDateTime
 + toString()
 }
 
 class Project extends Activity {
+- activities: Activity[]
++ Project(name: String, tags: String[], parent: Activity)
++ updateParentDuration()
 + getChildren()
 + addChild(child: Activity)
 + removeChild(child: Activity)
-+ updateParentDuration()
++ getActivities()
 + acceptVisitor(visitor: Visitor)
 }
 
 class Task extends Activity {
+- intervals: Interval[]
++ Task(name: String, tags: String[], parent: Activity)
 + start()
 + stop()
 + updateParentDuration()
++ getIntervals()
 + acceptVisitor(visitor: Visitor)
++ addChild(child: Activity)
 }
 
 Interface Visitor{
@@ -41,17 +58,21 @@ Interface Visitor{
 
 class printTree {
 - uniqueInstance
-- PrintTree(root: Activity)
-+ getInstance(root: Activity)
-+ visitTask(task: Task)
-+ visitProject(project: Project)
-+ visitInterval(interval: Interval)
+- PrintTree()
++ getInstance()
 + print(root: Activity)
++ visitProject(project: Project)
++ visitTask(task: Task)
++ visitInterval(interval: Interval)
 }
 
 class savetoJSON {
-+ visitTask()
+- uniqueInstance
++ getInstance()
++ store()
 + visitProject()
++ visitTask()
++ visitInterval()
 }
 
 class Interval{
@@ -60,11 +81,12 @@ class Interval{
 - duration: Duration
 - parent: Task
 + getDuration()
-+ getStartTime()
 + getEndTime()
++ getStartTime()
 + endInterval()
-+ update(o: Observable, arg: Object)
++ acceptVisitor()
 + toString()
++ update(o: Observable, arg: Object)
 }
 
 package java.util <<Folder>> {
@@ -81,10 +103,10 @@ package java.util <<Folder>> {
 }
 
 class Clock {
-- uniqueInstance: Clock
 - tick: Int
 - timerTask: TimerTask
 - timer: Timer
+- uniqueInstance: Clock
 - Clock()
 + getInstance()
 - timeScheduler()
@@ -95,9 +117,9 @@ class Client {
 }
 
 class DataManager {
++ DataManager()
 + saveUserData()
 - loadUserData()
-+ computeTotalDuration()
 }
 
 DataManager "1" *-down-> "n" Activity: Activities
