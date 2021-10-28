@@ -13,4 +13,13 @@ Quim Camprubí Casas 1528104
   - Implementation of the update algorithm and data propagation through the tree
   
 Javier Méndez Leiva 1496052
+  - Class design, and application of patterns
+  - SaveToJson visitor implementation with the reconstruction of the tree
+  - JSON filesave and part of the loader and parsing in it
+  - Coded some parts of project, activity, task and intervals
+
 Alberto Vallespín Herranz 1528948
+  - Class design and implementation in UML
+  - JSON implementation of saveJson store method using visitor
+  - Coded classes: Attributes, methods of Task, Interval and composite classes
+  - Coded Clock
