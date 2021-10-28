@@ -1,18 +1,14 @@
 @startuml 
 
-skinparam classAttributeIconSize 0
-skinparam linetype polyline
 
 abstract class Activity {
 - Name: String
-- tags: String[]
+- tags: ArrayList<String>
 - parent: Activity
 - duration: Duration
 - startTime: LocalDateTime
 - endTime: LocalDateTime
-+ Activity(name: String, tags:String[], parent: Activity)
-
-
++ Activity(name: String, tags:ArrayList<String>, parent: Activity)
 + getName()
 + getParent()
 + getDuration()
@@ -29,8 +25,8 @@ abstract class Activity {
 }
 
 class Project extends Activity {
-- activities: Activity[]
-+ Project(name: String, tags: String[], parent: Activity)
+- activities: ArrayList<Activity>
++ Project(name: String, tags: ArrayList<String>, parent: Activity)
 + updateParentDuration()
 + getChildren()
 + addChild(child: Activity)
@@ -40,8 +36,8 @@ class Project extends Activity {
 }
 
 class Task extends Activity {
-- intervals: Interval[]
-+ Task(name: String, tags: String[], parent: Activity)
+- intervals: ArrayList<Interval>
++ Task(name: String, tags: ArrayList<String>, parent: Activity)
 + start()
 + stop()
 + updateParentDuration()
@@ -66,6 +62,16 @@ class printTree {
 + visitInterval(interval: Interval)
 }
 
+class printWholeTree {
+- uniqueInstance
+- PrintWholeTree()
++ getInstance()
++ print(root: Activity)
++ visitProject(project: Project)
++ visitTask(task: Task)
++ visitInterval(interval: Interval)
+}
+
 class savetoJSON {
 - uniqueInstance
 + getInstance()
@@ -75,6 +81,7 @@ class savetoJSON {
 + visitInterval()
 }
 
+
 class Interval{
 - startTime: LocalDateTime
 - endTime: LocalDateTime
@@ -83,6 +90,9 @@ class Interval{
 + getDuration()
 + getEndTime()
 + getStartTime()
++ getParent()
++ getParsedStartTime()
++ getParsedEndTime()
 + endInterval()
 + acceptVisitor()
 + toString()
@@ -95,7 +105,7 @@ package java.util <<Folder>> {
     }
 
     abstract class Observable {
-    - Observer: Observers[]
+    - Observers: ArrayList<Observer>
     + addObserver()
     + deleteObserver()
     + notifyObserver()
@@ -131,6 +141,7 @@ Observable "1" -Down-> "n" Observer
 Interval -up-|> Observer
 Task -[hidden]right-> Project
 printTree .up.|> Visitor
+printWholeTree .up.|> Visitor
 savetoJSON .up.|> Visitor
 
 @enduml
