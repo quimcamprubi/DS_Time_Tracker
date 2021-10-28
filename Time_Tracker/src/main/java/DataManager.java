@@ -41,7 +41,7 @@ public class DataManager {// Methods
         JSONArray jsonArray = new JSONArray(data);
         reader.close();
 
-        // First, we load the root, which will be necessary to load the rest of the activities (because each activity will need its parent)
+        // Loading of the root, which will be necessary to load the rest of the activities (because each activity will need its parent)
         JSONObject rootJsonActivity = jsonArray.getJSONObject(0);
         LocalDateTime rootStartTime = LocalDateTime.parse(rootJsonActivity.getString("StartTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDateTime rootEndTime = LocalDateTime.parse(rootJsonActivity.getString("EndTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -58,16 +58,16 @@ public class DataManager {// Methods
             System.out.println("The JSON file contains an error with the tree's root. It may have been corrupted");
             return null;
         }
-        // Creation of the tree's root, and we add it to the list of all activities.
+        // Creation of the tree's root, and addition to the list of all activities.
         Project root = new Project(rootName, rootTags, null, rootDuration, rootStartTime, rootEndTime);
         loadedActivities.add(root);
 
         for (int i = 1; i < jsonArray.length(); i++) {
-            // We parse all the attributes of the activities
+            // Parse all the attributes of the activities
             JSONObject jsonActivity = jsonArray.getJSONObject(i);
             instantiateActivity(jsonActivity);
         }
-        // Loop through the list of activities, and we create the tree by adding children to each activity.
+        // Loop through the list of activities, and create the tree by adding children to each activity.
         for(Activity son : loadedActivities){
             Activity father = son.getParent();
             if (father != null && !loadedActivities.contains(son))
@@ -99,7 +99,7 @@ public class DataManager {// Methods
             tags.add(tagsJsonArray.getString(j));
         }
 
-        // We filter the activity list to find the parent of the current activity. Then, we create the new activity.
+        // Filter the activity list to find the parent of the current activity. Then, we create the new activity.
         Activity parentActivity = loadedActivities.stream().filter(x -> Objects.equals(x.getName(), parent)).findFirst().get();
 
         if (className.equals("Project")) {
