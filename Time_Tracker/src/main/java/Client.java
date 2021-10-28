@@ -68,6 +68,7 @@ public class Client {
         dataManager.saveUserData(root);
         // optionally, stop the clock
         // ...
+        System.out.println("\n");
         System.out.println("============================");
         Project loadedRoot = dataManager.loadUserData();
         PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
