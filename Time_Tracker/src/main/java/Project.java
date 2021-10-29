@@ -4,6 +4,11 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/*
+Class extending from the Activity abstract class. It has a list of activities, and it cannot contain Intervals. A Project
+is a way of organizing smaller time units. Basically, it will always be a node in the tree which will not directly contain
+an interval. It must contain other Projects or Tasks, which in turn will contain Intervals.
+*/
 public class Project extends Activity {
     // ----- ATTRIBUTES -----
     private ArrayList<Activity> activities;
@@ -15,6 +20,7 @@ public class Project extends Activity {
         this.activities = new ArrayList<Activity>();
     }
 
+    // Secondary constructor used mainly for the JSON reloading of the tree.
     public Project(String name, ArrayList<String> tags, Activity parent, Duration duration,  LocalDateTime startTime, LocalDateTime endTime) {
         super(name, tags, parent, duration, startTime, endTime);
         this.activities = new ArrayList<Activity>();

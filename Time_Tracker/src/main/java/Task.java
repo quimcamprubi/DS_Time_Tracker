@@ -2,7 +2,11 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
-
+/*
+Class extending from the Activity abstract class. It has a list of Intervals, and it cannot contain Activities. A Task
+is a way of organizing continuous time units (intervals). Basically, it will always be a "semi-leaf" in the tree structure, as it
+will only have one level of children, composed of Intervals, but it will never have a deeper structure.
+*/
 public class Task extends Activity {
     // ----- ATTRIBUTES -----
     private ArrayList<Interval> intervals;
@@ -13,6 +17,7 @@ public class Task extends Activity {
         this.intervals = new ArrayList<Interval>();
     }
 
+    // Secondary constructor used mainly for the JSON reloading of the tree.
     public Task(String name, ArrayList<String> tags, Activity parent, Duration duration,  LocalDateTime startTime, LocalDateTime endTime) {
         super(name, tags, parent, duration, startTime, endTime);
         this.intervals = new ArrayList<Interval>();
