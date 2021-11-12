@@ -1,5 +1,3 @@
-import org.json.JSONObject;
-
 // Default Visitor interface.
 public interface Visitor {
     void visitTask(Task task);

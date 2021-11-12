@@ -1,6 +1,4 @@
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 /*
 Class used to round the Duration to seconds. The default Duration.toSeconds() simply truncates the Duration, so that a duration

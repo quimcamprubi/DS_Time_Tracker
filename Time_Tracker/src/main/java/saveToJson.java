@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,7 +6,7 @@ Visitor which runs through the tree and stores all the nodes it finds (Activitie
 */
 public class saveToJson implements Visitor{
     // arr is the JSONArray which contains all the Activities.
-    JSONArray arr = new JSONArray();
+    final JSONArray arr = new JSONArray();
     // Singleton implementation
     private static saveToJson uniqueInstance;
     public static saveToJson getInstance() {

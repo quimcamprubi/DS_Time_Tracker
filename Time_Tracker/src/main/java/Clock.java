@@ -1,14 +1,13 @@
 import java.time.LocalDateTime;
-import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
 // Clock implements an Observable which returns the current time every x seconds, where x is 2 in our case.
 public class Clock extends java.util.Observable{
     // ----- ATTRIBUTES -----
-    private int tick; //Precision in seconds
-    private TimerTask timerTask;
-    private Timer timer;
+    private final int tick; //Precision in seconds
+    private final TimerTask timerTask;
+    private final Timer timer;
     private static Clock uniqueInstance;
 
     // Since Clock is a Singleton, its constructor is private, and will only be called once (from getInstance()).

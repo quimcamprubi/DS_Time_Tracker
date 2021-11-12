@@ -1,5 +1,3 @@
-import org.json.JSONObject;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,17 +9,17 @@ an interval. It must contain other Projects or Tasks, which in turn will contain
 */
 public class Project extends Activity {
     // ----- ATTRIBUTES -----
-    private ArrayList<Activity> activities;
+    private final ArrayList<Activity> activities;
 
 
     // ----- CONSTRUCTOR -----
-    public Project(String name, ArrayList<String> tags, Activity parent) {
+    public Project(String name, ArrayList<String> tags, Project parent) {
         super(name, tags, parent);
         this.activities = new ArrayList<Activity>();
     }
 
     // Secondary constructor used mainly for the JSON reloading of the tree.
-    public Project(String name, ArrayList<String> tags, Activity parent, Duration duration,  LocalDateTime startTime, LocalDateTime endTime) {
+    public Project(String name, ArrayList<String> tags, Project parent, Duration duration,  LocalDateTime startTime, LocalDateTime endTime) {
         super(name, tags, parent, duration, startTime, endTime);
         this.activities = new ArrayList<Activity>();
     }
@@ -36,14 +34,13 @@ public class Project extends Activity {
         for (Activity activity : this.activities) {
             taskDuration = taskDuration.plus(activity.getDuration());
         }
-        this.setDuration(taskDuration);
-        if (this.getParent() != null) this.getParent().updateParentDuration();
+        this.duration = taskDuration;
+        if (this.parent != null) this.parent.updateParentDuration();
     }
 
     public ArrayList<Activity> getChildren() {
         return this.activities;
     }
-    @Override
     public void addChild(Activity child) {
         this.activities.add(child);
     }

@@ -13,7 +13,7 @@ public class Interval implements java.util.Observer{
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Duration duration;
-    private Task parent;
+    private final Task parent;
 
     // ----- CONSTRUCTOR -----
     public Interval(Task parent){

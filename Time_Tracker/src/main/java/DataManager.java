@@ -1,6 +1,5 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.*;
 import java.time.Duration;
@@ -14,7 +13,7 @@ It is also used to load the tree from the JSON file and create the resulting tre
 */
 public class DataManager {// Methods
     // Arraylist of all activities (not a tree)
-    public ArrayList<Activity> loadedActivities;
+    public final ArrayList<Activity> loadedActivities;
 
     // ----- CONSTRUCTOR -----
     public DataManager() {
@@ -86,7 +85,7 @@ public class DataManager {// Methods
         }
         // Loop through the list of activities, and create the tree by adding children to each activity.
         for(Activity son : loadedActivities){
-            Activity father = son.getParent();
+            Project father = son.getParent();
             if (father != null && !loadedActivities.contains(son))
                 father.addChild(son);
         }
@@ -120,16 +119,16 @@ public class DataManager {// Methods
 
         // Filter the activity list to find the parent of the current activity. Then, we create the new activity. This is necessary
         // because each activity needs to reference its parent in order to keep an ordered tree structure.
-        Activity parentActivity = loadedActivities.stream().filter(x -> Objects.equals(x.getName(), parent)).findFirst().get();
+        Project parentProject = (Project) loadedActivities.stream().filter(x -> Objects.equals(x.getName(), parent)).findFirst().get();
 
         // The final creation of the new Activity differs a little bit between Projects and Tasks.
         if (className.equals("Project")) {
-            Project project = new Project(name, tags, parentActivity, duration, startTime, endTime);
+            Project project = new Project(name, tags, parentProject, duration, startTime, endTime);
             loadedActivities.add(project);
         }
         else if (className.equals("Task")) {
             // If the activity is a Task, we must also instantiate its intervals
-            Task task = new Task(name, tags, parentActivity, duration, startTime, endTime);
+            Task task = new Task(name, tags, parentProject, duration, startTime, endTime);
             JSONArray intervals = jsonActivity.getJSONArray("Intervals");
             for(int j = 0; j < intervals.length(); j++) {
                 JSONObject jsonInterval = intervals.getJSONObject(j);

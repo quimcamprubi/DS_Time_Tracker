@@ -13,17 +13,17 @@ and Projects.
 */
 public abstract class Activity {
     // ----- ATTRIBUTES -----
-    private String name;
-    private ArrayList<String> tags;
-    private Activity parent;
-    private Duration duration;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    protected final String name;
+    protected final ArrayList<String> tags;
+    protected final Project parent;
+    protected Duration duration;
+    protected LocalDateTime startTime;
+    protected LocalDateTime endTime;
 
 
     // ----- CONSTRUCTOR -----
     // Primary constructor used to declare an Activity without any time data.
-    public Activity(String name, ArrayList<String> tags, Activity parent) {
+    public Activity(String name, ArrayList<String> tags, Project parent) {
         this.name = name;
         this.tags = tags;
         this.parent = parent;
@@ -32,7 +32,7 @@ public abstract class Activity {
     }
 
     // Secondary constructor used mainly for the JSON reloading of the tree.
-    public Activity(String name, ArrayList<String> tags, Activity parent, Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+    public Activity(String name, ArrayList<String> tags, Project parent, Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
         this.name = name;
         this.tags = tags;
         this.parent = parent;
@@ -46,7 +46,7 @@ public abstract class Activity {
     // Setters and Getters
     public ArrayList<String> getTags(){return tags;}
     public String getName() { return this.name; }
-    public Activity getParent() {return this.parent;}
+    public Project getParent() {return this.parent;}
     public Duration getDuration(){return this.duration;}
     public String getParsedStartTime(){return this.startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
     public String getParsedEndTime(){return this.endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
@@ -56,7 +56,6 @@ public abstract class Activity {
     public void setDuration(Duration duration){this.duration = duration;}
 
     // Abstract methods
-    public abstract void addChild(Activity activity);
     public abstract void acceptVisitor(Visitor visitor);
     public abstract void updateParentDuration();
 
