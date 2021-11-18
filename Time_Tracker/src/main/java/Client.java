@@ -11,8 +11,8 @@ public class Client {
             InterruptedException, FileNotFoundException {
 
         // Initialization of the Clock and Printer singletons.
-        Clock clock = Clock.getInstance(); // Clock implements an Observable which returns the current time every x seconds, where x is 2 in our case.
-        PrintTree printer = PrintTree.getInstance(); // Printer implements a Visitor type class which iterates through the tree vertically from the bottom to the top.
+        Clock.getInstance(); // Clock implements an Observable which returns the current time every x seconds, where x is 2 in our case.
+        PrintTree.getInstance(); // Printer implements a Visitor type class which iterates through the tree vertically from the bottom to the top.
         // Printer is used to print the tree as it is being updated.
 
         // Initialization of the DataManager class, used to save and load JSON files.

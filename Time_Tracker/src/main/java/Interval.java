@@ -33,7 +33,6 @@ public class Interval implements java.util.Observer{
     // Getters
     public Duration getDuration() { return this.duration; }
     public LocalDateTime getEndTime() { return this.endTime; }
-    public LocalDateTime getStartTime() { return this.startTime; }
     public Task getParent() { return this.parent; }
     public String getParsedStartTime(){return this.startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
     public String getParsedEndTime(){return this.endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));}
@@ -54,7 +53,6 @@ public class Interval implements java.util.Observer{
     public String toString() {
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String typeClass = this.getClass().getSimpleName() + ":";
-        String parentName = this.parent == null ? "null": this.parent.getName();
         String startTime = this.startTime == null ? "null": this.startTime.format(timeFormat);
         String endTime = this.endTime == null ? "null": this.endTime.format(timeFormat);
         return String.format("%-31s %-30s %-30s %-5d", typeClass, startTime, endTime, Utils.roundDuration(this.duration));

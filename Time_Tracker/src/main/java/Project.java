@@ -38,9 +38,6 @@ public class Project extends Activity {
         if (this.parent != null) this.parent.updateParentDuration();
     }
 
-    public ArrayList<Activity> getChildren() {
-        return this.activities;
-    }
     public void addChild(Activity child) {
         this.activities.add(child);
     }

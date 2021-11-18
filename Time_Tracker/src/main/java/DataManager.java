@@ -60,9 +60,7 @@ public class DataManager {// Methods
         LocalDateTime rootStartTime = LocalDateTime.parse(rootJsonActivity.getString("StartTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDateTime rootEndTime = LocalDateTime.parse(rootJsonActivity.getString("EndTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         Duration rootDuration = Duration.parse(rootJsonActivity.getString("Duration"));
-        String rootClassName = rootJsonActivity.getString("Class");
         String rootName = rootJsonActivity.getString("Name");
-        String rootParent = rootJsonActivity.getString("Parent");
         JSONArray tagsJsonArrayRoot = rootJsonActivity.getJSONArray("Tags");
         ArrayList<String> rootTags = new ArrayList<String>();
         // Recovery of all the tags.
