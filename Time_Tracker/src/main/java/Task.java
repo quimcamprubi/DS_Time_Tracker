@@ -8,48 +8,54 @@ is a way of organizing continuous time units (intervals). Basically, it will alw
 will only have one level of children, composed of Intervals, but it will never have a deeper structure.
 */
 public class Task extends Activity {
-    // ----- ATTRIBUTES -----
-    private final ArrayList<Interval> intervals;
+  // ----- ATTRIBUTES -----
+  private final ArrayList<Interval> intervals;
 
-    // ----- CONSTRUCTOR -----
-    public Task(String name, ArrayList<String> tags, Project parent) {
-        super(name, tags, parent);
-        this.intervals = new ArrayList<Interval>();
-    }
+  // ----- CONSTRUCTOR -----
+  public Task(String name, ArrayList<String> tags, Project parent) {
+    super(name, tags, parent);
+    this.intervals = new ArrayList<Interval>();
+  }
 
-    // Secondary constructor used mainly for the JSON reloading of the tree.
-    public Task(String name, ArrayList<String> tags, Project parent, Duration duration,  LocalDateTime startTime, LocalDateTime endTime) {
-        super(name, tags, parent, duration, startTime, endTime);
-        this.intervals = new ArrayList<Interval>();
-    }
+  // Secondary constructor used mainly for the JSON reloading of the tree.
+  public Task(String name, ArrayList<String> tags, Project parent, Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+    super(name, tags, parent, duration, startTime, endTime);
+    this.intervals = new ArrayList<Interval>();
+  }
 
-    // ----- METHODS -----
-    // Methods to start and stop intervals
-    public void start(){ this.intervals.add(new Interval(this)); }
-    public void stop(){
-        Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
-        lastInterval.endInterval();
-    }
+  // ----- METHODS -----
+  // Methods to start and stop intervals
+  public void start() {
+    this.intervals.add(new Interval(this));
+  }
 
-    public void addInterval(LocalDateTime startTime, LocalDateTime endTime){
-        this.intervals.add(new Interval(this, startTime, endTime));
-    }
+  public void stop() {
+    Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
+    lastInterval.endInterval();
+  }
 
-    // Function used to update the Interval's parent's duration. After the Interval is updated with a Clock update call,
-    // the Interval calls this function to propagate the duration from the bottom to the top of the tree. At first, it updates
-    // its parent Task, but the Task then propagates the information upwards to any type of Activity.
-    @Override
-    public void updateParentDuration(){
-        Duration taskDuration = Duration.ZERO;
-        for (Interval interval : this.intervals) {
-            taskDuration = taskDuration.plus(interval.getDuration());
-        }
-        this.duration = taskDuration;
-        if (this.parent != null) this.parent.updateParentDuration();
-    }
+  public void addInterval(LocalDateTime startTime, LocalDateTime endTime) {
+    this.intervals.add(new Interval(this, startTime, endTime));
+  }
 
-    public ArrayList<Interval> getIntervals(){return this.intervals;}
-    public void acceptVisitor(Visitor visitor) {
-        visitor.visitTask(this);
+  // Function used to update the Interval's parent's duration. After the Interval is updated with a Clock update call,
+  // the Interval calls this function to propagate the duration from the bottom to the top of the tree. At first, it updates
+  // its parent Task, but the Task then propagates the information upwards to any type of Activity.
+  @Override
+  public void updateParentDuration() {
+    Duration taskDuration = Duration.ZERO;
+    for (Interval interval : this.intervals) {
+      taskDuration = taskDuration.plus(interval.getDuration());
     }
+    this.duration = taskDuration;
+    if (this.parent != null) this.parent.updateParentDuration();
+  }
+
+  public ArrayList<Interval> getIntervals() {
+    return this.intervals;
+  }
+
+  public void acceptVisitor(Visitor visitor) {
+    visitor.visitTask(this);
+  }
 }

@@ -1,3 +1,3 @@
 public enum SearchTreeOption {
-    TAG
+  TAG
 }

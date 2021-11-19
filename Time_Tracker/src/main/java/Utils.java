@@ -6,8 +6,8 @@ of 15.99 will be parsed to 15 seconds, instead of the 16 seconds we believe it s
 a roundDuration utility. This class will probably contain more general utility methods if we create more in future deliveries.
 */
 public class Utils {
-    public static int roundDuration(Duration duration) {
-        int millis = (int) duration.toMillis();
-        return (millis + 500)/1000;
-    }
+  public static int roundDuration(Duration duration) {
+    int millis = (int) duration.toMillis();
+    return (millis + 500) / 1000;
+  }
 }
