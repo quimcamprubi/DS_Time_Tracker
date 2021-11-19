@@ -1,36 +1,41 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-/*public class SearchTree implements Visitor {
-  private static PrintTree uniqueInstance;
+public class SearchTree implements Visitor {
+  private static SearchTree uniqueInstance;
+  public ArrayList<Activity> activitiesWithTag = new ArrayList<Activity>();
+  public String tag;
 
-  public static PrintTree getInstance() {
+  public static SearchTree getInstance() {
     if (uniqueInstance == null) {
-      uniqueInstance = new PrintTree();
+      uniqueInstance = new SearchTree();
     }
     return uniqueInstance;
   }
 
-  public void searchTree(SearchTreeOption option, ArrayList<String> searchList) {
-
-  }
-
-  public void searchTree(SearchTreeOption option, ArrayList<LocalDateTime> searchList) {
-
+  public ArrayList<Activity> searchByTag(Activity root, String tag){
+    this.tag = tag;
+    //Possible error if tag not assigned before acceptVisitor
+    root.acceptVisitor(this);
+    return this.activitiesWithTag;
   }
 
   @Override
   public void visitTask(Task task) {
-    //TODO
+    if (task.getTags().contains(tag)){activitiesWithTag.add(task);}
   }
 
   @Override
   public void visitProject(Project project) {
-    //TODO
+    //Check if .contains is the best option, maybe we want to add task with tag Pepe, if Pep searched
+    if (project.getTags().contains(tag)){activitiesWithTag.add(project);}
+    for (Activity activity : project.getActivities()) {
+      activity.acceptVisitor(this);
+    }
   }
 
   @Override
   public void visitInterval(Interval interval) {
     //TODO
   }
-}*/
+}
