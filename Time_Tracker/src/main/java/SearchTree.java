@@ -15,6 +15,7 @@ public class SearchTree implements Visitor {
 
   public ArrayList<Activity> searchByTag(Activity root, String tag){
     this.tag = tag;
+    //Possible error if tag not assigned before acceptVisitor
     root.acceptVisitor(this);
     return this.activitiesWithTag;
   }
@@ -26,6 +27,7 @@ public class SearchTree implements Visitor {
 
   @Override
   public void visitProject(Project project) {
+    //Check if .contains is the best option, maybe we want to add task with tag Pepe, if Pep searched
     if (project.getTags().contains(tag)){activitiesWithTag.add(project);}
     for (Activity activity : project.getActivities()) {
       activity.acceptVisitor(this);
