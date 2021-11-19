@@ -2,17 +2,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /*
-Visitor which runs through the tree and stores all the nodes it finds (Activities and Intervals) into the JSON file.
+Visitor which runs through the tree and stores all the nodes it finds (Activities and Intervals)
+into the JSON file.
 */
-public class saveToJson implements Visitor {
+public class SaveToJson implements Visitor {
   // arr is the JSONArray which contains all the Activities.
   final JSONArray arr = new JSONArray();
   // Singleton implementation
-  private static saveToJson uniqueInstance;
+  private static SaveToJson uniqueInstance;
 
-  public static saveToJson getInstance() {
+  public static SaveToJson getInstance() {
     if (uniqueInstance == null) {
-      uniqueInstance = new saveToJson();
+      uniqueInstance = new SaveToJson();
     }
     return uniqueInstance;
   }
@@ -38,7 +39,8 @@ public class saveToJson implements Visitor {
     obj.put("Parent", "null");
     // Then, we must propagate the Visitor through each children of the current Activity.
     for (Activity a : project.getActivities()) {
-      // The handling of the activities differs depending on if the child is a Project (which has Activities) or a Task (which has intervals)
+      // The handling of the activities differs depending on if the child is a Project (which has
+      // Activities) or a Task (which has intervals)
       if (a instanceof Project) {
         ((Project) a).acceptVisitor(this);
       } else {
@@ -70,7 +72,8 @@ public class saveToJson implements Visitor {
     obj.put("Parent", project.getParent().getName());
     // Then, we must propagate the Visitor through each children of the current Activity.
     for (Activity a : project.getActivities()) {
-      // The handling of the activities differs depending on if the child is a Project (which has Activities) or a Task (which has intervals)
+      // The handling of the activities differs depending on if the child is a Project (which has
+      // Activities) or a Task (which has intervals)
       if (a instanceof Project) {
         ((Project) a).acceptVisitor(this);
       } else {
@@ -99,16 +102,17 @@ public class saveToJson implements Visitor {
       obj.put("Duration", task.getDuration().toString());
     }
     obj.put("Parent", task.getParent().getName());
-    // Since a Task contains intervals, we must loop through them and store them in the Intervals JSONArray.
-    JSONArray Intervals = new JSONArray();
+    // Since a Task contains intervals, we must loop through them and store them in the Intervals
+    // JSONArray.
+    JSONArray intervals = new JSONArray();
     for (Interval interval : task.getIntervals()) {
       JSONObject obj2 = new JSONObject();
       obj2.put("StartTime", interval.getParsedStartTime());
       obj2.put("EndTime", interval.getParsedEndTime());
       obj2.put("Duration", interval.getDuration().toString());
-      Intervals.put(obj2);
+      intervals.put(obj2);
     }
-    obj.put("Intervals", Intervals);
+    obj.put("Intervals", intervals);
   }
 
   @Override

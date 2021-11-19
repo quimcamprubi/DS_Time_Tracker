@@ -1,17 +1,22 @@
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /*
-DataManager is the class that deals with persistence. it is used to save user data into a JSON file, and for the inverse process.
-It is also used to load the tree from the JSON file and create the resulting tree.
+DataManager is the class that deals with persistence. it is used to save user data into a JSON
+file, and for the inverse process. It is also used to load the tree from the JSON file and create
+the resulting tree.
 */
-public class DataManager {// Methods
+public class DataManager {
   // Arraylist of all activities (not a tree)
   public final ArrayList<Activity> loadedActivities;
 
@@ -23,12 +28,14 @@ public class DataManager {// Methods
   // ----- METHODS -----
   public void saveUserData(Project project) {
     try {
-      // saveToJson is a Visitor used to run through the tree and store the data in to the JSON file.
-      saveToJson TreeRecovery = saveToJson.getInstance();
+      // SaveToJson is a Visitor used to run through the tree and store the data in to the JSON
+      // file.
+      SaveToJson treeRecovery = SaveToJson.getInstance();
       // The tree will be stored in the "out.json" file
       FileWriter f = new FileWriter("out.json", false);
-      // Store is the saveToJson function which runs through the tree and stores the data into the JSON file.
-      JSONArray data = TreeRecovery.store(project);
+      // Store is the SaveToJson function which runs through the tree and stores the data into
+      // the JSON file.
+      JSONArray data = treeRecovery.store(project);
 
       f.write(data.toString());
       f.write("\n");
@@ -40,9 +47,10 @@ public class DataManager {// Methods
   }
 
   /*
-  loadUserData is the function used to loop through the Activities found in the JSON Array and reconstruct the tree. First,
-  it creates a list with all the activities, which contain their parents. Then, it reconstructs the tree using said parents,
-  and stores the final tree in the root variable, which is returned at the end.
+  loadUserData is the function used to loop through the Activities found in the JSON Array and
+  reconstruct the tree. First, it creates a list with all the activities, which contain their
+  parents. Then, it reconstructs the tree using said parents, and stores the final tree in the
+  root variable, which is returned at the end.
   */
   public Project loadUserData() throws FileNotFoundException {
     // Read the JSON file.
@@ -53,12 +61,15 @@ public class DataManager {// Methods
     JSONArray jsonArray = new JSONArray(data);
     reader.close();
 
-    // Loading of the root, which will be necessary to load the rest of the activities (because each activity will need its parent).
-    // Parsing of all the values stored in the JSON file.
-    // In this first part, we only load the root, as it will be necessary to create its children, as each children needs to reference its parent.
+    // Loading of the root, which will be necessary to load the rest of the activities (because
+    // each activity will need its parent). Parsing of all the values stored in the JSON file.
+    // In this first part, we only load the root, as it will be necessary to create its children,
+    // as each children needs to reference its parent.
     JSONObject rootJsonActivity = jsonArray.getJSONObject(0);
-    LocalDateTime rootStartTime = LocalDateTime.parse(rootJsonActivity.getString("StartTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-    LocalDateTime rootEndTime = LocalDateTime.parse(rootJsonActivity.getString("EndTime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    LocalDateTime rootStartTime = LocalDateTime.parse(rootJsonActivity.getString("StartTime"),
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    LocalDateTime rootEndTime = LocalDateTime.parse(rootJsonActivity.getString("EndTime"),
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     Duration rootDuration = Duration.parse(rootJsonActivity.getString("Duration"));
     String rootName = rootJsonActivity.getString("Name");
     JSONArray tagsJsonArrayRoot = rootJsonActivity.getJSONArray("Tags");
@@ -68,7 +79,8 @@ public class DataManager {// Methods
       rootTags.add(tagsJsonArrayRoot.getString(i));
     }
     if (!Objects.equals(rootName, "root")) {
-      System.out.println("The JSON file contains an error with the tree's root. It may have been corrupted");
+      System.out.println("The JSON file contains an error with the tree's root. It may have been "
+          + "corrupted");
       return null;
     }
     // Creation of the tree's root, and addition to the list of all activities.
@@ -84,8 +96,9 @@ public class DataManager {// Methods
     // Loop through the list of activities, and create the tree by adding children to each activity.
     for (Activity son : loadedActivities) {
       Project father = son.getParent();
-      if (father != null && !loadedActivities.contains(son))
+      if (father != null && !loadedActivities.contains(son)) {
         father.addChild(son);
+      }
     }
     return root;
   }
@@ -99,10 +112,13 @@ public class DataManager {// Methods
     LocalDateTime startTime = null;
     LocalDateTime endTime = null;
     Duration duration = Duration.ZERO;
-    // Since dates and duration can be null (for an activity which hasn't started), we need to check before trying to parse them.
+    // Since dates and duration can be null (for an activity which hasn't started), we need to
+    // check before trying to parse them.
     if (!Objects.equals(jsonStartTime, "null") && !Objects.equals(jsonEndTime, "null")) {
-      startTime = LocalDateTime.parse(jsonStartTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-      endTime = LocalDateTime.parse(jsonEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      startTime = LocalDateTime.parse(jsonStartTime,  DateTimeFormatter.ofPattern("yyyy-MM-dd "
+          + "HH:mm:ss"));
+      endTime = LocalDateTime.parse(jsonEndTime,  DateTimeFormatter.ofPattern("yyyy-MM-dd "
+          + "HH:mm:ss"));
       duration = Duration.parse(jsonDuration);
     }
     String className = jsonActivity.getString("Class");
@@ -114,9 +130,11 @@ public class DataManager {// Methods
       tags.add(tagsJsonArray.getString(j));
     }
 
-    // Filter the activity list to find the parent of the current activity. Then, we create the new activity. This is necessary
-    // because each activity needs to reference its parent in order to keep an ordered tree structure.
-    Project parentProject = (Project) loadedActivities.stream().filter(x -> Objects.equals(x.getName(), parent)).findFirst().get();
+    // Filter the activity list to find the parent of the current activity. Then, we create the
+    // new  activity. This is necessary because each activity needs to reference its parent in
+    // order to keep an ordered tree structure.
+    Project parentProject = (Project) loadedActivities.stream().filter(x ->
+        Objects.equals(x.getName(), parent)).findFirst().get();
 
     // The final creation of the new Activity differs a little bit between Projects and Tasks.
     if (className.equals("Project")) {
@@ -132,13 +150,18 @@ public class DataManager {// Methods
         LocalDateTime intervalEndTime = null;
         String jsonIntervalStartTime = jsonInterval.getString("StartTime");
         String jsonIntervalEndTime = jsonInterval.getString("EndTime");
-        if (!Objects.equals(jsonIntervalStartTime, "null") && !Objects.equals(jsonIntervalEndTime, "null")) {
-          intervalStartTime = LocalDateTime.parse(jsonIntervalStartTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-          intervalEndTime = LocalDateTime.parse(jsonIntervalEndTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        if (!Objects.equals(jsonIntervalStartTime, "null") && !Objects.equals(
+            jsonIntervalEndTime, "null")) {
+          intervalStartTime = LocalDateTime.parse(jsonIntervalStartTime,
+              DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+          intervalEndTime = LocalDateTime.parse(jsonIntervalEndTime,
+              DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
         task.addInterval(intervalStartTime, intervalEndTime);
       }
       loadedActivities.add(task);
-    } else System.out.println("Error, one of the JSON objects is neither a Task nor a Project.");
+    } else {
+      System.out.println("Error, one of the JSON objects is neither a Task nor a Project.");
+    }
   }
 }

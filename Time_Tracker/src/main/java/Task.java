@@ -3,9 +3,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /*
-Class extending from the Activity abstract class. It has a list of Intervals, and it cannot contain Activities. A Task
-is a way of organizing continuous time units (intervals). Basically, it will always be a "semi-leaf" in the tree structure, as it
-will only have one level of children, composed of Intervals, but it will never have a deeper structure.
+Class extending from the Activity abstract class. It has a list of Intervals, and it cannot
+contain  Activities. A Task is a way of organizing continuous time units (intervals). Basically,
+it will always be a "semi-leaf" in the tree structure, as it will only have one level of
+children, composed of Intervals, but it will never have a deeper structure.
 */
 public class Task extends Activity {
   // ----- ATTRIBUTES -----
@@ -18,7 +19,8 @@ public class Task extends Activity {
   }
 
   // Secondary constructor used mainly for the JSON reloading of the tree.
-  public Task(String name, ArrayList<String> tags, Project parent, Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+  public Task(String name, ArrayList<String> tags, Project parent, Duration duration,
+              LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
     this.intervals = new ArrayList<Interval>();
   }
@@ -38,9 +40,10 @@ public class Task extends Activity {
     this.intervals.add(new Interval(this, startTime, endTime));
   }
 
-  // Function used to update the Interval's parent's duration. After the Interval is updated with a Clock update call,
-  // the Interval calls this function to propagate the duration from the bottom to the top of the tree. At first, it updates
-  // its parent Task, but the Task then propagates the information upwards to any type of Activity.
+  // Function used to update the Interval's parent's duration. After the Interval is updated with
+  // a Clock update call, the Interval calls this function to propagate the duration from the
+  // bottom to the top of the tree. At first, it updates its parent Task, but the Task then
+  // propagates the information upwards to any type of Activity.
   @Override
   public void updateParentDuration() {
     Duration taskDuration = Duration.ZERO;
@@ -48,7 +51,9 @@ public class Task extends Activity {
       taskDuration = taskDuration.plus(interval.getDuration());
     }
     this.duration = taskDuration;
-    if (this.parent != null) this.parent.updateParentDuration();
+    if (this.parent != null) {
+      this.parent.updateParentDuration();
+    }
   }
 
   public ArrayList<Interval> getIntervals() {

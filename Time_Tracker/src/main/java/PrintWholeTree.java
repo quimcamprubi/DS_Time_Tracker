@@ -1,6 +1,7 @@
 /*
-PrintWholeTree implements a Visitor which runs through the tree from the top to the bottom. It is a call which prints the entire tree,
-regardless of the state of the tree. It is used by us when comparing the manually created tree and the JSON-reloaded tree.
+PrintWholeTree implements a Visitor which runs through the tree from the top to the bottom. It is
+a call which prints the entire tree, regardless of the state of the tree. It is used by us when
+comparing the manually created tree and the JSON-reloaded tree.
 */
 public class PrintWholeTree implements Visitor {
   private static PrintWholeTree uniqueInstance;
