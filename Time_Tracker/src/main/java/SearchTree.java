@@ -1,5 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchTree implements Visitor {
   private static SearchTree uniqueInstance;
@@ -14,6 +16,7 @@ public class SearchTree implements Visitor {
   }
 
   public ArrayList<Activity> searchByTag(Activity root, String tag) {
+    this.activitiesWithTag.clear();
     this.tag = tag;
     //Possible error if tag not assigned before acceptVisitor
     root.acceptVisitor(this);
@@ -22,8 +25,10 @@ public class SearchTree implements Visitor {
 
   @Override
   public void visitTask(Task task) {
-    if (task.getTags().contains(tag)) {
-      activitiesWithTag.add(task);
+    List<String> lowerCaseTags =
+            task.getTags().stream().map(String::toLowerCase).collect(Collectors.toList());
+    if (lowerCaseTags.contains(tag.toLowerCase())) {
+      this.activitiesWithTag.add(task);
     }
   }
 
@@ -31,8 +36,10 @@ public class SearchTree implements Visitor {
   public void visitProject(Project project) {
     // Check if .contains is the best option, maybe we want to add task with tag Pepe, if Pep
     // searched
-    if (project.getTags().contains(tag)) {
-      activitiesWithTag.add(project);
+    List<String> lowerCaseTags =
+            project.getTags().stream().map(String::toLowerCase).collect(Collectors.toList());
+    if (lowerCaseTags.contains(tag.toLowerCase())) {
+      this.activitiesWithTag.add(project);
     }
     for (Activity activity : project.getActivities()) {
       activity.acceptVisitor(this);
