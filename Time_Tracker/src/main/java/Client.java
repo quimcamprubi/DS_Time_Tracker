@@ -1,3 +1,6 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +13,7 @@ public class Client {
   public static void main(String[] args) throws
       InterruptedException, FileNotFoundException {
 
+
     // Initialization of the Clock and Printer singletons.
     Clock.getInstance(); // Clock implements an Observable which returns the current time every x
     // seconds, where x is 2 in our case.
@@ -20,7 +24,14 @@ public class Client {
     // Initialization of the DataManager class, used to save and load JSON files.
     final DataManager dataManager = new DataManager();
 
+    //Initialization of the Logger Instance
+    final Logger logger = LoggerFactory.getLogger(Client.class);
+
     // Initialization of all the Tasks and Projects.
+    logger.warn("Starting Test 1");
+    logger.info("Starting Test 2");
+    logger.debug("Starting Test 3");
+    logger.trace("Starting Test 4");
     Project root = new Project("root", new ArrayList<String>(), null);
     Project softwareDesign = new Project("software design", new ArrayList<String>(
         Arrays.asList("java", "flutter")), root);

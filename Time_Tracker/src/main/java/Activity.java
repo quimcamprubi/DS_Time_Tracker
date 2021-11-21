@@ -1,3 +1,6 @@
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,11 +23,12 @@ public abstract class Activity {
   protected Duration duration;
   protected LocalDateTime startTime;
   protected LocalDateTime endTime;
-
+  //private static final Logger logger = LoggerFactory.getLogger(Activity.class);
 
   // ----- CONSTRUCTOR -----
   // Primary constructor used to declare an Activity without any time data.
   public Activity(String name, ArrayList<String> tags, Project parent) {
+    //logger.trace("Creating object " + name);
     this.name = name;
     this.tags = tags;
     this.parent = parent;

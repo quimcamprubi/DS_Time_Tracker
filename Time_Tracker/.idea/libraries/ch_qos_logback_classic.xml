@@ -2,9 +2,9 @@
   <library name="ch.qos.logback.classic" type="repository">
     <properties maven-id="ch.qos.logback:logback-classic:0.9.30" />
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/logback-classic-0.9.30.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/logback-core-0.9.30.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.6.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/0.9.30/logback-classic-0.9.30.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.30/logback-core-0.9.30.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.6.2/slf4j-api-1.6.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
