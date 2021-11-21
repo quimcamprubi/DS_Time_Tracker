@@ -12,7 +12,6 @@ public class Project extends Activity {
   // ----- ATTRIBUTES -----
   private final ArrayList<Activity> activities;
 
-
   // ----- CONSTRUCTOR -----
   public Project(String name, ArrayList<String> tags, Project parent) {
     super(name, tags, parent);
@@ -38,16 +37,29 @@ public class Project extends Activity {
       taskDuration = taskDuration.plus(activity.getDuration());
     }
     this.duration = taskDuration;
+    // Invariant
+    assert invariant();
+
     if (this.parent != null) {
       this.parent.updateParentDuration();
     }
   }
 
   public void addChild(Activity child) {
+    // Preconditions
+    if (child == null) {
+      throw new IllegalArgumentException("Child to add cannot be null.");
+    }
+
     this.activities.add(child);
   }
 
   public void removeChild(Activity child) {
+    // Preconditions
+    if (child == null) {
+      throw new IllegalArgumentException("Child parameter for removal cannot null.");
+    }
+
     this.activities.remove(child);
   }
 
@@ -56,6 +68,12 @@ public class Project extends Activity {
   }
 
   public void acceptVisitor(Visitor visitor) {
+    if (visitor == null) {
+      throw new IllegalArgumentException("Visitor parameter cannot be null.");
+    }
     visitor.visitProject(this);
+
+    // Invariant
+    assert invariant();
   }
 }

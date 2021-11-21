@@ -53,7 +53,7 @@ public class Client {
     Task firstMilestone = new Task("first milestone", new ArrayList<String>(
         Arrays.asList("Java", "IntelliJ")), projectTimeTracker);
 
-    /*
+
     // Test
     System.out.println(String.format("%-35s %-30s %-30s %-1s", "", "initial date", "final date",
         "duration"));
@@ -95,7 +95,7 @@ public class Client {
     dataManager.saveUserData(root);
 
     System.out.println("\n");
-    */
+
 
     System.out.println("============================");
     // We can now load the tree from the JSON file we created on the previous call.
@@ -108,17 +108,15 @@ public class Client {
     final PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
     System.out.println("Printing both trees to compare them");
     System.out.println("FIRST TREE:");
-    //printWholeTree.print(root);
+    printWholeTree.print(root);
     System.out.println("\n");
     System.out.println("JSON TREE:");
     printWholeTree.print(loadedRoot);
-
 
     SearchTree searchTree = SearchTree.getInstance();
     System.out.println("Search Activities with Tag 'Java' ");
     searchTree.searchByTag(loadedRoot, "Java");
     System.out.println(searchTree.activitiesWithTag);
-
 
     System.exit(0);
   }

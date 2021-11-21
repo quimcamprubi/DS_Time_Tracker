@@ -29,6 +29,15 @@ public abstract class Activity {
   // Primary constructor used to declare an Activity without any time data.
   public Activity(String name, ArrayList<String> tags, Project parent) {
     //logger.trace("Creating object " + name);
+    // Preconditions
+    if (name == null) {
+      throw new IllegalArgumentException("Activity name cannot be null.");
+    }
+    if (tags == null) {
+      throw new IllegalArgumentException("Tags array cannot be null. It can be empty, but not "
+              + "null.");
+    }
+
     this.name = name;
     this.tags = tags;
     this.parent = parent;
@@ -41,12 +50,29 @@ public abstract class Activity {
   // Secondary constructor used mainly for the JSON reloading of the tree.
   public Activity(String name, ArrayList<String> tags, Project parent, Duration duration,
                   LocalDateTime startTime, LocalDateTime endTime) {
+
+    // Preconditions
+    if (name == null) {
+      throw new IllegalArgumentException("Activity name cannot be null.");
+    }
+    if (tags == null) {
+      throw new IllegalArgumentException("Tags array cannot be null. It can be empty, but not "
+              + "null.");
+    }
+    if (duration.isNegative()) {
+      throw new IllegalArgumentException("Duration parameter cannot be negative.");
+    }
+
     this.name = name;
     this.tags = tags;
     this.parent = parent;
     this.duration = duration;
     this.endTime = endTime;
     this.startTime = startTime;
+
+    // Invariant
+    assert invariant();
+
     if (this.parent != null) {
       this.parent.addChild(this);
     }
@@ -90,10 +116,19 @@ public abstract class Activity {
   // Function used to propagate information to the parent of the Activity. It is used to update the
   // time and duration from the bottom to the top of the tree.
   public void updateParentInformation(LocalDateTime startTime, LocalDateTime endTime) {
+    // Preconditions
+    if (startTime == null || endTime == null) {
+      throw new IllegalArgumentException("Date time parameters cannot be null.");
+    }
+
     if (this.startTime == null) {
       this.startTime = startTime;
     }
     this.endTime = endTime;
+
+    // Invariant
+    assert invariant();
+
     if (this.parent != null) {
       this.parent.updateParentInformation(startTime, endTime);
     }
@@ -104,10 +139,14 @@ public abstract class Activity {
   public String toString() {
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     String name = this.name == null ? "null" : this.name;
-    //String parentName = this.parent == null ? "null": this.parent.getName();
     String startTime = this.startTime == null ? "null" : this.startTime.format(timeFormat);
     String endTime = this.endTime == null ? "null" : this.endTime.format(timeFormat);
     return String.format("%-10s %-20s %-30s %-30s %-5d", "activity:",
         name, startTime, endTime, Utils.roundDuration(this.duration));
+  }
+
+  protected boolean invariant() {
+    return (!this.duration.isNegative()
+            && !Duration.between(this.startTime, this.endTime).isNegative());
   }
 }
