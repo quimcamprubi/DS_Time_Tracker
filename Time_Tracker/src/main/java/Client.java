@@ -1,9 +1,8 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
 Class which implements the Main() function of our project. It declares all the
@@ -106,7 +105,7 @@ public class Client {
     // top to the bottom. We use this Visitor to print both trees (the one we created manually
     // and the JSON reloaded tree) and compare them, in order to check that our JSON
     // implementation works.
-    PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
+    final PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
     System.out.println("Printing both trees to compare them");
     System.out.println("FIRST TREE:");
     //printWholeTree.print(root);
