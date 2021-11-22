@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 /*
 Class which implements the Main() function of our project. It declares all the
@@ -23,14 +25,20 @@ public class Client {
     // Initialization of the DataManager class, used to save and load JSON files.
     final DataManager dataManager = new DataManager();
 
-    //Initialization of the Logger Instance
+    //Initialization of the Logger Instance and its markers
     final Logger logger = LoggerFactory.getLogger(Client.class);
+    String firstrelease = "FITA1";
+    String secondrelease = "FITA2";
+    Marker first = MarkerFactory.getMarker(firstrelease);
+    Marker second = MarkerFactory.getMarker(secondrelease);
 
     // Initialization of all the Tasks and Projects.
-    logger.warn("Starting Test 1");
-    logger.info("Starting Test 2");
-    logger.debug("Starting Test 3");
-    logger.trace("Starting Test 4");
+    logger.warn("Warns will be shown");
+    logger.info("Info will be shown");
+    logger.debug("Debug mode is enabled");
+    logger.trace("Stacktrace is enabled");
+
+    logger.info(firstrelease, "Starting tree creation");
     Project root = new Project("root", new ArrayList<String>(), null);
     Project softwareDesign = new Project("software design", new ArrayList<String>(
         Arrays.asList("java", "flutter")), root);
@@ -54,47 +62,46 @@ public class Client {
         Arrays.asList("Java", "IntelliJ")), projectTimeTracker);
 
 
-    // Test
-    System.out.println(String.format("%-35s %-30s %-30s %-1s", "", "initial date", "final date",
+    // Test B
+    logger.info(first, "Here starts first release");
+    logger.info(first, String.format("%-35s %-30s %-30s %-1s", "", "initial date", "final date",
         "duration"));
-    System.out.println("start test");
+    logger.info(first, "start test");
 
     transportation.start();
-    System.out.println("transportation starts");
+    logger.info(first, "transportation starts");
     Thread.sleep(4000);
     transportation.stop();
 
     Thread.sleep(2000);
-    System.out.println("transportation stops");
+    logger.info(first, "transportation stops");
 
-    System.out.println("first list starts");
+    logger.info(first, "first list starts");
     firstList.start();
     Thread.sleep(6000);
 
-    System.out.println("second list starts");
+    logger.info(first, "second list starts");
     secondList.start();
     Thread.sleep(4000);
 
-    System.out.println("first list stops");
+    logger.info(first, "first list stops");
     firstList.stop();
 
     Thread.sleep(2000);
-    System.out.println("second list stops");
+    logger.info(first, "second list stops");
     secondList.stop();
 
     Thread.sleep(2000);
 
-    System.out.println("transportation starts");
+    logger.info(first, "transportation starts");
     transportation.start();
     Thread.sleep(4000);
-    System.out.println("transportation stops");
+    logger.info(first, "transportation stops");
     transportation.stop();
     // optionally, stop the clock
 
     // Once the simulation is done, we store the tree in a JSON file called "out.json"
     dataManager.saveUserData(root);
-
-    System.out.println("\n");
 
 
     System.out.println("============================");
@@ -106,12 +113,13 @@ public class Client {
     // and the JSON reloaded tree) and compare them, in order to check that our JSON
     // implementation works.
     final PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
-    System.out.println("Printing both trees to compare them");
-    System.out.println("FIRST TREE:");
+    logger.info("Printing both trees to compare them");
+    logger.info("FIRST TREE:");
     printWholeTree.print(root);
-    System.out.println("\n");
-    System.out.println("JSON TREE:");
+    logger.info(first, "JSON TREE:");
     printWholeTree.print(loadedRoot);
+
+    logger.info(first, "Here ends first release");
 
     SearchTree searchTree = SearchTree.getInstance();
     System.out.println("Search Activities with Tag 'Java' ");

@@ -1,3 +1,8 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,20 +20,26 @@ public class Interval implements java.util.Observer {
   private LocalDateTime endTime;
   private Duration duration;
   private final Task parent;
+  final Logger logger = LoggerFactory.getLogger(Interval.class);
+  String firstrelease = "FITA1";
+  Marker first = MarkerFactory.getMarker(firstrelease);
 
   // ----- CONSTRUCTOR -----
   public Interval(Task parent) {
     this.parent = parent;
     Clock.getInstance().addObserver(this);
+    logger.debug("A new interval with parent {} has been created", parent.getName());
   }
 
   // Secondary constructor used to build an Interval when we already know its timings (such as
   // when reloading from a JSON file).
   public Interval(Task parent, LocalDateTime startTime, LocalDateTime endTime) {
+    logger.debug("A new interval with parent {} has been created", parent.getName());
     this.parent = parent;
     this.startTime = startTime;
     this.endTime = endTime;
     this.duration = Duration.between(this.startTime, this.endTime);
+    logger.trace("Interval values: Parent -> {}, startTime -> {}, endTime -> {}, Duration -> {}", parent.getName(), startTime, endTime, duration);
   }
 
   // ----- METHODS -----
@@ -68,6 +79,7 @@ public class Interval implements java.util.Observer {
   // printed on the console.
   @Override
   public String toString() {
+    logger.trace("Starting string parsing of interval with parent {}", parent.getName());
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     String typeClass = this.getClass().getSimpleName() + ":";
     String startTime = this.startTime == null ? "null" : this.startTime.format(timeFormat);
@@ -90,6 +102,7 @@ public class Interval implements java.util.Observer {
     this.duration = Duration.between(this.startTime, this.endTime);
     this.parent.updateParentDuration();
     this.parent.updateParentInformation(this.startTime, this.endTime);
+    logger.trace("Update has been received from clock object, update time for interval with parent {}: Duration -> {}, startTime -> {}, endTime -> {}", parent.getName(), duration, startTime, endTime);
     // Call print visitor
     PrintTree.getInstance().print(this);
   }

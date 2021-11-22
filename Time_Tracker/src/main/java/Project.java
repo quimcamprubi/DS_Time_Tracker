@@ -1,3 +1,8 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,9 +17,15 @@ public class Project extends Activity {
   // ----- ATTRIBUTES -----
   private final ArrayList<Activity> activities;
 
+  //Logger implementation
+  final Logger logger = LoggerFactory.getLogger(Project.class);
+  String firstrelease = "FITA1";
+  Marker first = MarkerFactory.getMarker(firstrelease);
+
   // ----- CONSTRUCTOR -----
   public Project(String name, ArrayList<String> tags, Project parent) {
     super(name, tags, parent);
+    logger.info("Creating project {}", name);
     this.activities = new ArrayList<Activity>();
   }
 
@@ -22,6 +33,8 @@ public class Project extends Activity {
   public Project(String name, ArrayList<String> tags, Project parent, Duration duration,
                  LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
+    logger.info("Creating parametrized project {}", name);
+    logger.trace("Project {} values: Parent -> {}, Duration -> {}, startTime -> {}, endTime -> {}", name, parent.getName(), duration, startTime, endTime);
     this.activities = new ArrayList<Activity>();
   }
 
