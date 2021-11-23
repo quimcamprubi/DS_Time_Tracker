@@ -32,7 +32,7 @@ public class PrintTree implements Visitor {
   // Visitor to the parent.
   @Override
   public void visitProject(Project project) {
-    logger.info(project.toString());
+    logger.info(first, project.toString());
     Activity parent = project.getParent();
     if (parent != null) {
       parent.acceptVisitor(this);
@@ -43,7 +43,7 @@ public class PrintTree implements Visitor {
   // Visitor to the parent.
   @Override
   public void visitTask(Task task) {
-    logger.info(task.toString());
+    logger.info(first, task.toString());
     Activity parent = task.getParent();
     if (parent != null) {
       parent.acceptVisitor(this);
@@ -53,7 +53,7 @@ public class PrintTree implements Visitor {
   // Prints a Task and, if it has a parent (Task), it propagates the Visitor to the parent.
   @Override
   public void visitInterval(Interval interval) {
-    logger.info(interval.toString());
+    logger.info(first, interval.toString());
     Task parent = interval.getParent();
     if (parent != null) {
       parent.acceptVisitor(this);

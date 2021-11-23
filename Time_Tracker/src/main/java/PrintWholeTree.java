@@ -31,7 +31,7 @@ public class PrintWholeTree implements Visitor {
   // Prints a Project and propagates the Visitor to all its children (Activities).
   @Override
   public void visitProject(Project project) {
-    logger.info(project.toString());
+    logger.info(first, project.toString());
     for (Activity activity : project.getActivities()) {
       activity.acceptVisitor(this);
     }
@@ -40,7 +40,7 @@ public class PrintWholeTree implements Visitor {
   // Prints a Task and propagates the Visitor to all its children (Intervals).
   @Override
   public void visitTask(Task task) {
-    logger.info(task.toString());
+    logger.info(first, task.toString());
     for (Interval interval : task.getIntervals()) {
       interval.acceptVisitor(this);
     }
@@ -49,6 +49,6 @@ public class PrintWholeTree implements Visitor {
   // Prints an Interval.
   @Override
   public void visitInterval(Interval interval) {
-    logger.info(interval.toString());
+    logger.info(first, interval.toString());
   }
 }

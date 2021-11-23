@@ -38,7 +38,7 @@ public class Client {
     logger.debug("Debug mode is enabled");
     logger.trace("Stacktrace is enabled");
 
-    logger.info(firstrelease, "Starting tree creation");
+    logger.info(first, "Starting tree creation");
     Project root = new Project("root", new ArrayList<String>(), null);
     Project softwareDesign = new Project("software design", new ArrayList<String>(
         Arrays.asList("java", "flutter")), root);
@@ -113,8 +113,8 @@ public class Client {
     // and the JSON reloaded tree) and compare them, in order to check that our JSON
     // implementation works.
     final PrintWholeTree printWholeTree = PrintWholeTree.getInstance();
-    logger.info("Printing both trees to compare them");
-    logger.info("FIRST TREE:");
+    logger.info(first, "Printing both trees to compare them");
+    logger.info(first, "FIRST TREE:");
     printWholeTree.print(root);
     logger.info(first, "JSON TREE:");
     printWholeTree.print(loadedRoot);

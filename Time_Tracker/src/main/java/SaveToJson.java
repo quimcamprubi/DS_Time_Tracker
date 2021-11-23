@@ -31,13 +31,13 @@ public class SaveToJson implements Visitor {
   public JSONArray store(Project project) {
     JSONObject obj = new JSONObject();
     arr.put(obj);
-    logger.warn("Program is saving your data, please do not close the program until it is done, doing so can create corrupted files or damage the capabilities of the program to recover your data");
-    logger.debug("Starting data storage of root");
+    logger.warn(first, "Program is saving your data, please do not close the program until it is done, doing so can create corrupted files or damage the capabilities of the program to recover your data");
+    logger.debug(first, "Starting data storage of root");
     // We add all the important information for each Activity
     obj.put("Tags", project.getTags());
     obj.put("Name", project.getName());
     obj.put("Class", project.getClass().getSimpleName());
-    logger.trace("Tags, Name and Class stored for root");
+    logger.trace(first, "Tags, Name and Class stored for root");
     // Since the timings can be null, we check before trying to parse them.
     if (project.getStartTime() == null) {
       obj.put("StartTime", "null");
@@ -48,7 +48,7 @@ public class SaveToJson implements Visitor {
       obj.put("EndTime", project.getParsedEndTime());
       obj.put("Duration", project.getDuration().toString());
     }
-    logger.trace("StartTime, EndTime and Duration stored for root");
+    logger.trace(first, "StartTime, EndTime and Duration stored for root");
 
     obj.put("Parent", "null");
     // Then, we must propagate the Visitor through each children of the current Activity.
@@ -61,7 +61,7 @@ public class SaveToJson implements Visitor {
         ((Task) a).acceptVisitor(this);
       }
     }
-    logger.info("Data saved succesfully");
+    logger.info(first, "Data saved succesfully");
     return arr;
   }
 
@@ -70,12 +70,12 @@ public class SaveToJson implements Visitor {
   public void visitProject(Project project) {
     JSONObject obj = new JSONObject();
     arr.put(obj);
-    logger.debug("Starting data storage of project {}", project.getName());
+    logger.debug(first, "Starting data storage of project {}", project.getName());
     // We add all the important information for each Activity
     obj.put("Tags", project.getTags());
     obj.put("Name", project.getName());
     obj.put("Class", project.getClass().getSimpleName());
-    logger.trace("Tags, Name and Class stored for project {}", project.getName());
+    logger.trace(first, "Tags, Name and Class stored for project {}", project.getName());
     // Since the timings can be null, we check before trying to parse them.
     if (project.getStartTime() == null) {
       obj.put("StartTime", "null");
@@ -86,7 +86,7 @@ public class SaveToJson implements Visitor {
       obj.put("EndTime", project.getParsedEndTime());
       obj.put("Duration", project.getDuration().toString());
     }
-    logger.trace("StartTime, EndTime and Duration stored for project {}", project.getName());
+    logger.trace(first, "StartTime, EndTime and Duration stored for project {}", project.getName());
     obj.put("Parent", project.getParent().getName());
     // Then, we must propagate the Visitor through each children of the current Activity.
     for (Activity a : project.getActivities()) {
@@ -105,12 +105,12 @@ public class SaveToJson implements Visitor {
   public void visitTask(Task task) {
     JSONObject obj = new JSONObject();
     arr.put(obj);
-    logger.debug("Starting data storage of task {}", task.getName());
+    logger.debug(first, "Starting data storage of task {}", task.getName());
     // We add all the important information for each Activity
     obj.put("Tags", task.getTags());
     obj.put("Name", task.getName());
     obj.put("Class", task.getClass().getSimpleName());
-    logger.trace("Tags, Name and Class stored for task {}", task.getName());
+    logger.trace(first, "Tags, Name and Class stored for task {}", task.getName());
     // Since the timings can be null, we check before trying to parse them.
     if (task.getStartTime() == null) {
       obj.put("StartTime", "null");
@@ -121,7 +121,7 @@ public class SaveToJson implements Visitor {
       obj.put("EndTime", task.getParsedEndTime());
       obj.put("Duration", task.getDuration().toString());
     }
-    logger.trace("StartTime, EndTime and Duration stored for task {}", task.getName());
+    logger.trace(first, "StartTime, EndTime and Duration stored for task {}", task.getName());
     obj.put("Parent", task.getParent().getName());
     // Since a Task contains intervals, we must loop through them and store them in the Intervals
     // JSONArray.
@@ -133,7 +133,7 @@ public class SaveToJson implements Visitor {
       obj2.put("Duration", interval.getDuration().toString());
       intervals.put(obj2);
     }
-    logger.trace("Intervals of task {} stored", task.getName());
+    logger.trace(first, "Intervals of task {} stored", task.getName());
     obj.put("Intervals", intervals);
   }
 

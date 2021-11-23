@@ -25,7 +25,7 @@ public class Task extends Activity {
   // ----- CONSTRUCTOR -----
   public Task(String name, ArrayList<String> tags, Project parent) {
     super(name, tags, parent);
-    logger.info("Creating task {}", name);
+    logger.info(first, "Creating task {}", name);
     this.intervals = new ArrayList<Interval>();
   }
 
@@ -33,8 +33,8 @@ public class Task extends Activity {
   public Task(String name, ArrayList<String> tags, Project parent, Duration duration,
               LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
-    logger.info("Creating parametrized task {}", name);
-    logger.trace("Task {} values: Parent -> {}, Duration -> {}, startTime -> {}, endTime -> {}", name, parent.getName(), duration, startTime, endTime);
+    logger.info(first, "Creating parametrized task {}", name);
+    logger.trace(first, "Task {} values: Parent -> {}, Duration -> {}, startTime -> {}, endTime -> {}", name, parent.getName(), duration, startTime, endTime);
     this.intervals = new ArrayList<Interval>();
   }
 
@@ -64,6 +64,7 @@ public class Task extends Activity {
       taskDuration = taskDuration.plus(interval.getDuration());
     }
     this.duration = taskDuration;
+    logger.trace(first, "Task {} has been update", name);
     if (this.parent != null) {
       this.parent.updateParentDuration();
     }
