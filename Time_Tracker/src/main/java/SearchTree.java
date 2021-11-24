@@ -1,3 +1,8 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +13,14 @@ public class SearchTree implements Visitor {
   public ArrayList<Activity> activitiesWithTag = new ArrayList<Activity>();
   public String tag;
 
+  final static Logger logger = LoggerFactory.getLogger(SearchTree.class);
+  static String secondrelease = "FITA2";
+  static Marker second = MarkerFactory.getMarker(secondrelease);
+
   public static SearchTree getInstance() {
     if (uniqueInstance == null) {
       uniqueInstance = new SearchTree();
+      logger.debug(second, "Initializing SearchTree");
     }
     return uniqueInstance;
   }
@@ -19,6 +29,8 @@ public class SearchTree implements Visitor {
     this.activitiesWithTag.clear();
     this.tag = tag;
     //Possible error if tag not assigned before acceptVisitor
+    logger.warn(second, "Tags must be assigned to prevent errors in this search");
+    logger.debug(second, "Visiting the root to search by tag");
     root.acceptVisitor(this);
     return this.activitiesWithTag;
   }
@@ -27,6 +39,7 @@ public class SearchTree implements Visitor {
   public void visitTask(Task task) {
     List<String> lowerCaseTags =
             task.getTags().stream().map(String::toLowerCase).collect(Collectors.toList());
+    logger.trace(second, "Retrieving tags from {}, tags are: {}", task.getName(), lowerCaseTags.toString());
     if (lowerCaseTags.contains(tag.toLowerCase())) {
       this.activitiesWithTag.add(task);
     }
@@ -38,6 +51,7 @@ public class SearchTree implements Visitor {
     // searched
     List<String> lowerCaseTags =
             project.getTags().stream().map(String::toLowerCase).collect(Collectors.toList());
+    logger.trace(second, "Retrieving tags from {}, tags are: {}", project.getName(), lowerCaseTags.toString());
     if (lowerCaseTags.contains(tag.toLowerCase())) {
       this.activitiesWithTag.add(project);
     }

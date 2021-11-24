@@ -55,6 +55,7 @@ public class SaveToJson implements Visitor {
     for (Activity a : project.getActivities()) {
       // The handling of the activities differs depending on if the child is a Project (which has
       // Activities) or a Task (which has intervals)
+      logger.debug(first, "Visiting activities in order to save");
       if (a instanceof Project) {
         ((Project) a).acceptVisitor(this);
       } else {

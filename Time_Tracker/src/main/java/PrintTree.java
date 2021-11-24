@@ -25,6 +25,7 @@ public class PrintTree implements Visitor {
 
   // Function which starts the printing process. It is called from the Interval.
   public void print(Interval interval) {
+    logger.debug(first, "Visiting intervals in order to print the tree");
     interval.acceptVisitor(this);
   }
 

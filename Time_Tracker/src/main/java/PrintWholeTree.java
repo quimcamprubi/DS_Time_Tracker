@@ -25,6 +25,7 @@ public class PrintWholeTree implements Visitor {
 
   // Function which starts the printing process. It is called using the root of the tree.
   public void print(Activity root) {
+    logger.debug(first, "Visiting intervals in order to print the tree");
     root.acceptVisitor(this);
   }
 

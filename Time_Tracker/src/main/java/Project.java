@@ -34,7 +34,7 @@ public class Project extends Activity {
                  LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
     logger.info(first, "Creating parametrized project {}", name);
-    logger.trace(first, "Project {} values: Parent -> {}, Duration -> {}, startTime -> {}, endTime -> {}", name, parent.getName(), duration, startTime, endTime);
+    logger.trace(first, "Project {} values: Duration -> {}, startTime -> {}, endTime -> {}", name,  duration, startTime, endTime);
     this.activities = new ArrayList<Activity>();
   }
 

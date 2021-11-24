@@ -121,10 +121,16 @@ public class Client {
 
     logger.info(first, "Here ends first release");
 
+    logger.info(second, "Starts the second release demonstration");
     SearchTree searchTree = SearchTree.getInstance();
-    System.out.println("Search Activities with Tag 'Java' ");
+    logger.info(second, "Search Activities with Tag 'Java' ");
     searchTree.searchByTag(loadedRoot, "Java");
-    System.out.println(searchTree.activitiesWithTag);
+
+    logger.info(second, "Printing Search results:");
+    for(Activity a: searchTree.activitiesWithTag)
+      logger.info(second, a.toString());
+
+    logger.info(first, "Here ends second release");
 
     System.exit(0);
   }
