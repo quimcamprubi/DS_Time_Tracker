@@ -45,6 +45,10 @@ public class Task extends Activity {
   }
 
   public void stop() {
+    if (this.intervals.size()==0) {
+      logger.error(first, "There is no interval created in task {} ", name);
+      throw new IllegalArgumentException("An interval cannot be stopped if none has been created");
+    }
     Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
     lastInterval.endInterval();
   }
@@ -59,14 +63,22 @@ public class Task extends Activity {
   // propagates the information upwards to any type of Activity.
   @Override
   public void updateParentDuration() {
+
     Duration taskDuration = Duration.ZERO;
     for (Interval interval : this.intervals) {
       taskDuration = taskDuration.plus(interval.getDuration());
     }
     this.duration = taskDuration;
     logger.trace(first, "Task {} has been update", name);
+
+    // Invariant
+    assert invariant();
+
     if (this.parent != null) {
       this.parent.updateParentDuration();
+    }
+    else {
+      throw new IllegalArgumentException("Task parent cannot be null.");
     }
   }
 
@@ -75,6 +87,13 @@ public class Task extends Activity {
   }
 
   public void acceptVisitor(Visitor visitor) {
+    if (visitor == null) {
+      //logger.error(first, "Visitor is null");
+      throw new IllegalArgumentException("Visitor parameter cannot be null.");
+    }
     visitor.visitTask(this);
+
+    // Invariant
+    assert invariant();
   }
 }
