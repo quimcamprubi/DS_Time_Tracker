@@ -15,6 +15,13 @@ public class SearchTree implements Visitor {
     return uniqueInstance;
   }
 
+  public void prettyPrintActivitiesWithTag(){
+    for (Activity a:activitiesWithTag){
+      System.out.println(a);
+      //System.out.println('\n');
+    }
+  }
+
   public ArrayList<Activity> searchByTag(Activity root, String tag) {
     this.activitiesWithTag.clear();
     this.tag = tag;

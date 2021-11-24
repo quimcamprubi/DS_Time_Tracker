@@ -112,11 +112,12 @@ public class Client {
     System.out.println("\n");
     System.out.println("JSON TREE:");
     printWholeTree.print(loadedRoot);
+    System.out.println("\n");
 
     SearchTree searchTree = SearchTree.getInstance();
     System.out.println("Search Activities with Tag 'Java' ");
     searchTree.searchByTag(loadedRoot, "Java");
-    System.out.println(searchTree.activitiesWithTag);
+    searchTree.prettyPrintActivitiesWithTag();
 
     System.exit(0);
   }
