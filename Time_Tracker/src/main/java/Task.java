@@ -1,3 +1,8 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,9 +17,15 @@ public class Task extends Activity {
   // ----- ATTRIBUTES -----
   private final ArrayList<Interval> intervals;
 
+  //Logger implementation
+  final Logger logger = LoggerFactory.getLogger(Task.class);
+  String firstrelease = "FITA1";
+  Marker first = MarkerFactory.getMarker(firstrelease);
+
   // ----- CONSTRUCTOR -----
   public Task(String name, ArrayList<String> tags, Project parent) {
     super(name, tags, parent);
+    logger.info(first, "Creating task {}", name);
     this.intervals = new ArrayList<Interval>();
   }
 
@@ -22,6 +33,8 @@ public class Task extends Activity {
   public Task(String name, ArrayList<String> tags, Project parent, Duration duration,
               LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
+    logger.info(first, "Creating parametrized task {}", name);
+    logger.trace(first, "Task {} values: Parent -> {}, Duration -> {}, startTime -> {}, endTime -> {}", name, parent.getName(), duration, startTime, endTime);
     this.intervals = new ArrayList<Interval>();
   }
 
@@ -51,6 +64,7 @@ public class Task extends Activity {
       taskDuration = taskDuration.plus(interval.getDuration());
     }
     this.duration = taskDuration;
+    logger.trace(first, "Task {} has been update", name);
     if (this.parent != null) {
       this.parent.updateParentDuration();
     }

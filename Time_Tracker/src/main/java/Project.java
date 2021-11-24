@@ -1,3 +1,8 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,9 +17,15 @@ public class Project extends Activity {
   // ----- ATTRIBUTES -----
   private final ArrayList<Activity> activities;
 
+  //Logger implementation
+  final Logger logger = LoggerFactory.getLogger(Project.class);
+  String firstrelease = "FITA1";
+  Marker first = MarkerFactory.getMarker(firstrelease);
+
   // ----- CONSTRUCTOR -----
   public Project(String name, ArrayList<String> tags, Project parent) {
     super(name, tags, parent);
+    logger.info(first, "Creating project {}", name);
     this.activities = new ArrayList<Activity>();
   }
 
@@ -22,6 +33,8 @@ public class Project extends Activity {
   public Project(String name, ArrayList<String> tags, Project parent, Duration duration,
                  LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
+    logger.info(first, "Creating parametrized project {}", name);
+    logger.trace(first, "Project {} values: Duration -> {}, startTime -> {}, endTime -> {}", name,  duration, startTime, endTime);
     this.activities = new ArrayList<Activity>();
   }
 
@@ -37,6 +50,7 @@ public class Project extends Activity {
       taskDuration = taskDuration.plus(activity.getDuration());
     }
     this.duration = taskDuration;
+    logger.trace(first, "{} has received the update", name);
     // Invariant
     assert invariant();
 
@@ -48,18 +62,21 @@ public class Project extends Activity {
   public void addChild(Activity child) {
     // Preconditions
     if (child == null) {
+      logger.error(first, "Child of parent {} is null", name);
       throw new IllegalArgumentException("Child to add cannot be null.");
     }
 
     this.activities.add(child);
+    logger.trace(first, "Succesfully added child {}", child.getName());
   }
 
   public void removeChild(Activity child) {
     // Preconditions
     if (child == null) {
+      logger.error(first, "Trying to remove child of parent {} while it is null", name);
       throw new IllegalArgumentException("Child parameter for removal cannot null.");
     }
-
+    logger.trace(first, "Removed child {}", child.getName());
     this.activities.remove(child);
   }
 
@@ -69,6 +86,7 @@ public class Project extends Activity {
 
   public void acceptVisitor(Visitor visitor) {
     if (visitor == null) {
+      logger.error(first, "Visitor is null");
       throw new IllegalArgumentException("Visitor parameter cannot be null.");
     }
     visitor.visitProject(this);

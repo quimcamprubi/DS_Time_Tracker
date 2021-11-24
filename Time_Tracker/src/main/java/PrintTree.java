@@ -1,3 +1,7 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 /*
 PrintTree implements a Visitor which runs through the tree from the bottom to the top. This is
@@ -6,6 +10,11 @@ called each time there is an update to the timings of the tree. The information 
 */
 public class PrintTree implements Visitor {
   private static PrintTree uniqueInstance;
+
+  //Logger implementation
+  final Logger logger = LoggerFactory.getLogger(PrintTree.class);
+  String firstrelease = "FITA1";
+  Marker first = MarkerFactory.getMarker(firstrelease);
 
   public static PrintTree getInstance() {
     if (uniqueInstance == null) {
@@ -16,6 +25,7 @@ public class PrintTree implements Visitor {
 
   // Function which starts the printing process. It is called from the Interval.
   public void print(Interval interval) {
+    logger.debug(first, "Visiting intervals in order to print the tree");
     interval.acceptVisitor(this);
   }
 
@@ -23,7 +33,7 @@ public class PrintTree implements Visitor {
   // Visitor to the parent.
   @Override
   public void visitProject(Project project) {
-    System.out.println(project.toString());
+    logger.info(first, project.toString());
     Activity parent = project.getParent();
     if (parent != null) {
       parent.acceptVisitor(this);
@@ -34,7 +44,7 @@ public class PrintTree implements Visitor {
   // Visitor to the parent.
   @Override
   public void visitTask(Task task) {
-    System.out.println(task.toString());
+    logger.info(first, task.toString());
     Activity parent = task.getParent();
     if (parent != null) {
       parent.acceptVisitor(this);
@@ -44,7 +54,7 @@ public class PrintTree implements Visitor {
   // Prints a Task and, if it has a parent (Task), it propagates the Visitor to the parent.
   @Override
   public void visitInterval(Interval interval) {
-    System.out.println(interval.toString());
+    logger.info(first, interval.toString());
     Task parent = interval.getParent();
     if (parent != null) {
       parent.acceptVisitor(this);
