@@ -1,11 +1,10 @@
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /*
 Class extending from the Activity abstract class. It has a list of Intervals, and it cannot
@@ -34,7 +33,8 @@ public class Task extends Activity {
               LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
     logger.info(first, "Creating parametrized task {}", name);
-    logger.trace(first, "Task {} values: Parent -> {}, Duration -> {}, startTime -> {}, endTime -> {}", name, parent.getName(), duration, startTime, endTime);
+    logger.trace(first, "Task {} values: Parent -> {}, Duration -> {}, startTime -> {}, "
+        + "endTime -> {}", name, parent.getName(), duration, startTime, endTime);
     this.intervals = new ArrayList<Interval>();
   }
 
@@ -45,8 +45,8 @@ public class Task extends Activity {
   }
 
   public void stop() {
-    if (this.intervals.size()==0) {
-      logger.error(first, "There is no interval created in task {} ", name);
+    if (this.intervals.size() == 0) {
+      logger.error(first, "Task {} cannot be stopped because it has no intervals.", name);
       throw new IllegalArgumentException("An interval cannot be stopped if none has been created");
     }
     Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
@@ -63,7 +63,6 @@ public class Task extends Activity {
   // propagates the information upwards to any type of Activity.
   @Override
   public void updateParentDuration() {
-
     Duration taskDuration = Duration.ZERO;
     for (Interval interval : this.intervals) {
       taskDuration = taskDuration.plus(interval.getDuration());
@@ -73,13 +72,8 @@ public class Task extends Activity {
 
     // Invariant
     assert invariant();
-
-    if (this.parent != null) {
-      this.parent.updateParentDuration();
-    }
-    else {
-      throw new IllegalArgumentException("Task parent cannot be null.");
-    }
+    assert (this.parent != null);
+    this.parent.updateParentDuration();
   }
 
   public ArrayList<Interval> getIntervals() {

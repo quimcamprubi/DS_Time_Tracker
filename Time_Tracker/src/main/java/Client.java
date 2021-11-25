@@ -29,8 +29,8 @@ public class Client {
     final Logger logger = LoggerFactory.getLogger(Client.class);
     String firstrelease = "FITA1";
     String secondrelease = "FITA2";
-    Marker first = MarkerFactory.getMarker(firstrelease);
-    Marker second = MarkerFactory.getMarker(secondrelease);
+    final Marker first = MarkerFactory.getMarker(firstrelease);
+    final Marker second = MarkerFactory.getMarker(secondrelease);
 
     // Initialization of all the Tasks and Projects.
     logger.warn("Warns will be shown");
@@ -46,7 +46,7 @@ public class Client {
         Arrays.asList("c++", "Java", "python")), root);
     Project databases = new Project("databases", new ArrayList<String>(
         Arrays.asList("SQL", "python", "C++")), root);
-    Task transportation = new Task("transportation", new ArrayList<String>(), root);
+    final Task transportation = new Task("transportation", new ArrayList<String>(), root);
 
     Project problems = new Project("problems", new ArrayList<String>(), softwareDesign);
     Project projectTimeTracker = new Project("project time tracker",
@@ -126,11 +126,11 @@ public class Client {
     SearchTree searchTree = SearchTree.getInstance();
     logger.info(second, "Search Activities with Tag 'Java' ");
     searchTree.searchByTag(loadedRoot, "Java");
-    //searchTree.prettyPrintActivitiesWithTag();
+    searchTree.prettyPrintActivitiesWithTag();
 
-    logger.info(second, "Printing Search results:");
+    /*logger.info(second, "Printing Search results:");
     for(Activity a: searchTree.activitiesWithTag)
-      logger.info(second, a.toString());
+      logger.info(second, a.toString());*/
 
     logger.info(first, "Here ends second release");
 

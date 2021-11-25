@@ -48,7 +48,7 @@ public class DataManager {
       logger.debug(first, "File created and opened");
       f.write(data.toString());
       f.write("\n");
-      logger.debug(first,"File closed");
+      logger.debug(first, "File closed");
       f.close();
     } catch (IOException e) {
       e.printStackTrace();
@@ -67,7 +67,7 @@ public class DataManager {
     File myObj = new File(fileName);
     Scanner reader = new Scanner(myObj);
     String data = reader.nextLine();
-    JSONArray jsonArray = new JSONArray(data);
+    final JSONArray jsonArray = new JSONArray(data);
     reader.close();
     logger.debug(first, "Initializing saved tree");
     // Loading of the root, which will be necessary to load the rest of the activities (because
@@ -84,7 +84,8 @@ public class DataManager {
     String rootName = rootJsonActivity.getString("Name");
     JSONArray tagsJsonArrayRoot = rootJsonActivity.getJSONArray("Tags");
     ArrayList<String> rootTags = new ArrayList<String>();
-    logger.trace(first, "Recovered tree root with values: startTime -> {}, endTime -> {}, duration -> {}", rootStartTime, rootEndTime, rootDuration);
+    logger.trace(first, "Recovered tree root with values: startTime -> {}, endTime -> {}, "
+        + "duration  -> {}", rootStartTime, rootEndTime, rootDuration);
     // Recovery of all the tags.
     for (int i = 0; i < tagsJsonArrayRoot.length(); i++) {
       rootTags.add(tagsJsonArrayRoot.getString(i));
@@ -138,7 +139,8 @@ public class DataManager {
     String name = jsonActivity.getString("Name");
     String parent = jsonActivity.getString("Parent");
     JSONArray tagsJsonArray = jsonActivity.getJSONArray("Tags");
-    logger.trace("Creating {} {} with values: startTime-> {}, endTime->{}, duration{}", className, name, startTime, endTime, duration);
+    logger.trace("Creating {} {} with values: startTime-> {}, endTime->{}, duration{}", className,
+        name, startTime, endTime, duration);
     ArrayList<String> tags = new ArrayList<String>();
     for (int j = 0; j < tagsJsonArray.length(); j++) {
       tags.add(tagsJsonArray.getString(j));
@@ -174,7 +176,8 @@ public class DataManager {
         }
 
         task.addInterval(intervalStartTime, intervalEndTime);
-        logger.trace(first, "Interval with values: startTime->{}, endTime->{}", intervalStartTime, intervalEndTime);
+        logger.trace(first, "Interval with values: startTime->{}, endTime->{}", intervalStartTime,
+            intervalEndTime);
       }
       loadedActivities.add(task);
     } else {

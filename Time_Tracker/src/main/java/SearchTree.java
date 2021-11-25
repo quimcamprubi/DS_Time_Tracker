@@ -1,19 +1,19 @@
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SearchTree implements Visitor {
   private static SearchTree uniqueInstance;
   public ArrayList<Activity> activitiesWithTag = new ArrayList<Activity>();
   public String tag;
 
-  final static Logger logger = LoggerFactory.getLogger(SearchTree.class);
+  static final Logger logger = LoggerFactory.getLogger(SearchTree.class);
   static String secondrelease = "FITA2";
   static Marker second = MarkerFactory.getMarker(secondrelease);
 
@@ -25,10 +25,10 @@ public class SearchTree implements Visitor {
     return uniqueInstance;
   }
 
-  public void prettyPrintActivitiesWithTag(){
-    for (Activity a:activitiesWithTag){
-      System.out.println(a);
-      //System.out.println('\n');
+  public void prettyPrintActivitiesWithTag() {
+    logger.info(second, "Printing Search results:");
+    for (Activity a : this.activitiesWithTag) {
+      logger.info(second, a.toString());
     }
   }
 
@@ -46,7 +46,8 @@ public class SearchTree implements Visitor {
   public void visitTask(Task task) {
     List<String> lowerCaseTags =
             task.getTags().stream().map(String::toLowerCase).collect(Collectors.toList());
-    logger.trace(second, "Retrieving tags from {}, tags are: {}", task.getName(), lowerCaseTags.toString());
+    logger.trace(second, "Retrieving tags from {}, tags are: {}", task.getName(),
+        lowerCaseTags.toString());
     if (lowerCaseTags.contains(tag.toLowerCase())) {
       this.activitiesWithTag.add(task);
     }
@@ -58,7 +59,8 @@ public class SearchTree implements Visitor {
     // searched
     List<String> lowerCaseTags =
             project.getTags().stream().map(String::toLowerCase).collect(Collectors.toList());
-    logger.trace(second, "Retrieving tags from {}, tags are: {}", project.getName(), lowerCaseTags.toString());
+    logger.trace(second, "Retrieving tags from {}, tags are: {}", project.getName(),
+        lowerCaseTags.toString());
     if (lowerCaseTags.contains(tag.toLowerCase())) {
       this.activitiesWithTag.add(project);
     }

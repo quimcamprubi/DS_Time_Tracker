@@ -1,13 +1,12 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Observable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 /*
 Class which represents the minimum unit of time in our project. It stores a continuous amount of
@@ -39,7 +38,8 @@ public class Interval implements java.util.Observer {
     this.startTime = startTime;
     this.endTime = endTime;
     this.duration = Duration.between(this.startTime, this.endTime);
-    logger.trace(first, "Interval values: Parent -> {}, startTime -> {}, endTime -> {}, Duration -> {}", parent.getName(), startTime, endTime, duration);
+    logger.trace(first, "Interval values: Parent -> {}, startTime -> {}, endTime -> {}, Duration "
+        + "->  {}", parent.getName(), startTime, endTime, duration);
   }
 
   // ----- METHODS -----
@@ -102,7 +102,9 @@ public class Interval implements java.util.Observer {
     this.duration = Duration.between(this.startTime, this.endTime);
     this.parent.updateParentDuration();
     this.parent.updateParentInformation(this.startTime, this.endTime);
-    logger.trace(first, "Update has been received from clock object, update time for interval with parent {}: Duration -> {}, startTime -> {}, endTime -> {}", parent.getName(), duration, startTime, endTime);
+    logger.trace(first, "Update has been received from clock object, update time for interval "
+            + "with  parent {}: Duration -> {}, startTime -> {}, endTime -> {}", parent.getName(),
+        duration, startTime, endTime);
     // Call print visitor
     PrintTree.getInstance().print(this);
   }

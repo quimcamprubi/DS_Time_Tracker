@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="slf4j.ext" type="repository">
+    <properties maven-id="org.slf4j:slf4j-ext:1.7.32" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-ext-1.7.32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.32.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

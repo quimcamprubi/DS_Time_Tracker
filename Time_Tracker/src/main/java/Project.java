@@ -1,11 +1,10 @@
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /*
 Class extending from the Activity abstract class. It has a list of activities, and it cannot
@@ -34,7 +33,8 @@ public class Project extends Activity {
                  LocalDateTime startTime, LocalDateTime endTime) {
     super(name, tags, parent, duration, startTime, endTime);
     logger.info(first, "Creating parametrized project {}", name);
-    logger.trace(first, "Project {} values: Duration -> {}, startTime -> {}, endTime -> {}", name,  duration, startTime, endTime);
+    logger.trace(first, "Project {} values: Duration -> {}, startTime -> {}, endTime -> {}", name,
+        duration, startTime, endTime);
     this.activities = new ArrayList<Activity>();
   }
 

@@ -1,0 +1,3138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Logback Log Messages</title>
+<style  type="text/css">
+table { margin-left: 2em; margin-right: 2em; border-left: 2px solid #AAA; }
+TR.even { background: #FFFFFF; }
+TR.odd { background: #EAEAEA; }
+TR.warn TD.Level, TR.error TD.Level, TR.fatal TD.Level {font-weight: bold; color: #FF4040 }
+TD { padding-right: 1ex; padding-left: 1ex; border-right: 2px solid #AAA; }
+TD.Time, TD.Date { text-align: right; font-family: courier, monospace; font-size: smaller; }
+TD.Thread { text-align: left; }
+TD.Level { text-align: right; }
+TD.Logger { text-align: left; }
+TR.header { background: #596ED5; color: #FFF; font-weight: bold; font-size: larger; }
+TD.Exception { background: #A2AEE8; font-family: courier, monospace;}
+</style>
+
+  </head>
+<body>
+<hr/>
+<p>Log session start time Thu Nov 25 10:32:38 CET 2021</p><p></p>
+
+<table cellspacing="0">
+<tr class="header">
+<td class="RelativeTime">RelativeTime</td>
+<td class="Thread">Thread</td>
+<td class="MDC">MDC</td>
+<td class="Level">Level</td>
+<td class="Logger">Logger</td>
+<td class="Message">Message</td>
+</tr>
+
+
+<tr class="warn even">
+<td class="RelativeTime">210</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">WARN</td>
+<td class="Logger">Client</td>
+<td class="Message">Warns will be shown</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">213</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Info will be shown</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">213</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Client</td>
+<td class="Message">Debug mode is enabled</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">213</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Client</td>
+<td class="Message">Stacktrace is enabled</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">214</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Starting tree creation</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">214</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating project root</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">215</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child software design</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">215</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating project software design</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">215</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child software testing</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">216</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating project software testing</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">216</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child databases</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">216</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating project databases</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">216</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child transportation</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">216</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating task transportation</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">216</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child problems</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">216</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating project problems</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child project time tracker</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating project project time tracker</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating task first list</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child second list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating task second list</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child read handout</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating task read handout</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child first milestone</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating task first milestone</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">217</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Here starts first release</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">219</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">                                    initial date                   final date                     duration</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">219</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">start test</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">220</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent transportation has been created</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">220</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">transportation starts</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">1980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task transportation has been update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">1980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">1981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent transportation: Duration -&gt; PT2S, startTime -&gt; 2021-11-25T10:32:38.421443, endTime -&gt; 2021-11-25T10:32:40.421443</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">1981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">1982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">1992</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:38            2021-11-25 10:32:40            2    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">1993</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  transportation       2021-11-25 10:32:38            2021-11-25 10:32:40            2    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">1993</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:40            2    </td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">3979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task transportation has been update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">3979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">3979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent transportation: Duration -&gt; PT3.999927S, startTime -&gt; 2021-11-25T10:32:38.421443, endTime -&gt; 2021-11-25T10:32:42.421370</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">3979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">3980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">3980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:38            2021-11-25 10:32:42            4    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">3980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  transportation       2021-11-25 10:32:38            2021-11-25 10:32:42            4    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">3980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:42            4    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">6228</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">transportation stops</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">6229</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">first list starts</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">6229</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent first list has been created</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">7982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task first list has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">7982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">7983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">7983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">7983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent first list: Duration -&gt; PT2S, startTime -&gt; 2021-11-25T10:32:44.424443, endTime -&gt; 2021-11-25T10:32:46.424443</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">7983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">7983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">7984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:44            2021-11-25 10:32:46            2    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">7984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:46            2    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">7985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:46            2    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">7985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:46            2    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">7986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:46            6    </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">9978</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task first list has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">9978</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">9979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">9979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">9979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent first list: Duration -&gt; PT3.995954S, startTime -&gt; 2021-11-25T10:32:44.424443, endTime -&gt; 2021-11-25T10:32:48.420397</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">9979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">9979</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">9980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:44            2021-11-25 10:32:48            4    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">9980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:48            4    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">9980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:48            4    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">9981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:48            4    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">9981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:48            8    </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">11983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task first list has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">11983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">11983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">11984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">11984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent first list: Duration -&gt; PT6.001001S, startTime -&gt; 2021-11-25T10:32:44.424443, endTime -&gt; 2021-11-25T10:32:50.425444</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">11984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">11984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">11985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:44            2021-11-25 10:32:50            6    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">11985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:50            6    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">11986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:50            6    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">11986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:50            6    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">11987</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:50            10   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">12234</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">second list starts</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">12234</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent second list has been created</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task second list has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">13983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">13983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent second list: Duration -&gt; PT2S, startTime -&gt; 2021-11-25T10:32:50.425267, endTime -&gt; 2021-11-25T10:32:52.425267</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">13984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent second list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">13984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:50            2021-11-25 10:32:52            2    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">13985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  second list          2021-11-25 10:32:50            2021-11-25 10:32:52            2    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">13985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:52            8    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">13985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:52            8    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:52            12   </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task first list has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent first list: Duration -&gt; PT8.000824S, startTime -&gt; 2021-11-25T10:32:44.424443, endTime -&gt; 2021-11-25T10:32:52.425267</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">13986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">13987</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:44            2021-11-25 10:32:52            8    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">13987</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:52            8    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">13987</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:52            10   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">13987</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:52            10   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">13988</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:52            14   </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task second list has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">15980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">15980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent second list: Duration -&gt; PT3.99677S, startTime -&gt; 2021-11-25T10:32:50.425267, endTime -&gt; 2021-11-25T10:32:54.422037</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">15981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent second list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">15981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:50            2021-11-25 10:32:54            4    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">15982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  second list          2021-11-25 10:32:50            2021-11-25 10:32:54            4    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">15982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:54            12   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">15982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:54            12   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">15982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:54            16   </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task first list has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent first list: Duration -&gt; PT9.997594S, startTime -&gt; 2021-11-25T10:32:44.424443, endTime -&gt; 2021-11-25T10:32:54.422037</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">15983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:44            2021-11-25 10:32:54            10   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">15984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:54            10   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">15984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:54            14   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">15984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:54            14   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">15984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:54            18   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">16237</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">first list stops</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">17984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task second list has been update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">17984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">problems has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">17984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">software design has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">17984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">17984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent second list: Duration -&gt; PT6.000724S, startTime -&gt; 2021-11-25T10:32:50.425267, endTime -&gt; 2021-11-25T10:32:56.425991</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">17984</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">17985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent second list</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">17985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:50            2021-11-25 10:32:56            6    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">17985</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  second list          2021-11-25 10:32:50            2021-11-25 10:32:56            6    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">17986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:56            16   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">17986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:56            16   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">17986</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:32:56            20   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">18242</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">second list stops</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">20246</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">transportation starts</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">20246</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent transportation has been created</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">21980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task transportation has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">21980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">21980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent transportation: Duration -&gt; PT2S, startTime -&gt; 2021-11-25T10:32:58.422045, endTime -&gt; 2021-11-25T10:33:00.422045</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">21980</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">21981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">21981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:58            2021-11-25 10:33:00            2    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">21981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  transportation       2021-11-25 10:32:38            2021-11-25 10:33:00            6    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">21982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:33:00            22   </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">23981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task transportation has been update</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">23981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">root has received the update</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">23981</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Update has been received from clock object, update time for interval with  parent transportation: Duration -&gt; PT4.001205S, startTime -&gt; 2021-11-25T10:32:58.422045, endTime -&gt; 2021-11-25T10:33:02.423250</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">23982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">23982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">23982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:58            2021-11-25 10:33:02            4    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">23982</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  transportation       2021-11-25 10:32:38            2021-11-25 10:33:02            8    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">23983</td>
+<td class="Thread">Timer</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:33:02            24   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24250</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">transportation stops</td>
+</tr>
+
+<tr class="warn odd">
+<td class="RelativeTime">24258</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">WARN</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Program is saving your data, please do not close the program until it is done, doing so can create corrupted files or damage the capabilities of the program to recover your data</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24258</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of root</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24259</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for root</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24259</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for root</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24259</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Visiting activities in order to save</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24259</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of project software design</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24259</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for project software design</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24259</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for project software design</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24259</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of project problems</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for project problems</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for project problems</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of task first list</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for task first list</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for task first list</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Intervals of task first list stored</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of task second list</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for task second list</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for task second list</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Intervals of task second list stored</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of project project time tracker</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for project project time tracker</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24260</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for project project time tracker</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of task read handout</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for task read handout</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for task read handout</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Intervals of task read handout stored</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of task first milestone</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for task first milestone</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for task first milestone</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Intervals of task first milestone stored</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Visiting activities in order to save</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of project software testing</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for project software testing</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for project software testing</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Visiting activities in order to save</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of project databases</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for project databases</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for project databases</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Visiting activities in order to save</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24261</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Starting data storage of task transportation</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24262</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Tags, Name and Class stored for task transportation</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24262</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">StartTime, EndTime and Duration stored for task transportation</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24262</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Intervals of task transportation stored</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24262</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">SaveToJson</td>
+<td class="Message">Data saved succesfully</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24262</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">File created and opened</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24263</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">File closed</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24275</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Initializing saved tree</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24276</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Rebuilding root</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24278</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Recovered tree root with values: startTime -&gt; 2021-11-25T10:32:38, endTime -&gt; 2021-11-25T10:33:02, duration  -&gt; PT23.99945S</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24279</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating parametrized project root</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24279</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Project root values: Duration -&gt; PT23.99945S, startTime -&gt; 2021-11-25T10:32:38, endTime -&gt; 2021-11-25T10:33:02</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24279</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Entering the tree recovery loop</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24279</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Project software design with values: startTime-&gt; 2021-11-25T10:32:44, endTime-&gt;2021-11-25T10:32:56, durationPT15.998318S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child software design</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating parametrized project software design</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Project software design values: Duration -&gt; PT15.998318S, startTime -&gt; 2021-11-25T10:32:44, endTime -&gt; 2021-11-25T10:32:56</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Project problems with values: startTime-&gt; 2021-11-25T10:32:44, endTime-&gt;2021-11-25T10:32:56, durationPT15.998318S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child problems</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating parametrized project problems</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Project problems values: Duration -&gt; PT15.998318S, startTime -&gt; 2021-11-25T10:32:44, endTime -&gt; 2021-11-25T10:32:56</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24280</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Task first list with values: startTime-&gt; 2021-11-25T10:32:44, endTime-&gt;2021-11-25T10:32:54, durationPT9.997594S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating parametrized task first list</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task first list values: Parent -&gt; problems, Duration -&gt; PT9.997594S, startTime -&gt; 2021-11-25T10:32:44, endTime -&gt; 2021-11-25T10:32:54</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Initializing intervals for task first list</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent first list has been created</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Interval values: Parent -&gt; first list, startTime -&gt; 2021-11-25T10:32:44, endTime -&gt; 2021-11-25T10:32:54, Duration -&gt;  PT10S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Interval with values: startTime-&gt;2021-11-25T10:32:44, endTime-&gt;2021-11-25T10:32:54</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Task second list with values: startTime-&gt; 2021-11-25T10:32:50, endTime-&gt;2021-11-25T10:32:56, durationPT6.000724S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24281</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child second list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating parametrized task second list</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task second list values: Parent -&gt; problems, Duration -&gt; PT6.000724S, startTime -&gt; 2021-11-25T10:32:50, endTime -&gt; 2021-11-25T10:32:56</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Initializing intervals for task second list</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent second list has been created</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Interval values: Parent -&gt; second list, startTime -&gt; 2021-11-25T10:32:50, endTime -&gt; 2021-11-25T10:32:56, Duration -&gt;  PT6S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Interval with values: startTime-&gt;2021-11-25T10:32:50, endTime-&gt;2021-11-25T10:32:56</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Project project time tracker with values: startTime-&gt; null, endTime-&gt;null, durationPT0S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child project time tracker</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating parametrized project project time tracker</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Project project time tracker values: Duration -&gt; PT0S, startTime -&gt; null, endTime -&gt; null</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Task read handout with values: startTime-&gt; null, endTime-&gt;null, durationPT0S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child read handout</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating parametrized task read handout</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task read handout values: Parent -&gt; project time tracker, Duration -&gt; PT0S, startTime -&gt; null, endTime -&gt; null</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24282</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Initializing intervals for task read handout</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Task first milestone with values: startTime-&gt; null, endTime-&gt;null, durationPT0S</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child first milestone</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating parametrized task first milestone</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task first milestone values: Parent -&gt; project time tracker, Duration -&gt; PT0S, startTime -&gt; null, endTime -&gt; null</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Initializing intervals for task first milestone</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Project software testing with values: startTime-&gt; null, endTime-&gt;null, durationPT0S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child software testing</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating parametrized project software testing</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Project software testing values: Duration -&gt; PT0S, startTime -&gt; null, endTime -&gt; null</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Project databases with values: startTime-&gt; null, endTime-&gt;null, durationPT0S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child databases</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Project</td>
+<td class="Message">Creating parametrized project databases</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Project databases values: Duration -&gt; PT0S, startTime -&gt; null, endTime -&gt; null</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24283</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Creating Task transportation with values: startTime-&gt; 2021-11-25T10:32:38, endTime-&gt;2021-11-25T10:33:02, durationPT8.001132S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Project</td>
+<td class="Message">Succesfully added child transportation</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Task</td>
+<td class="Message">Creating parametrized task transportation</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Task</td>
+<td class="Message">Task transportation values: Parent -&gt; root, Duration -&gt; PT8.001132S, startTime -&gt; 2021-11-25T10:32:38, endTime -&gt; 2021-11-25T10:33:02</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Initializing intervals for task transportation</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent transportation has been created</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Interval values: Parent -&gt; transportation, startTime -&gt; 2021-11-25T10:32:38, endTime -&gt; 2021-11-25T10:32:42, Duration -&gt;  PT4S</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Interval with values: startTime-&gt;2021-11-25T10:32:38, endTime-&gt;2021-11-25T10:32:42</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">Interval</td>
+<td class="Message">A new interval with parent transportation has been created</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Interval values: Parent -&gt; transportation, startTime -&gt; 2021-11-25T10:32:58, endTime -&gt; 2021-11-25T10:33:02, Duration -&gt;  PT4S</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Interval with values: startTime-&gt;2021-11-25T10:32:58, endTime-&gt;2021-11-25T10:33:02</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24284</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">DataManager</td>
+<td class="Message">Repositioning childs and fathers alike</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24285</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Printing both trees to compare them</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24285</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">FIRST TREE:</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24285</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24285</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:33:02            24   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24285</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:56            16   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24285</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:56            16   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:54            10   </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent first list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:44            2021-11-25 10:32:54            10   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  second list          2021-11-25 10:32:50            2021-11-25 10:32:56            6    </td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent second list</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:50            2021-11-25 10:32:56            6    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  project time tracker null                           null                           0    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  read handout         null                           null                           0    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24286</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  first milestone      null                           null                           0    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  software testing     null                           null                           0    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  databases            null                           null                           0    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  transportation       2021-11-25 10:32:38            2021-11-25 10:33:02            8    </td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:38            2021-11-25 10:32:42            4    </td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:58            2021-11-25 10:33:02            4    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">JSON TREE:</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Visiting intervals in order to print the tree</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  root                 2021-11-25 10:32:38            2021-11-25 10:33:02            24   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24287</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:56            16   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  problems             2021-11-25 10:32:44            2021-11-25 10:32:56            16   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:54            10   </td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent first list</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:44            2021-11-25 10:32:54            10   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  second list          2021-11-25 10:32:50            2021-11-25 10:32:56            6    </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent second list</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:50            2021-11-25 10:32:56            6    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  project time tracker null                           null                           0    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24288</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  read handout         null                           null                           0    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  first milestone      null                           null                           0    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  software testing     null                           null                           0    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  databases            null                           null                           0    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">activity:  transportation       2021-11-25 10:32:38            2021-11-25 10:33:02            8    </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:38            2021-11-25 10:32:42            4    </td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">Interval</td>
+<td class="Message">Starting string parsing of interval with parent transportation</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">PrintWholeTree</td>
+<td class="Message">Interval:                       2021-11-25 10:32:58            2021-11-25 10:33:02            4    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Here ends first release</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24289</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Starts the second release demonstration</td>
+</tr>
+
+<tr class="debug even">
+<td class="RelativeTime">24290</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Initializing SearchTree</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24290</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Search Activities with Tag &#39;Java&#39; </td>
+</tr>
+
+<tr class="warn even">
+<td class="RelativeTime">24290</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">WARN</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Tags must be assigned to prevent errors in this search</td>
+</tr>
+
+<tr class="debug odd">
+<td class="RelativeTime">24290</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">DEBUG</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Visiting the root to search by tag</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24291</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from root, tags are: []</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24291</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from software design, tags are: [java, flutter]</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24291</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from problems, tags are: []</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24291</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from first list, tags are: [java]</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24291</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from second list, tags are: [dart]</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from project time tracker, tags are: []</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from read handout, tags are: []</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from first milestone, tags are: [java, intellij]</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from software testing, tags are: [c++, java, python]</td>
+</tr>
+
+<tr class="trace odd">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from databases, tags are: [sql, python, c++]</td>
+</tr>
+
+<tr class="trace even">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">TRACE</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Retrieving tags from transportation, tags are: []</td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">Printing Search results:</td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">activity:  software design      2021-11-25 10:32:44            2021-11-25 10:32:56            16   </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">activity:  first list           2021-11-25 10:32:44            2021-11-25 10:32:54            10   </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24292</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">activity:  first milestone      null                           null                           0    </td>
+</tr>
+
+<tr class="info odd">
+<td class="RelativeTime">24293</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">SearchTree</td>
+<td class="Message">activity:  software testing     null                           null                           0    </td>
+</tr>
+
+<tr class="info even">
+<td class="RelativeTime">24293</td>
+<td class="Thread">main</td>
+<td class="MDC"></td>
+<td class="Level">INFO</td>
+<td class="Logger">Client</td>
+<td class="Message">Here ends second release</td>
+</tr>

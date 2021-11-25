@@ -31,7 +31,9 @@ public class SaveToJson implements Visitor {
   public JSONArray store(Project project) {
     JSONObject obj = new JSONObject();
     arr.put(obj);
-    logger.warn(first, "Program is saving your data, please do not close the program until it is done, doing so can create corrupted files or damage the capabilities of the program to recover your data");
+    logger.warn(first, "Program is saving your data, please do not close the program until it is "
+        + "done, doing so can create corrupted files or damage the capabilities of the program to "
+        + "recover your data");
     logger.debug(first, "Starting data storage of root");
     // We add all the important information for each Activity
     obj.put("Tags", project.getTags());
