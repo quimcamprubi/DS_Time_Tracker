@@ -18,8 +18,8 @@ public class Task extends Activity {
 
   //Logger implementation
   final Logger logger = LoggerFactory.getLogger(Task.class);
-  String firstrelease = "FITA1";
-  Marker first = MarkerFactory.getMarker(firstrelease);
+  final String firstrelease = "FITA1";
+  final Marker first = MarkerFactory.getMarker(firstrelease);
 
   // ----- CONSTRUCTOR -----
   public Task(String name, ArrayList<String> tags, Project parent) {

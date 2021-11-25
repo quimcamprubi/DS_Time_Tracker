@@ -16,8 +16,8 @@ public class SaveToJson implements Visitor {
   private static SaveToJson uniqueInstance;
   //Logger implementation
   final Logger logger = LoggerFactory.getLogger(SaveToJson.class);
-  String firstrelease = "FITA1";
-  Marker first = MarkerFactory.getMarker(firstrelease);
+  final String firstrelease = "FITA1";
+  final Marker first = MarkerFactory.getMarker(firstrelease);
 
   public static SaveToJson getInstance() {
     if (uniqueInstance == null) {

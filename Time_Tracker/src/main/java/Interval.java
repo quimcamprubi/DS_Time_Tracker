@@ -20,8 +20,8 @@ public class Interval implements java.util.Observer {
   private Duration duration;
   private final Task parent;
   final Logger logger = LoggerFactory.getLogger(Interval.class);
-  String firstrelease = "FITA1";
-  Marker first = MarkerFactory.getMarker(firstrelease);
+  final String firstrelease = "FITA1";
+  final Marker first = MarkerFactory.getMarker(firstrelease);
 
   // ----- CONSTRUCTOR -----
   public Interval(Task parent) {

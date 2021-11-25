@@ -31,8 +31,8 @@ public class DataManager {
 
   //Initialization of the Logger Instance and its markers
   final Logger logger = LoggerFactory.getLogger(DataManager.class);
-  String firstrelease = "FITA1";
-  Marker first = MarkerFactory.getMarker(firstrelease);
+  final String firstrelease = "FITA1";
+  final Marker first = MarkerFactory.getMarker(firstrelease);
 
   // ----- METHODS -----
   public void saveUserData(Project project) {

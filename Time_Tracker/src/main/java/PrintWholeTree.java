@@ -13,8 +13,8 @@ public class PrintWholeTree implements Visitor {
 
   //Logger implementation
   final Logger logger = LoggerFactory.getLogger(PrintWholeTree.class);
-  String firstrelease = "FITA1";
-  Marker first = MarkerFactory.getMarker(firstrelease);
+  final String firstrelease = "FITA1";
+  final Marker first = MarkerFactory.getMarker(firstrelease);
 
   public static PrintWholeTree getInstance() {
     if (uniqueInstance == null) {

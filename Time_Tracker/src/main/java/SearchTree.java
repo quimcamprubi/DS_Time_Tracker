@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,12 +9,12 @@ import org.slf4j.MarkerFactory;
 
 public class SearchTree implements Visitor {
   private static SearchTree uniqueInstance;
-  public ArrayList<Activity> activitiesWithTag = new ArrayList<Activity>();
+  public final ArrayList<Activity> activitiesWithTag = new ArrayList<Activity>();
   public String tag;
 
   static final Logger logger = LoggerFactory.getLogger(SearchTree.class);
-  static String secondrelease = "FITA2";
-  static Marker second = MarkerFactory.getMarker(secondrelease);
+  static final String secondrelease = "FITA2";
+  static final Marker second = MarkerFactory.getMarker(secondrelease);
 
   public static SearchTree getInstance() {
     if (uniqueInstance == null) {
