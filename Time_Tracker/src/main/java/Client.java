@@ -103,8 +103,6 @@ public class Client {
     // Once the simulation is done, we store the tree in a JSON file called "out.json"
     dataManager.saveUserData(root);
 
-
-    System.out.println("============================");
     // We can now load the tree from the JSON file we created on the previous call.
     final Project loadedRoot = dataManager.loadUserData();
 
@@ -118,19 +116,14 @@ public class Client {
     printWholeTree.print(root);
     logger.info(first, "JSON TREE:");
     printWholeTree.print(loadedRoot);
-    System.out.println("\n");
 
     logger.info(first, "Here ends first release");
 
     logger.info(second, "Starts the second release demonstration");
     SearchTree searchTree = SearchTree.getInstance();
     logger.info(second, "Search Activities with Tag 'Java' ");
-    searchTree.searchByTag(loadedRoot, "Java");
+    final ArrayList<Activity> searchedActivities = searchTree.searchByTag(loadedRoot, "Java");
     searchTree.prettyPrintActivitiesWithTag();
-
-    /*logger.info(second, "Printing Search results:");
-    for(Activity a: searchTree.activitiesWithTag)
-      logger.info(second, a.toString());*/
 
     logger.info(first, "Here ends second release");
 

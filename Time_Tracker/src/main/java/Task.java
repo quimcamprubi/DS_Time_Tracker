@@ -54,6 +54,9 @@ public class Task extends Activity {
   }
 
   public void addInterval(LocalDateTime startTime, LocalDateTime endTime) {
+    if (startTime == null || endTime == null) {
+      throw new IllegalArgumentException("startTime and endTime cannot be null parameters.");
+    }
     this.intervals.add(new Interval(this, startTime, endTime));
   }
 

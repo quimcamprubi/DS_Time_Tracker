@@ -150,7 +150,13 @@ public abstract class Activity {
   }
 
   protected boolean invariant() {
-    return (!this.duration.isNegative()
-            && !Duration.between(this.startTime, this.endTime).isNegative());
+    Boolean nameNotNull = this.name != null;
+    Boolean durationNotNegative = !this.duration.isNegative();
+    if ((this.startTime != null) && (this.endTime != null)) {
+      return nameNotNull && durationNotNegative && (!Duration.between(this.startTime,
+          this.endTime).isNegative());
+    } else {
+      return nameNotNull && durationNotNegative;
+    }
   }
 }
