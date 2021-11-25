@@ -20,3 +20,5 @@ Alberto Vallespín Herranz 1528948
   - JSON implementation of saveJson store method using visitor
   - Coded classes: Attributes, methods of Task, Interval and composite classes
   - Coded Clock
+  - Implementation of the logging system
+  - Design by contract of class Task
