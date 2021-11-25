@@ -6,11 +6,16 @@ Josep Bravo Bravo 1526453
   - Coded part of the composite
 
 Quim Camprubí Casas 1528104
+First milestone:
   - Class design, including patterns and relations between classes
   - Clock: Singleton, Task, Project, Activity: Composite, Interval: Visitor, PrintTree: Visitor, WholePrintTree: Visitor classes implementation
   - Implementation of the JSON loader algorithm
   - Testing of all the main parts of the code (TimeTracker, JSON)
   - Implementation of the update algorithm and data propagation through the tree
+ Second milestone:
+  - Code inspection improvements. Fixed style of the program after running Checkstyle.
+  - DbC: Implementation of Activity invariant function for Tasks and Projects. DbC preconditions, invariants and postconditions for Activity and Project.
+  - Search By Tag: Improvements on the Search By Tag algorithm. Case insensitive search.
   
 Javier Méndez Leiva 1496052
   - Implementation of the logging system and migration from all the logs in the program, also implementation of the strackTrace marks.
