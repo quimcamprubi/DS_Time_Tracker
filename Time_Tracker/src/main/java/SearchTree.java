@@ -9,8 +9,8 @@ import org.slf4j.MarkerFactory;
 
 public class SearchTree implements Visitor {
   private static SearchTree uniqueInstance;
-  public final ArrayList<Activity> activitiesWithTag = new ArrayList<Activity>();
-  public String tag;
+  private final ArrayList<Activity> activitiesWithTag = new ArrayList<Activity>();
+  private String tag;
 
   static final Logger logger = LoggerFactory.getLogger(SearchTree.class);
   static final String secondrelease = "FITA2";

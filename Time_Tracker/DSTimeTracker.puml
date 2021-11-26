@@ -52,7 +52,7 @@ Interface Visitor{
 + visitInterval(interval: Interval)
 }
 
-class printTree {
+class PrintTree {
 - uniqueInstance
 - PrintTree()
 + getInstance()
@@ -62,7 +62,7 @@ class printTree {
 + visitInterval(interval: Interval)
 }
 
-class printWholeTree {
+class PrintWholeTree {
 - uniqueInstance
 - PrintWholeTree()
 + getInstance()
@@ -72,15 +72,26 @@ class printWholeTree {
 + visitInterval(interval: Interval)
 }
 
-class savetoJSON {
+class SavetoJSON {
 - uniqueInstance
 + getInstance()
 + store()
-+ visitProject()
-+ visitTask()
-+ visitInterval()
++ visitProject(project: Project)
++ visitTask(task: Task)
++ visitInterval(interval: Interval)
 }
 
+class SearchTree {
+- uniqueInstance
+- tag
+- activitiesWithTag
++ getInstance()
++ searchByTag(root: Activity, tag: String)
++ prettyPrintActivitiesWithTag()
++ visitProject(project: Project)
++ visitTask(task: Task)
++ visitInterval(interval: Interval)
+}
 
 class Interval{
 - startTime: LocalDateTime
@@ -141,8 +152,9 @@ Clock -down-|> Observable
 Observable "1" -Down-> "n" Observer
 Interval -up-|> Observer
 Task -[hidden]right-> Project
-printTree .up.|> Visitor
-printWholeTree .up.|> Visitor
-savetoJSON .up.|> Visitor
+PrintTree .up.|> Visitor
+PrintWholeTree .up.|> Visitor
+SavetoJSON .up.|> Visitor
+SearchTree .up.|> Visitor
 
 @enduml
