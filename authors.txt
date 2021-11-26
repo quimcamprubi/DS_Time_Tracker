@@ -23,12 +23,17 @@ First milestone:
   - Search By Tag: Improvements on the Search By Tag algorithm. Case insensitive search.
   
 Javier Méndez Leiva 1496052
+First milestone:
+
+Second milestone:
   - Implementation of the logging system and migration from all the logs in the program, also implementation of the strackTrace marks.
 
 Alberto Vallespín Herranz 1528948
+First milestone:
   - Class design and implementation in UML
   - JSON implementation of saveJson store method using visitor
   - Coded classes: Attributes, methods of Task, Interval and composite classes
   - Coded Clock
+  Second milestone:
   - Implementation of the logging system
   - Design by contract of class Task
