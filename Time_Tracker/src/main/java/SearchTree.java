@@ -69,7 +69,5 @@ public class SearchTree implements Visitor {
   }
 
   @Override
-  public void visitInterval(Interval interval) {
-    //TODO
-  }
+  public void visitInterval(Interval interval) {}
 }
