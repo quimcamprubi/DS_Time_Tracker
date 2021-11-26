@@ -17,7 +17,7 @@ First milestone:
   - Implementation of the JSON loader algorithm
   - Testing of all the main parts of the code (TimeTracker, JSON)
   - Implementation of the update algorithm and data propagation through the tree
- Second milestone:
+Second milestone:
   - Code inspection improvements. Fixed style of the program after running Checkstyle.
   - DbC: Implementation of Activity invariant function for Tasks and Projects. DbC preconditions, invariants and postconditions for Activity and Project.
   - Search By Tag: Improvements on the Search By Tag algorithm. Case insensitive search.
