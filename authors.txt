@@ -24,7 +24,10 @@ First milestone:
   
 Javier Méndez Leiva 1496052
 First milestone:
-
+ - Class design, and application of patterns
+ - SaveToJson visitor implementation with the reconstruction of the tree
+ - Json filesave and part of the loader and parsing in it
+ - Coded some parts of project, activity, task and intervals
 Second milestone:
   - Implementation of the logging system and migration from all the logs in the program, also implementation of the strackTrace marks.
 
