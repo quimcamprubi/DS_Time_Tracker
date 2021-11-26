@@ -1,10 +1,15 @@
 Josep Bravo Bravo 1526453
+First milestone:
   - Create and update class diagram (DSTimeTracker.puml)
   - Create main and debugged and coded until appendix B was completed (half the mark)
   - Coded and debugged to implement PrintTree Visitor
   - Coded some parts of the JSON implementations (such as doing some parses, part of the store and loader, debugging, etc)
   - Coded part of the composite
-
+Second milestone:
+  - Running Checkstyle and correct the errors (with Quim).
+  - DbC: Helped creating DbC preconditions, invariants and postconditions for Activity and Project.
+  - Search By Tag: Created the functionality of Search By Tag.
+  
 Quim Camprubí Casas 1528104
 First milestone:
   - Class design, including patterns and relations between classes
