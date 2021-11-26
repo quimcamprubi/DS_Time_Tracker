@@ -46,6 +46,7 @@ public abstract class Activity {
     this.tags = tags;
     this.parent = parent;
     this.duration = Duration.ZERO;
+    assert invariant();
     if (this.parent != null) {
       this.parent.addChild(this);
     }
