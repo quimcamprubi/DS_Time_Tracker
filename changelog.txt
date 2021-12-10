@@ -1,0 +1,8 @@
+He creado los métodos recursivos y sus referencias desde los disparadores, ahora mismo,
+los metodos visittask y visitproject son disparadores, ambos hacen lo mismo, comprueban
+si su padre es el objeto root, si lo es ocurre todo el grueso antiguo, pero ahora se inicializan
+dentro de su activities, sino son hijos de root, al final de cada uno de los métodos hay un else
+que debería iniciar la llamda recursiva en base al loop (también ya añadido), ahora faltan los
+recursivos, cada uno de ellos tiene que repetir esto pero para su mismo nodo del arbol, es decir,
+en vez de hacer exactamente lo mismo, han de hacer lo mismo sobre el jsonobject que les paso como
+parametro, de este modo, bararías los niveles del árbol.
