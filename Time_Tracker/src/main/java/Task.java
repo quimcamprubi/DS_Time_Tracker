@@ -22,16 +22,16 @@ public class Task extends Activity {
   final Marker first = MarkerFactory.getMarker(firstrelease);
 
   // ----- CONSTRUCTOR -----
-  public Task(String name, ArrayList<String> tags, Project parent) {
-    super(name, tags, parent);
+  public Task(String name, ArrayList<String> tags, Project parent, int id) {
+    super(name, tags, parent, id);
     logger.info(first, "Creating task {}", name);
     this.intervals = new ArrayList<Interval>();
   }
 
   // Secondary constructor used mainly for the JSON reloading of the tree.
   public Task(String name, ArrayList<String> tags, Project parent, Duration duration,
-              LocalDateTime startTime, LocalDateTime endTime) {
-    super(name, tags, parent, duration, startTime, endTime);
+              LocalDateTime startTime, LocalDateTime endTime, int id) {
+    super(name, tags, parent, duration, startTime, endTime, id);
     logger.info(first, "Creating parametrized task {}", name);
     logger.trace(first, "Task {} values: Parent -> {}, Duration -> {}, startTime -> {}, "
         + "endTime -> {}", name, parent.getName(), duration, startTime, endTime);

@@ -27,11 +27,12 @@ public abstract class Activity {
   protected Duration duration;
   protected LocalDateTime startTime;
   protected LocalDateTime endTime;
+  protected int Id;
   //private static final Logger logger = LoggerFactory.getLogger(Activity.class);
 
   // ----- CONSTRUCTOR -----
   // Primary constructor used to declare an Activity without any time data.
-  public Activity(String name, ArrayList<String> tags, Project parent) {
+  public Activity(String name, ArrayList<String> tags, Project parent, int id) {
     //logger.trace("Creating object " + name);
     // Preconditions
     if (name == null) {
@@ -41,7 +42,7 @@ public abstract class Activity {
       throw new IllegalArgumentException("Tags array cannot be null. It can be empty, but not "
               + "null.");
     }
-
+    this.Id = id;
     this.name = name;
     this.tags = tags;
     this.parent = parent;
@@ -54,7 +55,7 @@ public abstract class Activity {
 
   // Secondary constructor used mainly for the JSON reloading of the tree.
   public Activity(String name, ArrayList<String> tags, Project parent, Duration duration,
-                  LocalDateTime startTime, LocalDateTime endTime) {
+                  LocalDateTime startTime, LocalDateTime endTime, int id) {
 
     // Preconditions
     if (name == null) {
@@ -68,6 +69,7 @@ public abstract class Activity {
       throw new IllegalArgumentException("Duration parameter cannot be negative.");
     }
 
+    this.Id = id;
     this.name = name;
     this.tags = tags;
     this.parent = parent;
@@ -100,6 +102,8 @@ public abstract class Activity {
   public Duration getDuration() {
     return this.duration;
   }
+
+  public int getId() {return this.Id;}
 
   public String getParsedStartTime() {
     return this.startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));

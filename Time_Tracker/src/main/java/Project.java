@@ -22,16 +22,16 @@ public class Project extends Activity {
   final Marker first = MarkerFactory.getMarker(firstrelease);
 
   // ----- CONSTRUCTOR -----
-  public Project(String name, ArrayList<String> tags, Project parent) {
-    super(name, tags, parent);
+  public Project(String name, ArrayList<String> tags, Project parent, int id) {
+    super(name, tags, parent, id);
     logger.info(first, "Creating project {}", name);
     this.activities = new ArrayList<Activity>();
   }
 
   // Secondary constructor used mainly for the JSON reloading of the tree.
   public Project(String name, ArrayList<String> tags, Project parent, Duration duration,
-                 LocalDateTime startTime, LocalDateTime endTime) {
-    super(name, tags, parent, duration, startTime, endTime);
+                 LocalDateTime startTime, LocalDateTime endTime, int id) {
+    super(name, tags, parent, duration, startTime, endTime, id);
     logger.info(first, "Creating parametrized project {}", name);
     logger.trace(first, "Project {} values: Duration -> {}, startTime -> {}, endTime -> {}", name,
         duration, startTime, endTime);

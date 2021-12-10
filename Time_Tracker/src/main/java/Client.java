@@ -14,7 +14,7 @@ public class Client {
   public static void main(String[] args) throws
       InterruptedException, FileNotFoundException {
 
-
+    IDgenerator idgen = IDgenerator.getInstance();
     // Initialization of the Clock and Printer singletons.
     Clock.getInstance(); // Clock implements an Observable which returns the current time every x
     // seconds, where x is 2 in our case.
@@ -39,27 +39,27 @@ public class Client {
     logger.trace("Stacktrace is enabled");
 
     logger.info(first, "Starting tree creation");
-    Project root = new Project("root", new ArrayList<String>(), null);
+    Project root = new Project("root", new ArrayList<String>(), null, idgen.getId());
     Project softwareDesign = new Project("software design", new ArrayList<String>(
-        Arrays.asList("java", "flutter")), root);
+        Arrays.asList("java", "flutter")), root, idgen.getId());
     Project softwareTesting = new Project("software testing", new ArrayList<String>(
-        Arrays.asList("c++", "Java", "python")), root);
+        Arrays.asList("c++", "Java", "python")), root, idgen.getId());
     Project databases = new Project("databases", new ArrayList<String>(
-        Arrays.asList("SQL", "python", "C++")), root);
-    final Task transportation = new Task("transportation", new ArrayList<String>(), root);
+        Arrays.asList("SQL", "python", "C++")), root, idgen.getId());
+    final Task transportation = new Task("transportation", new ArrayList<String>(), root, idgen.getId());
 
-    Project problems = new Project("problems", new ArrayList<String>(), softwareDesign);
+    Project problems = new Project("problems", new ArrayList<String>(), softwareDesign, idgen.getId());
     Project projectTimeTracker = new Project("project time tracker",
-        new ArrayList<String>(), softwareDesign);
+        new ArrayList<String>(), softwareDesign, idgen.getId());
 
     final Task firstList = new Task("first list", new ArrayList<String>(
-        Arrays.asList("java")), problems);
+        Arrays.asList("java")), problems, idgen.getId());
     final Task secondList = new Task("second list", new ArrayList<String>(Arrays.asList("Dart")),
-        problems);
+        problems, idgen.getId());
 
-    Task readHandout = new Task("read handout", new ArrayList<String>(), projectTimeTracker);
+    Task readHandout = new Task("read handout", new ArrayList<String>(), projectTimeTracker, idgen.getId());
     Task firstMilestone = new Task("first milestone", new ArrayList<String>(
-        Arrays.asList("Java", "IntelliJ")), projectTimeTracker);
+        Arrays.asList("Java", "IntelliJ")), projectTimeTracker, idgen.getId());
 
 
     // Test B
@@ -104,7 +104,7 @@ public class Client {
     dataManager.saveUserData(root);
 
     // We can now load the tree from the JSON file we created on the previous call.
-    final Project loadedRoot = dataManager.loadUserData();
+    /*final Project loadedRoot = dataManager.loadUserData();
 
     // Initialization of the printWholeTree visitor, which runs through the whole tree from the
     // top to the bottom. We use this Visitor to print both trees (the one we created manually
@@ -125,7 +125,7 @@ public class Client {
     final ArrayList<Activity> searchedActivities = searchTree.searchByTag(loadedRoot, "Java");
     searchTree.prettyPrintActivitiesWithTag();
 
-    logger.info(first, "Here ends second release");
+    logger.info(first, "Here ends second release");*/
 
     System.exit(0);
   }

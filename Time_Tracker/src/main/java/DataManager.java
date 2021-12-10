@@ -44,7 +44,7 @@ public class DataManager {
       FileWriter f = new FileWriter("out.json", false);
       // Store is the SaveToJson function which runs through the tree and stores the data into
       // the JSON file.
-      JSONArray data = treeRecovery.store(project);
+      JSONObject data = treeRecovery.store(project);
       logger.debug(first, "File created and opened");
       f.write(data.toString());
       f.write("\n");
@@ -96,7 +96,7 @@ public class DataManager {
       return null;
     }
     // Creation of the tree's root, and addition to the list of all activities.
-    Project root = new Project(rootName, rootTags, null, rootDuration, rootStartTime, rootEndTime);
+    Project root = new Project(rootName, rootTags, null, rootDuration, rootStartTime, rootEndTime, 0);
     loadedActivities.add(root);
 
     logger.debug(first, "Entering the tree recovery loop");
@@ -154,11 +154,11 @@ public class DataManager {
 
     // The final creation of the new Activity differs a little bit between Projects and Tasks.
     if (className.equals("Project")) {
-      Project project = new Project(name, tags, parentProject, duration, startTime, endTime);
+      Project project = new Project(name, tags, parentProject, duration, startTime, endTime, 0);
       loadedActivities.add(project);
     } else if (className.equals("Task")) {
       // If the activity is a Task, we must also instantiate its intervals
-      Task task = new Task(name, tags, parentProject, duration, startTime, endTime);
+      Task task = new Task(name, tags, parentProject, duration, startTime, endTime, 0);
       logger.debug(first, "Initializing intervals for task {}", name);
       JSONArray intervals = jsonActivity.getJSONArray("Intervals");
       for (int j = 0; j < intervals.length(); j++) {
