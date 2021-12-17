@@ -1,6 +1,9 @@
 package core;//import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -105,6 +108,12 @@ public abstract class Activity {
     return this.startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
   }
 
+  public Activity findActivityById(int id) {
+    // This function is only ever called using the tree's root, and therefore we don't need to
+    // search the tree for the root.
+    return SearchTreeById.getInstance().searchById(this, id);
+  }
+
   public String getParsedEndTime() {
     return this.endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
   }
@@ -148,6 +157,25 @@ public abstract class Activity {
     String endTime = this.endTime == null ? "null" : this.endTime.format(timeFormat);
     return String.format("%-10s %-20s %-30s %-30s %-5d", "activity:",
         name, startTime, endTime, Utils.roundDuration(this.duration));
+  }
+
+  public JSONObject toJson(int depth) {
+    JSONObject returnedJson = new JSONObject();
+    returnedJson.put("name", this.name);
+    returnedJson.put("class", this.getClass().getSimpleName().toLowerCase());
+    returnedJson.put("id", this.Id);
+    returnedJson.put("initialDate", this.startTime);
+    returnedJson.put("finalDate", this.endTime);
+    returnedJson.put("duration", this.duration);
+    if (depth != 0) {
+      if (this instanceof Project) {
+        returnedJson.put("activities", this.toJson(depth-1));
+      }
+      else {
+        returnedJson.put("intervals", this.toJson(depth-1));
+      }
+    }
+    return returnedJson;
   }
 
   protected boolean invariant() {
