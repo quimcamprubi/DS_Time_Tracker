@@ -1,6 +1,6 @@
 @startuml 
 
-
+package core <<Folder>> {
 abstract class Activity {
 - Name: String
 - tags: ArrayList<String>
@@ -53,7 +53,7 @@ Interface Visitor{
 }
 
 class PrintTree {
-- uniqueInstance
+- uniqueInstance: PrintTree
 - PrintTree()
 + getInstance()
 + print(root: Activity)
@@ -63,7 +63,7 @@ class PrintTree {
 }
 
 class PrintWholeTree {
-- uniqueInstance
+- uniqueInstance: PrintWholeTree
 - PrintWholeTree()
 + getInstance()
 + print(root: Activity)
@@ -73,21 +73,35 @@ class PrintWholeTree {
 }
 
 class SavetoJSON {
-- uniqueInstance
+- uniqueInstance: SavetoJSON
+- obj: JSONObject
 + getInstance()
 + store()
++ visitProject(project: Project)
++ recursiveVisitProject(project: Project, o: JSONObject)
++ visitTask(task: Task)
++ recursiveVisitTask(task: Task, o: JSONObject)
++ visitInterval(interval: Interval)
+}
+
+class SearchTree {
+- uniqueInstance: SearchTree
+- tag: String
+- activitiesWithTag: ArrayList<Activity>
++ getInstance()
++ searchByTag(root: Activity, tag: String)
++ prettyPrintActivitiesWithTag()
 + visitProject(project: Project)
 + visitTask(task: Task)
 + visitInterval(interval: Interval)
 }
 
-class SearchTree {
-- uniqueInstance
-- tag
-- activitiesWithTag
+class SearchTreeById {
+- uniqueInstance: SearchTreeById
+- id: Int
+- foundActivity: Activity
 + getInstance()
-+ searchByTag(root: Activity, tag: String)
-+ prettyPrintActivitiesWithTag()
++ searchById(root: Activity, id: Integer)
 + visitProject(project: Project)
 + visitTask(task: Task)
 + visitInterval(interval: Interval)
@@ -133,6 +147,14 @@ class Clock {
 - timeScheduler()
 }
 
+class IDgenerator{
+- id: Int
+- uniqueInstance: IDgenerator
+- IDgenerator()
++ getInstance()
++ getId()
+}
+
 class Client {
 + main()
 }
@@ -143,10 +165,23 @@ class DataManager {
 - loadUserData()
 - instantiateActivity(jsonActivity : JSONObject)
 }
+}
 
+package webserver <<Folder>> {
+
+class MainWebServer{
+}
+
+class WebServer{
+}
+
+}
 DataManager "1" *-down-> "n" Activity: Activities
 Project "1" *-up-> "n" Activity: Activities
 Client "1" *-down-> "n" Activity
+Client "1" *-down-> "1" IDgenerator
+Interval "1" *-up-> "1" IDgenerator
+
 Task "1" *-left-> "n" Interval: intervals
 Clock -down-|> Observable
 Observable "1" -Down-> "n" Observer
@@ -155,6 +190,8 @@ Task -[hidden]right-> Project
 PrintTree .up.|> Visitor
 PrintWholeTree .up.|> Visitor
 SavetoJSON .up.|> Visitor
+SearchTreeById .up.|> Visitor
+
 SearchTree .up.|> Visitor
 
 @enduml
