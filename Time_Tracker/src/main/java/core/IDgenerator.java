@@ -20,7 +20,8 @@ public class IDgenerator{
     }
 
     public int getId(){
+        int returnValue = id;
         id = id + 1;
-        return id;
+        return returnValue;
     }
 }

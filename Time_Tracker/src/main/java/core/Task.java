@@ -3,6 +3,9 @@ package core;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -17,6 +20,7 @@ children, composed of Intervals, but it will never have a deeper structure.
 public class Task extends Activity {
   // ----- ATTRIBUTES -----
   private final ArrayList<Interval> intervals;
+  private boolean active;
 
   //Logger implementation
   final Logger logger = LoggerFactory.getLogger(Task.class);
@@ -28,6 +32,7 @@ public class Task extends Activity {
     super(name, tags, parent, id);
     logger.info(first, "Creating task {}", name);
     this.intervals = new ArrayList<Interval>();
+    this.active = false;
   }
 
   // Secondary constructor used mainly for the JSON reloading of the tree.
@@ -43,16 +48,22 @@ public class Task extends Activity {
   // ----- METHODS -----
   // Methods to start and stop intervals
   public void start() {
-    this.intervals.add(new Interval(this));
+    if (!this.active) {
+      this.intervals.add(new Interval(this));
+      this.active = true;
+    }
   }
 
   public void stop() {
-    if (this.intervals.size() == 0) {
-      logger.error(first, "core.Task {} cannot be stopped because it has no intervals.", name);
-      throw new IllegalArgumentException("An interval cannot be stopped if none has been created");
+    if (this.active) {
+      if (this.intervals.size() == 0) {
+        logger.error(first, "core.Task {} cannot be stopped because it has no intervals.", name);
+        throw new IllegalArgumentException("An interval cannot be stopped if none has been created");
+      }
+      Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
+      lastInterval.endInterval();
+      this.active = false;
     }
-    Interval lastInterval = this.intervals.get(this.intervals.size() - 1);
-    lastInterval.endInterval();
   }
 
   public void addInterval(LocalDateTime startTime, LocalDateTime endTime) {
@@ -81,6 +92,39 @@ public class Task extends Activity {
     this.parent.updateParentDuration();
   }
 
+  @Override
+  public JSONObject toJson(int depth) {
+    JSONObject returnedJsonObject = new JSONObject();
+    // We add all the important information for each core.Activity
+    returnedJsonObject.put("tags", this.tags);
+    returnedJsonObject.put("name", this.name);
+    returnedJsonObject.put("class", this.getClass().getSimpleName().toLowerCase());
+    returnedJsonObject.put("id", this.Id);
+    returnedJsonObject.put("active", this.active);
+    // Since the timings can be null, we check before trying to parse them.
+    if (this.startTime == null) {
+      returnedJsonObject.put("initialDate", "null");
+      returnedJsonObject.put("finalDate", "null");
+      returnedJsonObject.put("duration", 0);
+    } else {
+      returnedJsonObject.put("initialDate", this.getParsedStartTime());
+      returnedJsonObject.put("finalDate", this.getParsedEndTime());
+      returnedJsonObject.put("duration", this.getDuration().toSecondsPart()); //TODO DURATION
+    }
+    returnedJsonObject.put("parent", this.parent.getName());
+    JSONArray intervals = new JSONArray();
+    for (Interval interval : this.intervals) {
+      JSONObject obj2 = new JSONObject();
+      obj2.put("initialDate", interval.getParsedStartTime());
+      obj2.put("finalDate", interval.getParsedEndTime());
+      obj2.put("duration", interval.getDuration().toString());
+      intervals.put(obj2);
+    }
+    logger.trace(first, "Intervals of task {} stored", this.name);
+    returnedJsonObject.put("intervals", intervals);
+    return returnedJsonObject;
+  }
+
   public ArrayList<Interval> getIntervals() {
     return this.intervals;
   }
@@ -95,4 +139,6 @@ public class Task extends Activity {
     // Invariant
     assert invariant();
   }
+
+
 }
