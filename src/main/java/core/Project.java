@@ -101,8 +101,8 @@ public class Project extends Activity {
   }
 
   @Override
-  public JSONObject toJson(JSONObject returnedJsonObject, int depth) {
-    if (returnedJsonObject == null) returnedJsonObject = new JSONObject();
+  public JSONObject toJson(int depth) {
+    JSONObject returnedJsonObject = new JSONObject();
     // We add all the important information for each core.Activity
     returnedJsonObject.put("tags", this.tags);
     returnedJsonObject.put("name", this.name);
@@ -112,18 +112,24 @@ public class Project extends Activity {
     if (this.startTime == null) {
       returnedJsonObject.put("initialDate", "null");
       returnedJsonObject.put("finalDate", "null");
-      returnedJsonObject.put("duration", "null");
+      returnedJsonObject.put("duration", 0);
     } else {
       returnedJsonObject.put("initialDate", this.getParsedStartTime());
       returnedJsonObject.put("finalDate", this.getParsedEndTime());
-      returnedJsonObject.put("duration", this.getDuration().toString()); //TODO DURATION
+      returnedJsonObject.put("duration", this.getDuration().toSecondsPart()); //TODO DURATION
     }
     JSONArray arr = new JSONArray();
-    returnedJsonObject.put("activities", arr);
-    returnedJsonObject.put("parent", this.parent.getName());
-    for (Activity a : this.activities) {
-      a.toJson(returnedJsonObject, depth-1);
+    if (this.parent == null) {
+      returnedJsonObject.put("parent", JSONObject.NULL);
+    } else {
+      returnedJsonObject.put("parent", this.parent.getName());
     }
+    if (depth != 0) {
+      for (Activity a : this.activities) {
+        arr.put(a.toJson(depth-1));
+      }
+    }
+    returnedJsonObject.put("activities", arr);
     return returnedJsonObject;
   }
 }

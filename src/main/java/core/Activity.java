@@ -160,7 +160,7 @@ public abstract class Activity {
         name, startTime, endTime, Utils.roundDuration(this.duration));
   }
 
-  public abstract JSONObject toJson(JSONObject returnedJsonObject, int depth);
+  public abstract JSONObject toJson(int depth);
 
   protected boolean invariant() {
     Boolean nameNotNull = this.name != null;
