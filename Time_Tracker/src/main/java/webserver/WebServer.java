@@ -1,7 +1,9 @@
 package webserver;
 
 import core.Activity;
+import core.IDgenerator;
 import core.Task;
+import core.Project;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +11,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
 // Based on
@@ -138,7 +145,32 @@ public class WebServer {
           body = "{}";
           break;
         }
-        // TODO: add new task, project
+        case "createProject": {
+          int id = Integer.parseInt(tokens[1]);
+          URLDecoder decoder = new URLDecoder();
+          String name = decoder.decode(tokens[2], StandardCharsets.UTF_8);
+          String tagString = decoder.decode(tokens[3], StandardCharsets.UTF_8);
+          ArrayList<String> tags = new ArrayList(Arrays.asList(tagString.split("\\s*,\\s*")));
+          Activity parentActivity = findActivityById(id);
+          assert (parentActivity != null);
+          Project parentProject = (Project) parentActivity;
+          Project newProject = new Project(name, tags, parentProject,
+              IDgenerator.getInstance().getId());
+          break;
+        }
+        case "createTask": {
+          int id = Integer.parseInt(tokens[1]);
+          URLDecoder decoder = new URLDecoder();
+          String name = decoder.decode(tokens[2], StandardCharsets.UTF_8);
+          String tagString = decoder.decode(tokens[3], StandardCharsets.UTF_8);
+          ArrayList<String> tags = new ArrayList(Arrays.asList(tagString.split("\\s*,\\s*")));
+          Activity parentActivity = findActivityById(id);
+          assert (parentActivity != null);
+          Project parentProject = (Project) parentActivity;
+          Task newTask = new Task(name, tags, parentProject,
+              IDgenerator.getInstance().getId());
+          break;
+        }
         // TODO: edit task, project properties
         default:
           assert false;

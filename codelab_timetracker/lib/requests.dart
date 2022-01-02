@@ -59,3 +59,33 @@ Future<void> stop(int id) async {
     throw Exception('Failed to get children');
   }
 }
+
+Future<void> createProject(int parentId, String activityName, String
+activityTags) async {
+  var encodedName = Uri.encodeComponent(activityName);
+  var encodedTags = Uri.encodeComponent(activityTags);
+  var url = "$baseUrl/createProject?$parentId?$encodedName"
+      "?$encodedTags";
+  final response = await client.get(Uri.parse(url));
+  if (response.statusCode == 200) {
+    print("statusCode=$response.statusCode");
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to create Project');
+  }
+}
+
+Future<void> createTask(int parentId, String activityName, String activityTags)
+async {
+  var encodedName = Uri.encodeComponent(activityName);
+  var encodedTags = Uri.encodeComponent(activityTags);
+  var url = "$baseUrl/createTask?$parentId?$encodedName"
+      "?$encodedTags";
+  final response = await client.get(Uri.parse(url));
+  if (response.statusCode == 200) {
+    print("statusCode=$response.statusCode");
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to create Task');
+  }
+}

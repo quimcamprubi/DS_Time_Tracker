@@ -8,7 +8,7 @@ import org.slf4j.MarkerFactory;
 
 public class SearchTreeById implements Visitor {
   private static SearchTreeById uniqueInstance;
-  private Integer id;
+  private int id;
   private Activity foundActivity;
 
   static final Logger logger = LoggerFactory.getLogger(SearchTreeById.class);
