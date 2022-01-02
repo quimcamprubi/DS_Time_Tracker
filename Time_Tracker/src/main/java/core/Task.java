@@ -103,8 +103,8 @@ public class Task extends Activity {
     returnedJsonObject.put("active", this.active);
     // Since the timings can be null, we check before trying to parse them.
     if (this.startTime == null) {
-      returnedJsonObject.put("initialDate", "null");
-      returnedJsonObject.put("finalDate", "null");
+      returnedJsonObject.put("initialDate", JSONObject.NULL);
+      returnedJsonObject.put("finalDate", JSONObject.NULL);
       returnedJsonObject.put("duration", 0);
     } else {
       returnedJsonObject.put("initialDate", this.getParsedStartTime());
@@ -115,9 +115,11 @@ public class Task extends Activity {
     JSONArray intervals = new JSONArray();
     for (Interval interval : this.intervals) {
       JSONObject obj2 = new JSONObject();
+      obj2.put("id", interval.getId());
+      obj2.put("active", interval.getActive());
       obj2.put("initialDate", interval.getParsedStartTime());
       obj2.put("finalDate", interval.getParsedEndTime());
-      obj2.put("duration", interval.getDuration().toString());
+      obj2.put("duration", interval.getDuration().toSecondsPart());
       intervals.put(obj2);
     }
     logger.trace(first, "Intervals of task {} stored", this.name);

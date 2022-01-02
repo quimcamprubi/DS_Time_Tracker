@@ -5,8 +5,8 @@ public class IDgenerator{
     private int id; //Precision in seconds
     private static IDgenerator uniqueInstance;
 
-    // Since core.Clock is a Singleton, its constructor is private, and will only be called once (from
-    // getInstance()).
+    // Since core.IDgenerator is a Singleton, its constructor is private, and will only be called
+    // once (from getInstance()).
     private IDgenerator() {
         id = 0;
     }

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+import core.IDgenerator;
 
 /*
 Class which represents the minimum unit of time in our project. It stores a continuous amount of
@@ -24,11 +25,15 @@ public class Interval implements java.util.Observer {
   final Logger logger = LoggerFactory.getLogger(Interval.class);
   final String firstrelease = "FITA1";
   final Marker first = MarkerFactory.getMarker(firstrelease);
+  private int id;
+  private boolean active = false;
 
   // ----- CONSTRUCTOR -----
   public Interval(Task parent) {
     this.parent = parent;
     Clock.getInstance().addObserver(this);
+    this.id = IDgenerator.getInstance().getId();
+    this.active = true;
     logger.debug(first, "A new interval with parent {} has been created", parent.getName());
   }
 
@@ -66,10 +71,19 @@ public class Interval implements java.util.Observer {
     return this.endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
   }
 
+  public int getId() {
+    return this.id;
+  }
+
+  public boolean getActive() {
+    return this.active;
+  }
+
   // When the interval is finished, we delete it from the Observable's (core.Clock) Observers list,
   // since it will no longer have to be updated.
   public void endInterval() {
     Clock.getInstance().deleteObserver(this);
+    this.active = false;
   }
 
   // acceptVisitor function as part of the core.Visitor implementation. Necessary for our 3 Visitors.

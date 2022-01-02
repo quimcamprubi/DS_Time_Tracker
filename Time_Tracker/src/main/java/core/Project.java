@@ -110,8 +110,8 @@ public class Project extends Activity {
     returnedJsonObject.put("id", this.Id);
     // Since the timings can be null, we check before trying to parse them.
     if (this.startTime == null) {
-      returnedJsonObject.put("initialDate", "null");
-      returnedJsonObject.put("finalDate", "null");
+      returnedJsonObject.put("initialDate", JSONObject.NULL);
+      returnedJsonObject.put("finalDate", JSONObject.NULL);
       returnedJsonObject.put("duration", 0);
     } else {
       returnedJsonObject.put("initialDate", this.getParsedStartTime());
