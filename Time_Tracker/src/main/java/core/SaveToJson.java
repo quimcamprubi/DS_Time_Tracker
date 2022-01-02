@@ -233,7 +233,7 @@ public class SaveToJson implements Visitor {
       } else {
         subobj.put("initialDate", task.getParsedStartTime());
         subobj.put("finalDate", task.getParsedEndTime());
-        subobj.put("duration", task.getDuration().toString());
+        subobj.put("duration", task.getDuration().toSecondsPart());
       }
       logger.trace(first, "initialDate, finalDate and duration stored for task {}", task.getName());
       subobj.put("parent", task.getParent().getName());
@@ -244,7 +244,7 @@ public class SaveToJson implements Visitor {
         JSONObject obj2 = new JSONObject();
         obj2.put("initialDate", interval.getParsedStartTime());
         obj2.put("finalDate", interval.getParsedEndTime());
-        obj2.put("duration", interval.getDuration().toString());
+        obj2.put("duration", interval.getDuration().toSecondsPart());
         intervals.put(obj2);
       }
       logger.trace(first, "Intervals of task {} stored", task.getName());

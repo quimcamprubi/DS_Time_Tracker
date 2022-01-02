@@ -101,6 +101,10 @@ public class DataManager {
     Project root = new Project(rootName, rootTags, null, rootDuration, rootStartTime, rootEndTime, 0);
     loadedActivities.add(root);
 
+    //Si ves esto, esta parte debería cambiar drásticamente en recorrido, he borrado mis intentos anteriores pero este era el fragmento
+    //original que ellos tenían, aquí deberiamos profundizar a cada nivel sobre activities y yo he hecho un intento creando una función
+    // recursiva que reconstruia en cada ciclo y luego llamaba al siguiente pero me ha acabado dando errores un poco chungos
+    /*
     logger.debug(first, "Entering the tree recovery loop");
     for (int i = 1; i < jsonArray.length(); i++) {
       // Parse all the attributes of the activities
@@ -116,6 +120,8 @@ public class DataManager {
         father.addChild(son);
       }
     }
+    */
+
     return root;
   }
 
@@ -186,4 +192,9 @@ public class DataManager {
       logger.error("Error, one of the JSON objects is neither a core.Task nor a core.Project.");
     }
   }
+
+  //Ignorar, lo he vaciado después del último error
+  //public void recursivebuild() {}
+
+
 }
