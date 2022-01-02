@@ -39,25 +39,25 @@ public class SaveToJson implements Visitor {
         + "recover your data");
     logger.debug(first, "Starting data storage of root");
     // We add all the important information for each core.Activity
-    obj.put("Tags", project.getTags());
-    obj.put("Name", project.getName());
-    obj.put("Class", project.getClass().getSimpleName());
-    obj.put("ID", project.getId());
+    obj.put("tags", project.getTags());
+    obj.put("name", project.getName());
+    obj.put("class", project.getClass().getSimpleName().toLowerCase());
+    obj.put("id", project.getId());
     logger.trace(first, "Tags, Name and Class stored for root");
     // Since the timings can be null, we check before trying to parse them.
     if (project.getStartTime() == null) {
-      obj.put("StartTime", "null");
-      obj.put("EndTime", "null");
-      obj.put("Duration", "null");
+      obj.put("initialDate", "null");
+      obj.put("finalDate", "null");
+      obj.put("duration", "null");
     } else {
-      obj.put("StartTime", project.getParsedStartTime());
-      obj.put("EndTime", project.getParsedEndTime());
-      obj.put("Duration", project.getDuration().toString());
+      obj.put("initialDate", project.getParsedStartTime());
+      obj.put("finalDate", project.getParsedEndTime());
+      obj.put("duration", project.getDuration().toString());
     }
-    obj.put("Activities", arr);
-    logger.trace(first, "StartTime, EndTime and Duration stored for root");
+    obj.put("activities", arr);
+    logger.trace(first, "initialDate, finalDate and duration stored for root");
 
-    obj.put("Parent", "null");
+    obj.put("parent", "null");
     // Then, we must propagate the core.Visitor through each children of the current core.Activity.
     for (Activity a : project.getActivities()) {
       // The handling of the activities differs depending on if the child is a core.Project (which has
@@ -76,37 +76,38 @@ public class SaveToJson implements Visitor {
   //Access each project node in order to re access his children
   @Override
   public void visitProject(Project project) {
-    if(obj.get("Name") == project.getParent().getName()){
+    if(obj.get("name") == project.getParent().getName()){
       JSONObject subobj = new JSONObject();
       logger.debug(first, "Starting data storage of project {}", project.getName());
       // We add all the important information for each core.Activity
-      subobj.put("Tags", project.getTags());
-      subobj.put("Name", project.getName());
-      subobj.put("Class", project.getClass().getSimpleName());
-      subobj.put("ID", project.getId());
+      subobj.put("tags", project.getTags());
+      subobj.put("name", project.getName());
+      subobj.put("class", project.getClass().getSimpleName().toLowerCase());
+      subobj.put("id", project.getId());
       logger.trace(first, "Tags, Name and Class stored for project {}", project.getName());
       // Since the timings can be null, we check before trying to parse them.
       if (project.getStartTime() == null) {
-        subobj.put("StartTime", "null");
-        subobj.put("EndTime", "null");
-        subobj.put("Duration", "null");
+        subobj.put("initialDate", "null");
+        subobj.put("finalDate", "null");
+        subobj.put("duration", "null");
       } else {
-        subobj.put("StartTime", project.getParsedStartTime());
-        subobj.put("EndTime", project.getParsedEndTime());
-        subobj.put("Duration", project.getDuration().toString());
+        subobj.put("initialDate", project.getParsedStartTime());
+        subobj.put("finalDate", project.getParsedEndTime());
+        subobj.put("duration", project.getDuration().toString());
       }
       JSONArray arr = new JSONArray();
-      subobj.put("Activities", arr);
-      logger.trace(first, "StartTime, EndTime and Duration stored for project {}", project.getName());
-      subobj.put("Parent", project.getParent().getName());
-      JSONArray fatherarray = obj.getJSONArray("Activities");
+      subobj.put("activities", arr);
+      logger.trace(first, "initialDate, finalDate and duration stored for project {}",
+          project.getName());
+      subobj.put("parent", project.getParent().getName());
+      JSONArray fatherarray = obj.getJSONArray("activities");
       fatherarray.put(subobj);
     }
     else{
-      JSONArray aux = obj.getJSONArray("Activities");
+      JSONArray aux = obj.getJSONArray("activities");
       for (int i = 0; i < aux.length(); i++) {
-        String aux2 = aux.getJSONObject(i).get("Class").toString();
-        if(Objects.equals(aux2, "Project"))
+        String aux2 = aux.getJSONObject(i).get("class").toString();
+        if(Objects.equals(aux2, "project"))
           recursiveVisitProject(project, aux.getJSONObject(i));
       }
 
@@ -124,37 +125,38 @@ public class SaveToJson implements Visitor {
   }
 
   public void recursiveVisitProject(Project project, JSONObject o) {
-    if(o.get("Name") == project.getParent().getName()){
+    if(o.get("name") == project.getParent().getName()){
       JSONObject subobj = new JSONObject();
       logger.debug(first, "Starting data storage of project {}", project.getName());
       // We add all the important information for each core.Activity
-      subobj.put("Tags", project.getTags());
-      subobj.put("Name", project.getName());
-      subobj.put("Class", project.getClass().getSimpleName());
-      subobj.put("ID", project.getId());
+      subobj.put("tags", project.getTags());
+      subobj.put("name", project.getName());
+      subobj.put("class", project.getClass().getSimpleName().toLowerCase());
+      subobj.put("id", project.getId());
       logger.trace(first, "Tags, Name and Class stored for project {}", project.getName());
       // Since the timings can be null, we check before trying to parse them.
       if (project.getStartTime() == null) {
-        subobj.put("StartTime", "null");
-        subobj.put("EndTime", "null");
-        subobj.put("Duration", "null");
+        subobj.put("initialDate", "null");
+        subobj.put("finalDate", "null");
+        subobj.put("duration", "null");
       } else {
-        subobj.put("StartTime", project.getParsedStartTime());
-        subobj.put("EndTime", project.getParsedEndTime());
-        subobj.put("Duration", project.getDuration().toString());
+        subobj.put("initialDate", project.getParsedStartTime());
+        subobj.put("finalDate", project.getParsedEndTime());
+        subobj.put("duration", project.getDuration().toString());
       }
       JSONArray arr = new JSONArray();
-      subobj.put("Activities", arr);
-      logger.trace(first, "StartTime, EndTime and Duration stored for project {}", project.getName());
-      subobj.put("Parent", project.getParent().getName());
-      JSONArray fatherarray = o.getJSONArray("Activities");
+      subobj.put("activities", arr);
+      logger.trace(first, "initialDate, finalDate and duration stored for project {}",
+          project.getName());
+      subobj.put("parent", project.getParent().getName());
+      JSONArray fatherarray = o.getJSONArray("activities");
       fatherarray.put(subobj);
     }
     else{
-      JSONArray aux = o.getJSONArray("Activities");
+      JSONArray aux = o.getJSONArray("activities");
       for (int i = 0; i < aux.length(); i++) {
-        String aux2 = aux.getJSONObject(i).get("Class").toString();
-        if(Objects.equals(aux2, "Project"))
+        String aux2 = aux.getJSONObject(i).get("class").toString();
+        if(Objects.equals(aux2, "project"))
           recursiveVisitProject(project, aux.getJSONObject(i));
       }
 
@@ -164,48 +166,48 @@ public class SaveToJson implements Visitor {
   //Access a child and recover not only his info but his intervals
   @Override
   public void visitTask(Task task) {
-  if(obj.get("Name") == task.getParent().getName()){
+  if(obj.get("name") == task.getParent().getName()){
     JSONObject subobj = new JSONObject();
     logger.debug(first, "Starting data storage of task {}", task.getName());
     // We add all the important information for each core.Activity
-    subobj.put("Tags", task.getTags());
-    subobj.put("Name", task.getName());
-    subobj.put("Class", task.getClass().getSimpleName());
-    subobj.put("ID", task.getId());
+    subobj.put("tags", task.getTags());
+    subobj.put("name", task.getName());
+    subobj.put("class", task.getClass().getSimpleName().toLowerCase());
+    subobj.put("id", task.getId());
     logger.trace(first, "Tags, Name and Class stored for task {}", task.getName());
     // Since the timings can be null, we check before trying to parse them.
     if (task.getStartTime() == null) {
-      subobj.put("StartTime", "null");
-      subobj.put("EndTime", "null");
-      subobj.put("Duration", "null");
+      subobj.put("initialDate", "null");
+      subobj.put("finalDate", "null");
+      subobj.put("duration", "null");
     } else {
-      subobj.put("StartTime", task.getParsedStartTime());
-      subobj.put("EndTime", task.getParsedEndTime());
-      subobj.put("Duration", task.getDuration().toString());
+      subobj.put("initialDate", task.getParsedStartTime());
+      subobj.put("finalDate", task.getParsedEndTime());
+      subobj.put("duration", task.getDuration().toString());
     }
-    logger.trace(first, "StartTime, EndTime and Duration stored for task {}", task.getName());
-    subobj.put("Parent", task.getParent().getName());
+    logger.trace(first, "initialDate, finalDate and duration stored for task {}", task.getName());
+    subobj.put("parent", task.getParent().getName());
     // Since a core.Task contains intervals, we must loop through them and store them in the Intervals
     // JSONArray.
     JSONArray intervals = new JSONArray();
     for (Interval interval : task.getIntervals()) {
       JSONObject obj2 = new JSONObject();
-      obj2.put("StartTime", interval.getParsedStartTime());
-      obj2.put("EndTime", interval.getParsedEndTime());
-      obj2.put("Duration", interval.getDuration().toString());
+      obj2.put("initialDate", interval.getParsedStartTime());
+      obj2.put("finalDate", interval.getParsedEndTime());
+      obj2.put("duration", interval.getDuration().toString());
       intervals.put(obj2);
     }
     logger.trace(first, "Intervals of task {} stored", task.getName());
-    subobj.put("Intervals", intervals);
+    subobj.put("intervals", intervals);
 
-    JSONArray fatherarray = obj.getJSONArray("Activities");
+    JSONArray fatherarray = obj.getJSONArray("activities");
     fatherarray.put(subobj);
   }
   else{
-    JSONArray aux = obj.getJSONArray("Activities");
+    JSONArray aux = obj.getJSONArray("activities");
     for (int i = 0; i < aux.length(); i++) {
-      String aux2 = aux.getJSONObject(i).get("Class").toString();
-      if(Objects.equals(aux2, "Project"))
+      String aux2 = aux.getJSONObject(i).get("class").toString();
+      if(Objects.equals(aux2, "project"))
         recursiveVisitTask(task, aux.getJSONObject(i));
     }
 
@@ -214,48 +216,48 @@ public class SaveToJson implements Visitor {
 
 
   public void recursiveVisitTask(Task task, JSONObject o) {
-    if(o.get("Name") == task.getParent().getName()){
+    if(o.get("name") == task.getParent().getName()){
       JSONObject subobj = new JSONObject();
       logger.debug(first, "Starting data storage of task {}", task.getName());
       // We add all the important information for each core.Activity
-      subobj.put("Tags", task.getTags());
-      subobj.put("Name", task.getName());
-      subobj.put("Class", task.getClass().getSimpleName());
-      subobj.put("ID", task.getId());
+      subobj.put("tags", task.getTags());
+      subobj.put("name", task.getName());
+      subobj.put("class", task.getClass().getSimpleName().toLowerCase());
+      subobj.put("id", task.getId());
       logger.trace(first, "Tags, Name and Class stored for task {}", task.getName());
       // Since the timings can be null, we check before trying to parse them.
       if (task.getStartTime() == null) {
-        subobj.put("StartTime", "null");
-        subobj.put("EndTime", "null");
-        subobj.put("Duration", "null");
+        subobj.put("initialDate", "null");
+        subobj.put("finalDate", "null");
+        subobj.put("duration", "null");
       } else {
-        subobj.put("StartTime", task.getParsedStartTime());
-        subobj.put("EndTime", task.getParsedEndTime());
-        subobj.put("Duration", task.getDuration().toString());
+        subobj.put("initialDate", task.getParsedStartTime());
+        subobj.put("finalDate", task.getParsedEndTime());
+        subobj.put("duration", task.getDuration().toString());
       }
-      logger.trace(first, "StartTime, EndTime and Duration stored for task {}", task.getName());
-      subobj.put("Parent", task.getParent().getName());
+      logger.trace(first, "initialDate, finalDate and duration stored for task {}", task.getName());
+      subobj.put("parent", task.getParent().getName());
       // Since a core.Task contains intervals, we must loop through them and store them in the Intervals
       // JSONArray.
       JSONArray intervals = new JSONArray();
       for (Interval interval : task.getIntervals()) {
         JSONObject obj2 = new JSONObject();
-        obj2.put("StartTime", interval.getParsedStartTime());
-        obj2.put("EndTime", interval.getParsedEndTime());
-        obj2.put("Duration", interval.getDuration().toString());
+        obj2.put("initialDate", interval.getParsedStartTime());
+        obj2.put("finalDate", interval.getParsedEndTime());
+        obj2.put("duration", interval.getDuration().toString());
         intervals.put(obj2);
       }
       logger.trace(first, "Intervals of task {} stored", task.getName());
-      subobj.put("Intervals", intervals);
+      subobj.put("intervals", intervals);
 
-      JSONArray fatherarray = o.getJSONArray("Activities");
+      JSONArray fatherarray = o.getJSONArray("activities");
       fatherarray.put(subobj);
     }
     else{
-      JSONArray aux = o.getJSONArray("Activities");
+      JSONArray aux = o.getJSONArray("activities");
       for (int i = 0; i < aux.length(); i++) {
-        String aux2 = aux.getJSONObject(i).get("Class").toString();
-        if(Objects.equals(aux2, "Project"))
+        String aux2 = aux.getJSONObject(i).get("class").toString();
+        if(Objects.equals(aux2, "project"))
           recursiveVisitTask(task, aux.getJSONObject(i));
       }
 
