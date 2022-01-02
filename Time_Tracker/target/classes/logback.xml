@@ -23,7 +23,7 @@
     <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
         <Name>RELEASE_FILTER</Name>
         <Marker>FITA1</Marker>
-        <OnMatch>ALLOW</OnMatch>
+        <OnMatch>DENY</OnMatch>
     </turboFilter>
 
     <!---Allowing this filter will display the second release, denying will make the log ignore the second release-->
