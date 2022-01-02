@@ -8,7 +8,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /*
 Abstract class as part of the Composite pattern applied in our implementation. core.Activity is the
@@ -160,7 +159,63 @@ public abstract class Activity {
         name, startTime, endTime, Utils.roundDuration(this.duration));
   }
 
-  public abstract JSONObject toJson(JSONObject returnedJsonObject, int depth);
+  public JSONObject toJson(int depth) {
+    /*
+    JSONObject returnedJson = new JSONObject();
+    returnedJson.put("name", this.name);
+    returnedJson.put("class", this.getClass().getSimpleName().toLowerCase());
+    returnedJson.put("id", this.Id);
+    returnedJson.put("initialDate", this.startTime);
+    returnedJson.put("finalDate", this.endTime);
+    returnedJson.put("duration", this.duration);
+    if (depth != 0) {
+      if (this instanceof Project) {
+        returnedJson.put("activities", this.toJson(depth-1));
+      }
+      else {
+        returnedJson.put("intervals", this.toJson(depth-1));
+      }
+    }
+    return returnedJson;*/
+
+
+
+
+    /*JSONObject returnedJson = new JSONObject();
+    // We add all the important information for each core.Activity
+    returnedJson.put("Tags", this.tags);
+    returnedJson.put("Name", this.name);
+    returnedJson.put("Class", this.getClass().getSimpleName());
+    returnedJson.put("ID", this.Id);
+    // Since the timings can be null, we check before trying to parse them.
+    if (this.startTime == null) {
+      returnedJson.put("StartTime", "null");
+      returnedJson.put("EndTime", "null");
+      returnedJson.put("Duration", "null");
+    } else {
+      returnedJson.put("StartTime", this.getParsedStartTime());
+      returnedJson.put("EndTime", this.getParsedEndTime());
+      returnedJson.put("Duration", this.duration.toString());
+    }
+    JSONArray activitiesArray = new JSONArray();
+    returnedJson.put("Activities", activitiesArray);
+
+    obj.put("Parent", "null");
+    // Then, we must propagate the core.Visitor through each children of the current core.Activity.
+    for (Activity a : project.getActivities()) {
+      // The handling of the activities differs depending on if the child is a core.Project (which has
+      // Activities) or a core.Task (which has intervals)
+      logger.debug(first, "Visiting activities in order to save");
+      if (a instanceof Project) {
+        ((Project) a).acceptVisitor(this);
+      } else {
+        ((Task) a).acceptVisitor(this);
+      }
+    }
+    logger.info(first, "Data saved succesfully");
+    return obj;*/
+    return null;
+  }
 
   protected boolean invariant() {
     Boolean nameNotNull = this.name != null;
