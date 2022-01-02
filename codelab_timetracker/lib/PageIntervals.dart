@@ -1,6 +1,8 @@
 // ignore: file_names
 // ignore_for_file: file_names
 
+import 'dart:async';
+
 import 'package:codelab_timetracker/page_activities.dart';
 import 'package:codelab_timetracker/tree.dart' as Tree hide getTree;
 import 'package:codelab_timetracker/requests.dart';
@@ -17,12 +19,15 @@ class PageIntervals extends StatefulWidget {
 class _PageIntervalsState extends State<PageIntervals> {
   late int id;
   late Future<Tree.Tree> futureTree;
+  late Timer _timer;
+  static const int periodeRefresh = 2;
 
   @override
   void initState() {
     super.initState();
     id = widget.id;
     futureTree = getTree(id);
+    _activateTimer();
   }
 
   @override
@@ -84,5 +89,17 @@ class _PageIntervalsState extends State<PageIntervals> {
       title: Text('from ${strInitialDate} to ${strFinalDate}'),
       trailing: Text('$strDuration'),
     );
+  }
+
+  void _refresh() async {
+    futureTree = getTree(id); // to be used in build()
+    setState(() {});
+  }
+
+  void _activateTimer() {
+    _timer = Timer.periodic(Duration(seconds: periodeRefresh), (Timer t) {
+      futureTree = getTree(id);
+      setState(() {});
+    });
   }
 }
