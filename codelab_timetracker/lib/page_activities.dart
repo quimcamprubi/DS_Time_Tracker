@@ -20,11 +20,15 @@ class PageActivities extends StatefulWidget {
 
 class _PageActivitiesState extends State<PageActivities> {
   late int id;
+  late int id_act;
   late Future<Tree> futureTree;
   late Timer _timer;
   static const int periodeRefresh = 2;
   late String pageTitle;
   late String activityName;
+  final myController = TextEditingController();
+  Icon customIcon = const Icon(Icons.search);
+  Widget customSearchBar = const Text('Home');
 
   @override
   void initState() {
@@ -57,8 +61,58 @@ class _PageActivitiesState extends State<PageActivities> {
           }
           return Scaffold(
             appBar: AppBar(
-              title: Text(pageTitle),
+              title: customSearchBar,
+              automaticallyImplyLeading: false,
               actions: <Widget>[
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (customIcon.icon == Icons.search) {
+                        customIcon = const Icon(Icons.cancel);
+                        customSearchBar = ListTile(
+                          leading: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: 28,
+                          ),
+                          title: TextField(
+                            onSubmitted: (tag) {
+                              //convert variable "tag" to id
+                              id_act = 4;
+                              _timer.cancel();
+                            Navigator.of(context)
+                                .push(MaterialPageRoute<void>(
+                              builder: (context) => PageActivities(id_act),
+                            ))
+                                .then((var value) {
+                              _activateTimer();
+                              _refresh();
+                            });
+
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'Search by tag...',
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontStyle: FontStyle.italic,
+                              ),
+                              border: InputBorder.none,
+                            ),
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+
+                          ),
+                        );
+                      }else {
+                        customIcon = const Icon(Icons.search);
+                        customSearchBar  = const Text('Home');
+                      }
+                    });
+                  },
+                  icon: customIcon,
+                ),
                 IconButton(
                     icon: Icon(Icons.home),
                     onPressed: () {
@@ -69,6 +123,8 @@ class _PageActivitiesState extends State<PageActivities> {
                       PageActivities(0);
                     }),
                 //TODO other actions
+
+
               ],
             ),
             body: ListView.separated(
