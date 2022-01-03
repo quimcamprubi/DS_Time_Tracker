@@ -1,8 +1,11 @@
 package core;
 
+import java.awt.image.ImageObserver;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,7 +20,7 @@ contain Intervals. A core.Project is a way of organizing smaller time units. Bas
 be a node in the tree which will not directly contain an interval. It must contain other Projects
  or Tasks, which in turn will contain Intervals.
 */
-public class Project extends Activity {
+public class Project extends Activity implements Observer {
   // ----- ATTRIBUTES -----
   private final ArrayList<Activity> activities;
 
@@ -31,6 +34,7 @@ public class Project extends Activity {
     super(name, tags, parent, id);
     logger.info(first, "Creating project {}", name);
     this.activities = new ArrayList<Activity>();
+    Clock.getInstance().addObserver(this);
   }
 
   // Secondary constructor used mainly for the JSON reloading of the tree.
@@ -41,6 +45,7 @@ public class Project extends Activity {
     logger.trace(first, "core.Project {} values: Duration -> {}, startTime -> {}, endTime -> {}", name,
         duration, startTime, endTime);
     this.activities = new ArrayList<Activity>();
+    Clock.getInstance().addObserver(this);
   }
 
   // ----- METHODS -----
@@ -116,7 +121,7 @@ public class Project extends Activity {
     } else {
       returnedJsonObject.put("initialDate", this.getParsedStartTime());
       returnedJsonObject.put("finalDate", this.getParsedEndTime());
-      returnedJsonObject.put("duration", this.getDuration().toSecondsPart()); //TODO DURATION
+      returnedJsonObject.put("duration", this.getDuration().getSeconds()); //TODO DURATION
     }
     JSONArray arr = new JSONArray();
     if (this.parent == null) {
@@ -131,5 +136,14 @@ public class Project extends Activity {
     }
     returnedJsonObject.put("activities", arr);
     return returnedJsonObject;
+  }
+
+  @Override
+  public void update(Observable o, Object arg) {
+    Duration taskDuration = Duration.ZERO;
+    for (Activity activity : this.activities) {
+      taskDuration = taskDuration.plus(activity.getDuration());
+    }
+    this.duration = taskDuration;
   }
 }

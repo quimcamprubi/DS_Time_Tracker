@@ -13,6 +13,7 @@ abstract class Activity {
   DateTime? finalDate;
   int duration;
   List<dynamic> children = List<dynamic>.empty(growable: true);
+  String tags;
 
   // formerly List<dynamic>(); but now because of null safety it has to be
   // initialized like that
@@ -22,7 +23,8 @@ abstract class Activity {
         name = json['name'],
         initialDate = json['initialDate'] == null ? null : _dateFormatter.parse(json['initialDate']),
         finalDate = json['finalDate'] == null ? null : _dateFormatter.parse(json['finalDate']),
-        duration = json['duration'];
+        duration = json['duration'],
+        tags = json['tags'].join(', ');
 }
 
 

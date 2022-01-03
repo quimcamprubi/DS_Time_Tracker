@@ -41,6 +41,7 @@ class _PageIntervalsState extends State<PageIntervals> {
           int numChildren = snapshot.data!.root.children.length;
           return Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.cyanAccent[700],
               title: Text(snapshot.data!.root.name),
               actions: <Widget>[
                 IconButton(icon: Icon(Icons.home),

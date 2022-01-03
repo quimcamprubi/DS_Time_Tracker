@@ -31,6 +31,7 @@ class _PageNewActivityState extends State<PageNewActivity> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyanAccent[700],
         title: Text(title),
       ),
       body: Container(
@@ -85,7 +86,7 @@ class _PageNewActivityState extends State<PageNewActivity> {
                 ),
               ),
               icon: Icon(Icons.add),
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.cyanAccent[700],
               onPressed: () {
                 if (activityName != "" && activityTags != "") {
                   _createActivity(widget.parentId, activityName, activityTags);

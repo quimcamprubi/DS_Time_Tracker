@@ -116,7 +116,7 @@ public class Interval implements java.util.Observer {
       this.startTime = this.endTime.minus(2, ChronoUnit.SECONDS);
     }
     this.duration = Duration.between(this.startTime, this.endTime);
-    this.parent.updateParentDuration();
+    //this.parent.updateParentDuration();
     this.parent.updateParentInformation(this.startTime, this.endTime);
     logger.trace(first, "Update has been received from clock object, update time for interval "
             + "with  parent {}: Duration -> {}, startTime -> {}, endTime -> {}", parent.getName(),

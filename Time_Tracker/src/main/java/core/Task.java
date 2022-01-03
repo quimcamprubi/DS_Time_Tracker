@@ -3,6 +3,8 @@ package core;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,7 +19,7 @@ contain  Activities. A core.Task is a way of organizing continuous time units (i
 it will always be a "semi-leaf" in the tree structure, as it will only have one level of
 children, composed of Intervals, but it will never have a deeper structure.
 */
-public class Task extends Activity {
+public class Task extends Activity implements Observer {
   // ----- ATTRIBUTES -----
   private final ArrayList<Interval> intervals;
   private boolean active;
@@ -33,6 +35,7 @@ public class Task extends Activity {
     logger.info(first, "Creating task {}", name);
     this.intervals = new ArrayList<Interval>();
     this.active = false;
+    Clock.getInstance().addObserver(this);
   }
 
   // Secondary constructor used mainly for the JSON reloading of the tree.
@@ -43,6 +46,7 @@ public class Task extends Activity {
     logger.trace(first, "core.Task {} values: Parent -> {}, Duration -> {}, startTime -> {}, "
         + "endTime -> {}", name, parent.getName(), duration, startTime, endTime);
     this.intervals = new ArrayList<Interval>();
+    Clock.getInstance().addObserver(this);
   }
 
   // ----- METHODS -----
@@ -84,7 +88,7 @@ public class Task extends Activity {
       taskDuration = taskDuration.plus(interval.getDuration());
     }
     this.duration = taskDuration;
-    logger.trace(first, "core.Task {} has been update", name);
+    logger.trace(first, "core.Task {} has been updated", name);
 
     // Invariant
     assert invariant();
@@ -143,4 +147,12 @@ public class Task extends Activity {
   }
 
 
+  @Override
+  public void update(Observable o, Object arg) {
+    Duration taskDuration = Duration.ZERO;
+    for (Interval interval : this.intervals) {
+      taskDuration = taskDuration.plus(interval.getDuration());
+    }
+    this.duration = taskDuration;
+  }
 }

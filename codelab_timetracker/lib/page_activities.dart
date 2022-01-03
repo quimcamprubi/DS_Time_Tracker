@@ -6,8 +6,13 @@ import 'package:codelab_timetracker/tree.dart' hide getTree;
 import 'package:codelab_timetracker/requests.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'PageIntervals.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
+extension on Duration {
+  String format() => '$this'.split('.')[0].padLeft(8, '0');
+}
 
 class PageActivities extends StatefulWidget {
   final int id;
@@ -20,12 +25,19 @@ class PageActivities extends StatefulWidget {
 
 class _PageActivitiesState extends State<PageActivities> {
   late int id;
-  late int id_act;
   late Future<Tree> futureTree;
   late Timer _timer;
   static const int periodeRefresh = 2;
   late String pageTitle;
   late String activityName;
+  late String activityIdString;
+  late String activityTags;
+  String initialDateString = "";
+  String finalDateString = "";
+  final DateFormat formatter = DateFormat('dd-MM-yy hh:mm:ss');
+  String durationString = "";
+  String childrenText = "This project does not contain any Activities yet.";
+  late int id_act;
   final myController = TextEditingController();
   Icon customIcon = const Icon(Icons.search);
   Widget customSearchBar = const Text('Home');
@@ -54,111 +66,361 @@ class _PageActivitiesState extends State<PageActivities> {
       builder: (context, snapshot) {
         // anonymous function
         if (snapshot.hasData) {
-          if (snapshot.data!.root.name == "root") {
+          activityIdString = snapshot.data!.root.id.toString();
+          activityTags = snapshot.data!.root.tags;
+          durationString =
+              Duration(seconds: snapshot.data!.root.duration).format();
+          if (snapshot.data!.root.initialDate != null) {
+            initialDateString =
+                formatter.format(snapshot.data!.root.initialDate!).toString();
+            finalDateString =
+                formatter.format(snapshot.data!.root.finalDate!).toString();
+          }
+          if (snapshot.data!.root.children.isNotEmpty) {
+            childrenText = "Children: ";
+          }
+          if (snapshot.data!.root.id == 0) {
             pageTitle = "Home";
           } else {
             pageTitle = snapshot.data!.root.name;
           }
-          return Scaffold(
-            appBar: AppBar(
-              title: customSearchBar,
-              automaticallyImplyLeading: false,
-              actions: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      if (customIcon.icon == Icons.search) {
-                        customIcon = const Icon(Icons.cancel);
-                        customSearchBar = ListTile(
-                          leading: const Icon(
-                            Icons.search,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                          title: TextField(
-                            onSubmitted: (tag) {
-                              //convert variable "tag" to id
-                              id_act = 4;
-                              _timer.cancel();
-                            Navigator.of(context)
-                                .push(MaterialPageRoute<void>(
-                              builder: (context) => PageActivities(id_act),
-                            ))
-                                .then((var value) {
-                              _activateTimer();
-                              _refresh();
-                            });
-
-                            },
-                            decoration: const InputDecoration(
-                              hintText: 'Search by tag...',
-                              hintStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontStyle: FontStyle.italic,
-                              ),
-                              border: InputBorder.none,
-                            ),
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-
-                          ),
-                        );
-                      }else {
-                        customIcon = const Icon(Icons.search);
-                        customSearchBar  = const Text('Home');
-                      }
-                    });
-                  },
-                  icon: customIcon,
-                ),
-                IconButton(
-                    icon: Icon(Icons.home),
+          if (snapshot.data!.root.id == 0) {
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.cyanAccent[700],
+                title: customSearchBar,
+                automaticallyImplyLeading: false,
+                actions: <Widget>[
+                  IconButton(
                     onPressed: () {
-                      while (Navigator.of(context).canPop()) {
-                        print("pop");
-                        Navigator.of(context).pop();
-                      }
-                      PageActivities(0);
-                    }),
-                //TODO other actions
-
-
-              ],
-            ),
-            body: ListView.separated(
-              // it's like ListView.builder() but better because it includes a separator between items
-              padding: const EdgeInsets.all(16.0),
-              itemCount: snapshot.data!.root.children.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  _buildRow(snapshot.data!.root.children[index], index),
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
-            ),
-            floatingActionButton: SpeedDial(
-                animatedIcon: AnimatedIcons.add_event,
-                spacing: 10,
-                spaceBetweenChildren: 15,
-                children: [
-                  SpeedDialChild(
-                    child: Icon(Icons.text_snippet_outlined),
-                    label: 'New Task',
-                    backgroundColor: Colors.blue,
-                    onTap: () {
-                      _createTask(snapshot.data!.root.id);
+                      setState(() {
+                        if (customIcon.icon == Icons.search) {
+                          customIcon = const Icon(Icons.cancel);
+                          customSearchBar = ListTile(
+                            leading: const Icon(
+                              Icons.search,
+                              color: Colors.white,
+                              size: 28,
+                            ),
+                            title: TextField(
+                              onSubmitted: (tag) {
+                                //convert variable "tag" to id
+                                id_act = 4;
+                                _timer.cancel();
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute<void>(
+                                  builder: (context) => PageActivities(id_act),
+                                ))
+                                    .then((var value) {
+                                  _activateTimer();
+                                  _refresh();
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                hintText: 'Search by tag...',
+                                hintStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                                border: InputBorder.none,
+                              ),
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          );
+                        } else {
+                          customIcon = const Icon(Icons.search);
+                          customSearchBar = const Text('Home');
+                        }
+                      });
                     },
+                    icon: customIcon,
                   ),
-                  SpeedDialChild(
-                    child: Icon(Icons.folder_open_rounded),
-                    label: 'New Project',
-                    backgroundColor: Colors.blue,
-                    onTap: () {
-                      _createProject(snapshot.data!.root.id);
-                    },
-                  )
-                ]),
-          );
+                  IconButton(
+                      icon: Icon(Icons.home),
+                      onPressed: () {
+                        while (Navigator.of(context).canPop()) {
+                          print("pop");
+                          Navigator.of(context).pop();
+                        }
+                        PageActivities(0);
+                      }),
+                ],
+              ),
+              body: ListView.separated(
+                // it's like ListView.builder() but better because it includes a separator between items
+                padding: const EdgeInsets.all(16.0),
+                itemCount: snapshot.data!.root.children.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    _buildRow(snapshot.data!.root.children[index], index),
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+              ),
+              floatingActionButton: SpeedDial(
+                  backgroundColor: Colors.cyanAccent[700],
+                  animatedIcon: AnimatedIcons.add_event,
+                  spacing: 10,
+                  spaceBetweenChildren: 15,
+                  children: [
+                    SpeedDialChild(
+                      child: Icon(Icons.text_snippet_outlined),
+                      label: 'New Task',
+                      backgroundColor: Colors.cyanAccent[700],
+                      onTap: () {
+                        _createTask(snapshot.data!.root.id);
+                      },
+                    ),
+                    SpeedDialChild(
+                      child: Icon(Icons.folder_open_rounded),
+                      label: 'New Project',
+                      backgroundColor: Colors.cyanAccent[700],
+                      onTap: () {
+                        _createProject(snapshot.data!.root.id);
+                      },
+                    )
+                  ]),
+            );
+          } else {
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.cyanAccent[700],
+                title: Text(pageTitle),
+                actions: <Widget>[
+                  IconButton(
+                      icon: Icon(Icons.home),
+                      onPressed: () {
+                        while (Navigator.of(context).canPop()) {
+                          print("pop");
+                          Navigator.of(context).pop();
+                        }
+                        PageActivities(0);
+                      }),
+                ],
+              ),
+              body: Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.all(0.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: const EdgeInsets.only(
+                                top: 20,
+                                left: 20,
+                                right: 10,
+                                bottom: 10,
+                              ),
+                              width: 100.0,
+                              child: Text(
+                                "Identifier",
+                                style: TextStyle(
+                                    fontSize: 19, color: Colors.grey[700]),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                top: 20,
+                                left: 20,
+                                right: 10,
+                                bottom: 10,
+                              ),
+                              width: 200.0,
+                              child: Text(
+                                activityIdString,
+                                style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey[800]),
+                              ),
+                            ),
+                          ]),
+                      Row(children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 100.0,
+                          child: Text(
+                            "Tags",
+                            style: TextStyle(
+                                fontSize: 19, color: Colors.grey[700]),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 200.0,
+                          child: Text(
+                            activityTags,
+                            style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[800]),
+                          ),
+                        ),
+                      ]),
+                      Row(children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 100.0,
+                          child: Text(
+                            "Duration",
+                            style: TextStyle(
+                                fontSize: 19, color: Colors.grey[700]),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 200.0,
+                          child: Text(
+                            durationString,
+                            style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[800]),
+                          ),
+                        ),
+                      ]),
+                      Row(children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 100.0,
+                          child: Text(
+                            "Initial date",
+                            style: TextStyle(
+                                fontSize: 19, color: Colors.grey[700]),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 200.0,
+                          child: Text(
+                            initialDateString,
+                            style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[800]),
+                          ),
+                        ),
+                      ]),
+                      Row(children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 100.0,
+                          child: Text(
+                            "Final date",
+                            style: TextStyle(
+                                fontSize: 19, color: Colors.grey[700]),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 10,
+                            bottom: 10,
+                          ),
+                          width: 200.0,
+                          child: Text(
+                            finalDateString,
+                            style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[800]),
+                          ),
+                        ),
+                      ]),
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 10,
+                          left: 20,
+                          right: 10,
+                          bottom: 10,
+                        ),
+                        child: Text(
+                          childrenText,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[800]),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView.separated(
+                          scrollDirection: Axis.vertical,
+                          padding: const EdgeInsets.all(16.0),
+                          itemCount: snapshot.data!.root.children.length,
+                          itemBuilder: (BuildContext context, int index) =>
+                              _buildRow(
+                                  snapshot.data!.root.children[index], index),
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(),
+                        ),
+                      ),
+                    ],
+                  )),
+              floatingActionButton: SpeedDial(
+                  backgroundColor: Colors.cyanAccent[700],
+                  animatedIcon: AnimatedIcons.add_event,
+                  spacing: 10,
+                  spaceBetweenChildren: 15,
+                  children: [
+                    SpeedDialChild(
+                      child: Icon(Icons.text_snippet_outlined),
+                      label: 'New Task',
+                      backgroundColor: Colors.cyanAccent[700],
+                      onTap: () {
+                        _createTask(snapshot.data!.root.id);
+                      },
+                    ),
+                    SpeedDialChild(
+                      child: Icon(Icons.folder_open_rounded),
+                      label: 'New Project',
+                      backgroundColor: Colors.cyanAccent[700],
+                      onTap: () {
+                        _createProject(snapshot.data!.root.id);
+                      },
+                    )
+                  ]),
+            );
+          }
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }
@@ -166,7 +428,7 @@ class _PageActivitiesState extends State<PageActivities> {
         return Container(
             height: MediaQuery.of(context).size.height,
             color: Colors.white,
-            child: Center(
+            child: const Center(
               child: CircularProgressIndicator(),
             ));
       },
@@ -174,8 +436,7 @@ class _PageActivitiesState extends State<PageActivities> {
   }
 
   Widget _buildRow(Activity activity, int index) {
-    String strDuration =
-        Duration(seconds: activity.duration).toString().split('.').first;
+    String strDuration = Duration(seconds: activity.duration).format();
     // split by '.' and taking first element of resulting list removes the microseconds part
     if (activity is Project) {
       return ListTile(
@@ -197,23 +458,23 @@ class _PageActivitiesState extends State<PageActivities> {
       Widget trailing;
       trailing = Text('$strDuration');
       return ListTile(
-        leading:
-            IconButton(
-              icon: task.active ? Icon(Icons.pause) : Icon(Icons.play_arrow),
-              color: task.active ? Colors.redAccent : Colors.greenAccent,
-              padding: EdgeInsets.all(0),
-              onPressed: () {
-                if (task.active) {
-                  stop(activity.id);
-                  _refresh(); // to show immediately that task has started
-                } else {
-                  start(activity.id);
-                  _refresh(); // to show immediately that task has stopped
-                }
-              },
-            ),
-        title:
-          Text('${activity.name}'),
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: BoxConstraints(),
+          iconSize: 28,
+          icon: task.active ? Icon(Icons.pause) : Icon(Icons.play_arrow),
+          color: task.active ? Colors.redAccent : Colors.greenAccent[400],
+          onPressed: () {
+            if (task.active) {
+              stop(activity.id);
+              _refresh(); // to show immediately that task has started
+            } else {
+              start(activity.id);
+              _refresh(); // to show immediately that task has stopped
+            }
+          },
+        ),
+        title: Text('${activity.name}'),
         subtitle: const Text(
           "Task",
           style: TextStyle(
