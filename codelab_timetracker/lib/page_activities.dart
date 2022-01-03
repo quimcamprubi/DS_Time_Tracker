@@ -52,17 +52,17 @@ class _PageActivitiesState extends State<PageActivities> {
         if (snapshot.hasData) {
           if (snapshot.data!.root.name == "root") {
             pageTitle = "Home";
-          }
-          else {
+          } else {
             pageTitle = snapshot.data!.root.name;
           }
           return Scaffold(
             appBar: AppBar(
               title: Text(pageTitle),
               actions: <Widget>[
-                IconButton(icon: Icon(Icons.home),
+                IconButton(
+                    icon: Icon(Icons.home),
                     onPressed: () {
-                      while(Navigator.of(context).canPop()) {
+                      while (Navigator.of(context).canPop()) {
                         print("pop");
                         Navigator.of(context).pop();
                       }
@@ -78,30 +78,30 @@ class _PageActivitiesState extends State<PageActivities> {
               itemBuilder: (BuildContext context, int index) =>
                   _buildRow(snapshot.data!.root.children[index], index),
               separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
+                  const Divider(),
             ),
             floatingActionButton: SpeedDial(
-              animatedIcon: AnimatedIcons.add_event,
-              spacing: 10,
-              spaceBetweenChildren: 15,
-              children: [
-                SpeedDialChild(
-                  child: Icon(Icons.text_snippet_outlined),
-                  label: 'New Task',
-                  backgroundColor: Colors.blue,
-                  onTap: (){
-                    _createTask(snapshot.data!.root.id);
-                  },
-                ), SpeedDialChild(
-                  child: Icon(Icons.folder_open_rounded),
-                  label: 'New Project',
-                  backgroundColor: Colors.blue,
-                  onTap: (){
-                    _createProject(snapshot.data!.root.id);
-                  },
-                )
-              ]
-            ),
+                animatedIcon: AnimatedIcons.add_event,
+                spacing: 10,
+                spaceBetweenChildren: 15,
+                children: [
+                  SpeedDialChild(
+                    child: Icon(Icons.text_snippet_outlined),
+                    label: 'New Task',
+                    backgroundColor: Colors.blue,
+                    onTap: () {
+                      _createTask(snapshot.data!.root.id);
+                    },
+                  ),
+                  SpeedDialChild(
+                    child: Icon(Icons.folder_open_rounded),
+                    label: 'New Project',
+                    backgroundColor: Colors.blue,
+                    onTap: () {
+                      _createProject(snapshot.data!.root.id);
+                    },
+                  )
+                ]),
           );
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
@@ -118,7 +118,8 @@ class _PageActivitiesState extends State<PageActivities> {
   }
 
   Widget _buildRow(Activity activity, int index) {
-    String strDuration = Duration(seconds: activity.duration).toString().split('.').first;
+    String strDuration =
+        Duration(seconds: activity.duration).toString().split('.').first;
     // split by '.' and taking first element of resulting list removes the microseconds part
     if (activity is Project) {
       return ListTile(
@@ -140,8 +141,23 @@ class _PageActivitiesState extends State<PageActivities> {
       Widget trailing;
       trailing = Text('$strDuration');
       return ListTile(
-        leading: Icon(Icons.text_snippet_outlined),
-        title: Text('${activity.name}'),
+        leading:
+            IconButton(
+              icon: task.active ? Icon(Icons.pause) : Icon(Icons.play_arrow),
+              color: task.active ? Colors.redAccent : Colors.greenAccent,
+              padding: EdgeInsets.all(0),
+              onPressed: () {
+                if (task.active) {
+                  stop(activity.id);
+                  _refresh(); // to show immediately that task has started
+                } else {
+                  start(activity.id);
+                  _refresh(); // to show immediately that task has stopped
+                }
+              },
+            ),
+        title:
+          Text('${activity.name}'),
         subtitle: const Text(
           "Task",
           style: TextStyle(
@@ -151,18 +167,9 @@ class _PageActivitiesState extends State<PageActivities> {
         ),
         trailing: trailing,
         onTap: () => _navigateDownIntervals(activity.id),
-        onLongPress: () {
-          if ((activity as Task).active) {
-            stop(activity.id);
-            _refresh(); // to show immediately that task has started
-          } else {
-            start(activity.id);
-            _refresh(); // to show immediately that task has stopped
-          }
-        },
       );
     } else {
-      throw(Exception("Activity that is neither a Task or a Project"));
+      throw (Exception("Activity that is neither a Task or a Project"));
       // this solves the problem of return Widget is not nullable because an
       // Exception is also a Widget?
     }
@@ -174,7 +181,8 @@ class _PageActivitiesState extends State<PageActivities> {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
       builder: (context) => PageActivities(childId),
-    )).then((var value) {
+    ))
+        .then((var value) {
       _activateTimer();
       _refresh();
     });
@@ -185,7 +193,8 @@ class _PageActivitiesState extends State<PageActivities> {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
       builder: (context) => PageIntervals(childId),
-    )).then((var value) {
+    ))
+        .then((var value) {
       _activateTimer();
       _refresh();
     });
@@ -209,7 +218,8 @@ class _PageActivitiesState extends State<PageActivities> {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
       builder: (context) => PageNewActivity("Project", parentId),
-    )).then((var value) {
+    ))
+        .then((var value) {
       _activateTimer();
       _refresh();
     });
@@ -220,7 +230,8 @@ class _PageActivitiesState extends State<PageActivities> {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
       builder: (context) => PageNewActivity("Task", parentId),
-    )).then((var value) {
+    ))
+        .then((var value) {
       _activateTimer();
       _refresh();
     });
