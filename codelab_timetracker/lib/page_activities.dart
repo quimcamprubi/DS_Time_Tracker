@@ -192,7 +192,6 @@ class _PageActivitiesState extends State<PageActivities> {
                       icon: Icon(Icons.home),
                       onPressed: () {
                         while (Navigator.of(context).canPop()) {
-                          print("pop");
                           Navigator.of(context).pop();
                         }
                         PageActivities(0);
@@ -205,6 +204,40 @@ class _PageActivitiesState extends State<PageActivities> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: const EdgeInsets.only(
+                                top: 20,
+                                left: 20,
+                                right: 10,
+                                bottom: 10,
+                              ),
+                              height: 30,
+                              width: 30,
+                              child: const Icon(
+                                Icons.folder_open_rounded,
+                                size: 50,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                top: 42,
+                                left: 20,
+                                right: 10,
+                                bottom: 0,
+                              ),
+                              width: 100,
+                              child: Text(
+                                "Project",
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey[800]),
+                              ),
+                            ),
+                          ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
@@ -395,7 +428,8 @@ class _PageActivitiesState extends State<PageActivities> {
                         ),
                       ),
                     ],
-                  )),
+                  )
+                ),
               floatingActionButton: SpeedDial(
                   backgroundColor: Colors.cyanAccent[700],
                   animatedIcon: AnimatedIcons.add_event,
