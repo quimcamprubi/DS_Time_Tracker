@@ -1,0 +1,87 @@
+{
+    "home": "Home",
+    "@home":{
+      "description": "Home page title"
+    },
+    "hello": "Hello {username}",
+    "@hello": {
+      "description": "A welcome message",
+      "placeholders": {
+         "username": {
+           "type": "String"
+         }
+      }
+    },
+    "search_by_tag": "Search by tag...",
+    "@search_by_tag": {
+      "description": "Search bar hint"
+    },
+    "project": "Project",
+    "@project": {
+      "description": "Project name"
+    },
+    "task": "Task",
+    "@task": {
+      "description": "Task name"
+    },
+    "new_project": "New Project",
+    "@new_project": {
+      "description": "New Project button"
+    },
+    "new_task": "New Task",
+    "@new_task": {
+      "description": "New Task button"
+    },
+    "duration": "Duration",
+    "@duration": {
+      "description": "Duration title"
+    },
+    "initial_date": "Initial date",
+    "@initial_date": {
+      "description": "Initial date title"
+    },
+    "final_date": "Final date",
+    "@final_date": {
+      "description": "Final_date"
+    },
+    "children_intro": "Children:",
+    "@children_intro": {
+      "description": "Children intro to list"
+    },
+    "identifier": "Identifier",
+    "@identifier": {
+      "description": "Identifier title"
+    },
+    "name": "Name",
+    "@name": {
+      "description": "Name title"
+    },
+    "tags_comma_separated": "Tags (comma-separated)",
+    "@tags_comma-separated": {
+      "description": "Tags title for new Activity"
+    },
+    "create_button": "Create",
+    "@create_button": {
+      "description": "Create Activity button"
+    },
+    "no_children_created_yet": "This Project does not contain any Activities yet.",
+    "@create_button": {
+      "description": "If user enters an Activity which has no children yet."
+    },
+    "intervals": "Intervals",
+    "@intervals_name": {
+      "description": "Intervals title"
+    },
+    "no_intervals": "This Task does not contain any Intervals yet.",
+    "@intervals_name": {
+      "description": "Intervals title"
+    },
+    "from": "From",
+    "@from": {
+      "description": "Interval start"
+    },
+    "to": "To",
+    "@to": {
+      "description": "Interval end"
+    }
+}

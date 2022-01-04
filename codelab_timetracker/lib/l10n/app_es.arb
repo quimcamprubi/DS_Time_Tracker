@@ -1,0 +1,22 @@
+{
+    "home": "Inicio",
+    "hello": "Hola {username}",
+    "search_by_tag": "Busca por tag...",
+    "project": "Proyecto",
+    "task": "Tarea",
+    "new_project": "Nuevo Proyecto",
+    "new_task": "Nueva Tarea",
+    "duration": "Duración",
+    "initial_date": "Fecha inicial",
+    "final_date": "Fecha final",
+    "children_intro": "Hijos:",
+    "identifier": "Identificador",
+    "name": "Nombre",
+    "tags_comma_separated": "Tags (separados por comas)",
+    "create_button": "Crear",
+    "no_children_created_yet": "Este Proyecto aún no contiene ninguna Actividad.",
+    "intervals": "Intervalos",
+    "no_intervals": "Esta Tarea aún no contiene ningún Intervalo.",
+    "from": "Desde",
+    "to": "Hasta"
+}

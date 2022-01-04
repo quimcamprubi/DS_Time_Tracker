@@ -1,0 +1,22 @@
+{
+    "home": "Inici",
+    "hello": "Hola {username}",
+    "search_by_tag": "Busca per tag...",
+    "project": "Projecte",
+    "task": "Tasca",
+    "new_project": "Nou Projecte",
+    "new_task": "Nova Tasca",
+    "duration": "Duració",
+    "initial_date": "Data inicial",
+    "final_date": "Data final",
+    "children_intro": "Fills:",
+    "identifier": "Identificador",
+    "name": "Nom",
+    "tags_comma_separated": "Tags (separats per comes)",
+    "create_button": "Crear",
+    "no_children_created_yet": "Aquest Projecte encara no conté cap Activitat.",
+    "intervals": "Intervals",
+    "no_intervals": "Aquesta Tasca encara no conté cap Interval.",
+    "from": "Des de",
+    "to": "Fins"
+}

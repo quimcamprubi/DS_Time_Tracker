@@ -2,6 +2,7 @@
 // ignore_for_file: file_names
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:codelab_timetracker/page_activities.dart';
 import 'package:codelab_timetracker/tree.dart' as Tree hide getTree;
@@ -9,6 +10,8 @@ import 'package:codelab_timetracker/requests.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 extension on Duration {
   String format() => '$this'.split('.')[0].padLeft(8, '0');
@@ -32,7 +35,9 @@ class _PageIntervalsState extends State<PageIntervals> {
   late String activityTags;
   String initialDateString = "";
   String finalDateString = "";
-  final DateFormat formatter = DateFormat('dd-MM-yy hh:mm:ss');
+  //final DateFormat formatter = DateFormat('dd-MM-yy hh:mm:ss');
+  final String defaultLocale = Platform.localeName;
+  late DateFormat formatter;
   String durationString = "";
   String childrenText = "This project does not contain any Intervals yet.";
   late Tree.Task task;
@@ -40,6 +45,7 @@ class _PageIntervalsState extends State<PageIntervals> {
   @override
   void initState() {
     super.initState();
+    formatter = DateFormat(null, defaultLocale);
     id = widget.id;
     futureTree = getTree(id);
     _activateTimer();
@@ -65,7 +71,9 @@ class _PageIntervalsState extends State<PageIntervals> {
                 formatter.format(snapshot.data!.root.finalDate!).toString();
           }
           if (snapshot.data!.root.children.isNotEmpty) {
-            childrenText = "Intervals: ";
+            childrenText = AppLocalizations.of(context)!.intervals;
+          } else {
+            childrenText = AppLocalizations.of(context)!.no_intervals;
           }
           int numChildren = snapshot.data!.root.children.length;
           return Scaffold(
@@ -76,7 +84,6 @@ class _PageIntervalsState extends State<PageIntervals> {
                 IconButton(icon: Icon(Icons.home),
                     onPressed: () {
                       while(Navigator.of(context).canPop()) {
-                        print("pop");
                         Navigator.of(context).pop();
                       }
                       PageActivities(0);
@@ -128,7 +135,7 @@ class _PageIntervalsState extends State<PageIntervals> {
                             ),
                             width: 100,
                             child: Text(
-                              "Task",
+                              AppLocalizations.of(context)!.task,
                               style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
@@ -146,9 +153,9 @@ class _PageIntervalsState extends State<PageIntervals> {
                               right: 10,
                               bottom: 10,
                             ),
-                            width: 100.0,
+                            width: 110.0,
                             child: Text(
-                              "Identifier",
+                              AppLocalizations.of(context)!.identifier,
                               style: TextStyle(
                                   fontSize: 19, color: Colors.grey[700]),
                             ),
@@ -178,7 +185,7 @@ class _PageIntervalsState extends State<PageIntervals> {
                           right: 10,
                           bottom: 10,
                         ),
-                        width: 100.0,
+                        width: 110.0,
                         child: Text(
                           "Tags",
                           style: TextStyle(
@@ -210,9 +217,9 @@ class _PageIntervalsState extends State<PageIntervals> {
                           right: 10,
                           bottom: 10,
                         ),
-                        width: 100.0,
+                        width: 110.0,
                         child: Text(
-                          "Duration",
+                          AppLocalizations.of(context)!.duration,
                           style: TextStyle(
                               fontSize: 19, color: Colors.grey[700]),
                         ),
@@ -242,9 +249,9 @@ class _PageIntervalsState extends State<PageIntervals> {
                           right: 10,
                           bottom: 10,
                         ),
-                        width: 100.0,
+                        width: 110.0,
                         child: Text(
-                          "Initial date",
+                          AppLocalizations.of(context)!.initial_date,
                           style: TextStyle(
                               fontSize: 19, color: Colors.grey[700]),
                         ),
@@ -274,9 +281,9 @@ class _PageIntervalsState extends State<PageIntervals> {
                           right: 10,
                           bottom: 10,
                         ),
-                        width: 100.0,
+                        width: 110.0,
                         child: Text(
-                          "Final date",
+                          AppLocalizations.of(context)!.final_date,
                           style: TextStyle(
                               fontSize: 19, color: Colors.grey[700]),
                         ),
@@ -352,7 +359,9 @@ class _PageIntervalsState extends State<PageIntervals> {
     String strFinalDate = interval.finalDate.toString().split('.')[0];
     if (!interval.active) {
       return ListTile(
-          title: Text('From:  ${strInitialDate}\nTo:       ${strFinalDate}',
+          title: Text('${AppLocalizations.of(context)!.from}:  '
+              '${strInitialDate}\n${AppLocalizations.of(context)!.to}:       '
+              '${strFinalDate}',
             style: const TextStyle(
               fontSize: 18.0,
             ),

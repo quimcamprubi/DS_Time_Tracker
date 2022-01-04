@@ -1,6 +1,7 @@
 import 'package:codelab_timetracker/tree.dart';
 import 'package:flutter/material.dart';
 import 'package:codelab_timetracker/requests.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PageNewActivity extends StatefulWidget {
   final String type;
@@ -20,15 +21,15 @@ class _PageNewActivityState extends State<PageNewActivity> {
   @override
   void initState() {
     super.initState();
-    if (widget.type == "Project") {
-      title = "New Project";
-    } else {
-      title = "New Task";
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.type == "Project") {
+      title = AppLocalizations.of(context)!.new_project;
+    } else {
+      title = AppLocalizations.of(context)!.new_task;
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyanAccent[700],
@@ -43,9 +44,9 @@ class _PageNewActivityState extends State<PageNewActivity> {
                   children: <Widget>[
                     Expanded(
                       child: TextFormField(
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(),
-                          labelText: 'Name',
+                        decoration: InputDecoration(
+                          border: const UnderlineInputBorder(),
+                          labelText: AppLocalizations.of(context)!.name,
                         ),
                         onChanged: (value) => setState(() => activityName =
                             value),
@@ -58,9 +59,9 @@ class _PageNewActivityState extends State<PageNewActivity> {
                   children: <Widget>[
                     Expanded(
                       child: TextFormField(
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           border: UnderlineInputBorder(),
-                          labelText: 'Tags (comma separated)',
+                          labelText: AppLocalizations.of(context)!.tags_comma_separated,
                         ),
                         onChanged: (value) => setState(() => activityTags =
                             value),
@@ -79,9 +80,9 @@ class _PageNewActivityState extends State<PageNewActivity> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              label: const Text(
-                "Create",
-                style: TextStyle(
+              label: Text(
+                AppLocalizations.of(context)!.create_button,
+                style: const TextStyle(
                   fontSize: 20.0,
                 ),
               ),

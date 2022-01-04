@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'PageIntervals.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'dart:io';
+import 'package:intl/date_symbol_data_local.dart';
 
 extension on Duration {
   String format() => '$this'.split('.')[0].padLeft(8, '0');
@@ -34,17 +37,32 @@ class _PageActivitiesState extends State<PageActivities> {
   late String activityTags;
   String initialDateString = "";
   String finalDateString = "";
-  final DateFormat formatter = DateFormat('dd-MM-yy hh:mm:ss');
+  //final DateFormat formatter = DateFormat('dd-MM-yy hh:mm:ss');
   String durationString = "";
-  String childrenText = "This project does not contain any Activities yet.";
+  late String childrenText;
   late int id_act;
   final myController = TextEditingController();
   Icon customIcon = const Icon(Icons.search);
-  Widget customSearchBar = const Text('Home');
+  late Widget customSearchBar;
+  String searchByTag = "Search by tag...";
+  final String defaultLocale = Platform.localeName;
+  late DateFormat formatter;
 
   @override
   void initState() {
     super.initState();
+    formatter = DateFormat(null, defaultLocale);
+    switch (defaultLocale) {
+      case "ca_ES":
+        customSearchBar = const Text("Inici");
+        break;
+      case "es_ES":
+        customSearchBar = const Text("Inicio");
+        break;
+      default:
+        customSearchBar = const Text("Home");
+        break;
+    }
     id = widget.id; // of PageActivities
     futureTree = getTree(id);
     _activateTimer();
@@ -60,6 +78,7 @@ class _PageActivitiesState extends State<PageActivities> {
 // https://medium.com/nonstopio/flutter-future-builder-with-list-view-builder-d7212314e8c9
   @override
   Widget build(BuildContext context) {
+    String hint = AppLocalizations.of(context)!.search_by_tag;
     return FutureBuilder<Tree>(
       future: futureTree,
       // this makes the tree of children, when available, go into snapshot.data
@@ -77,7 +96,10 @@ class _PageActivitiesState extends State<PageActivities> {
                 formatter.format(snapshot.data!.root.finalDate!).toString();
           }
           if (snapshot.data!.root.children.isNotEmpty) {
-            childrenText = "Children: ";
+            childrenText = AppLocalizations.of(context)!.children_intro;
+          } else {
+            childrenText = AppLocalizations.of(context)!
+                .no_children_created_yet;
           }
           if (snapshot.data!.root.id == 0) {
             pageTitle = "Home";
@@ -95,7 +117,7 @@ class _PageActivitiesState extends State<PageActivities> {
                     onPressed: () {
                       setState(() {
                         if (customIcon.icon == Icons.search) {
-                          customIcon = const Icon(Icons.cancel);
+                          customIcon = Icon(Icons.cancel);
                           customSearchBar = ListTile(
                             leading: const Icon(
                               Icons.search,
@@ -116,9 +138,9 @@ class _PageActivitiesState extends State<PageActivities> {
                                   _refresh();
                                 });
                               },
-                              decoration: const InputDecoration(
-                                hintText: 'Search by tag...',
-                                hintStyle: TextStyle(
+                              decoration: InputDecoration(
+                                hintText: hint,
+                                hintStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontStyle: FontStyle.italic,
@@ -131,8 +153,9 @@ class _PageActivitiesState extends State<PageActivities> {
                             ),
                           );
                         } else {
-                          customIcon = const Icon(Icons.search);
-                          customSearchBar = const Text('Home');
+                          customIcon = Icon(Icons.search);
+                          customSearchBar = Text(AppLocalizations.of(context)!
+                              .home);
                         }
                       });
                     },
@@ -165,16 +188,16 @@ class _PageActivitiesState extends State<PageActivities> {
                   spaceBetweenChildren: 15,
                   children: [
                     SpeedDialChild(
-                      child: Icon(Icons.text_snippet_outlined),
-                      label: 'New Task',
+                      child: const Icon(Icons.text_snippet_outlined),
+                      label: AppLocalizations.of(context)!.new_task,
                       backgroundColor: Colors.cyanAccent[700],
                       onTap: () {
                         _createTask(snapshot.data!.root.id);
                       },
                     ),
                     SpeedDialChild(
-                      child: Icon(Icons.folder_open_rounded),
-                      label: 'New Project',
+                      child: const Icon(Icons.folder_open_rounded),
+                      label: AppLocalizations.of(context)!.new_project,
                       backgroundColor: Colors.cyanAccent[700],
                       onTap: () {
                         _createProject(snapshot.data!.root.id);
@@ -230,7 +253,7 @@ class _PageActivitiesState extends State<PageActivities> {
                               ),
                               width: 100,
                               child: Text(
-                                "Project",
+                                AppLocalizations.of(context)!.project,
                                 style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -248,9 +271,9 @@ class _PageActivitiesState extends State<PageActivities> {
                                 right: 10,
                                 bottom: 10,
                               ),
-                              width: 100.0,
+                              width: 110.0,
                               child: Text(
-                                "Identifier",
+                                AppLocalizations.of(context)!.identifier,
                                 style: TextStyle(
                                     fontSize: 19, color: Colors.grey[700]),
                               ),
@@ -280,7 +303,7 @@ class _PageActivitiesState extends State<PageActivities> {
                             right: 10,
                             bottom: 10,
                           ),
-                          width: 100.0,
+                          width: 110.0,
                           child: Text(
                             "Tags",
                             style: TextStyle(
@@ -312,9 +335,9 @@ class _PageActivitiesState extends State<PageActivities> {
                             right: 10,
                             bottom: 10,
                           ),
-                          width: 100.0,
+                          width: 110.0,
                           child: Text(
-                            "Duration",
+                            AppLocalizations.of(context)!.duration,
                             style: TextStyle(
                                 fontSize: 19, color: Colors.grey[700]),
                           ),
@@ -344,9 +367,9 @@ class _PageActivitiesState extends State<PageActivities> {
                             right: 10,
                             bottom: 10,
                           ),
-                          width: 100.0,
+                          width: 110.0,
                           child: Text(
-                            "Initial date",
+                            AppLocalizations.of(context)!.initial_date,
                             style: TextStyle(
                                 fontSize: 19, color: Colors.grey[700]),
                           ),
@@ -376,9 +399,9 @@ class _PageActivitiesState extends State<PageActivities> {
                             right: 10,
                             bottom: 10,
                           ),
-                          width: 100.0,
+                          width: 110.0,
                           child: Text(
-                            "Final date",
+                            AppLocalizations.of(context)!.final_date,
                             style: TextStyle(
                                 fontSize: 19, color: Colors.grey[700]),
                           ),
@@ -438,7 +461,7 @@ class _PageActivitiesState extends State<PageActivities> {
                   children: [
                     SpeedDialChild(
                       child: Icon(Icons.text_snippet_outlined),
-                      label: 'New Task',
+                      label: AppLocalizations.of(context)!.new_task,
                       backgroundColor: Colors.cyanAccent[700],
                       onTap: () {
                         _createTask(snapshot.data!.root.id);
@@ -446,7 +469,7 @@ class _PageActivitiesState extends State<PageActivities> {
                     ),
                     SpeedDialChild(
                       child: Icon(Icons.folder_open_rounded),
-                      label: 'New Project',
+                      label: AppLocalizations.of(context)!.new_project,
                       backgroundColor: Colors.cyanAccent[700],
                       onTap: () {
                         _createProject(snapshot.data!.root.id);
@@ -476,9 +499,9 @@ class _PageActivitiesState extends State<PageActivities> {
       return ListTile(
         leading: Icon(Icons.folder_open_rounded),
         title: Text('${activity.name}'),
-        subtitle: const Text(
-          "Project",
-          style: TextStyle(
+        subtitle: Text(
+          AppLocalizations.of(context)!.project,
+          style: const TextStyle(
             fontSize: 18.0,
             color: CupertinoColors.inactiveGray,
           ),
@@ -509,9 +532,9 @@ class _PageActivitiesState extends State<PageActivities> {
           },
         ),
         title: Text('${activity.name}'),
-        subtitle: const Text(
-          "Task",
-          style: TextStyle(
+        subtitle: Text(
+          AppLocalizations.of(context)!.task,
+          style: const TextStyle(
             fontSize: 18.0,
             color: CupertinoColors.inactiveGray,
           ),
