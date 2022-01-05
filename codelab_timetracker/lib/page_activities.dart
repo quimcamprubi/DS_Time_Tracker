@@ -445,8 +445,8 @@ class _PageActivitiesState extends State<PageActivities> {
                           padding: const EdgeInsets.all(16.0),
                           itemCount: snapshot.data!.root.children.length,
                           itemBuilder: (BuildContext context, int index) =>
-                              _buildRow(
-                                  snapshot.data!.root.children[index], index),
+                              _buildRow(snapshot.data!.root.
+                              childrenOrderedByDuration()[index], index),
                           separatorBuilder: (BuildContext context, int index) =>
                               const Divider(),
                         ),

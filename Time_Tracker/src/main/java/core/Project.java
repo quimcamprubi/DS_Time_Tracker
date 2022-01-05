@@ -127,7 +127,7 @@ public class Project extends Activity implements Observer {
     } else {
       returnedJsonObject.put("initialDate", this.getParsedStartTime());
       returnedJsonObject.put("finalDate", this.getParsedEndTime());
-      returnedJsonObject.put("duration", this.getDuration().getSeconds()); //TODO DURATION
+      returnedJsonObject.put("duration", this.getDuration().getSeconds());
     }
     JSONArray arr = new JSONArray();
     if (this.parent == null) {

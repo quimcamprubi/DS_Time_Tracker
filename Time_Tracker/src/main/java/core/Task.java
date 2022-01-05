@@ -118,7 +118,7 @@ public class Task extends Activity implements Observer {
     } else {
       returnedJsonObject.put("initialDate", this.getParsedStartTime());
       returnedJsonObject.put("finalDate", this.getParsedEndTime());
-      returnedJsonObject.put("duration", this.getDuration().toSecondsPart()); //TODO DURATION
+      returnedJsonObject.put("duration", this.getDuration().getSeconds());
     }
     returnedJsonObject.put("parent", this.parent.getName());
     JSONArray intervals = new JSONArray();
@@ -128,7 +128,7 @@ public class Task extends Activity implements Observer {
       obj2.put("active", interval.getActive());
       obj2.put("initialDate", interval.getParsedStartTime());
       obj2.put("finalDate", interval.getParsedEndTime());
-      obj2.put("duration", interval.getDuration().toSecondsPart());
+      obj2.put("duration", interval.getDuration().getSeconds());
       intervals.put(obj2);
     }
     logger.trace(first, "Intervals of task {} stored", this.name);
