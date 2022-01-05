@@ -25,6 +25,7 @@ abstract class Activity {
 }
 
 class Project extends Activity {
++ update()
 - activities: ArrayList<Activity>
 + Project(name: String, tags: ArrayList<String>, parent: Activity)
 + updateParentDuration()
@@ -36,6 +37,7 @@ class Project extends Activity {
 }
 
 class Task extends Activity {
++ update()
 - intervals: ArrayList<Interval>
 + Task(name: String, tags: ArrayList<String>, parent: Activity)
 + start()
@@ -170,9 +172,17 @@ class DataManager {
 package webserver <<Folder>> {
 
 class MainWebServer{
++ main()
++ webServer()
++ makeTreeCourses()
 }
 
 class WebServer{
+- currentActivity: Activity
+- root: Activity
++WebServer()
+-findActivityById(id: int)
+
 }
 
 }
@@ -185,7 +195,11 @@ Interval "1" *-up-> "1" IDgenerator
 Task "1" *-left-> "n" Interval: intervals
 Clock -down-|> Observable
 Observable "1" -Down-> "n" Observer
-Interval -up-|> Observer
+Task -down-|> Observer
+Project -down-|> Observer
+Interval -down-|> Observer
+
+
 Task -[hidden]right-> Project
 PrintTree .up.|> Visitor
 PrintWholeTree .up.|> Visitor
@@ -193,5 +207,10 @@ SavetoJSON .up.|> Visitor
 SearchTreeById .up.|> Visitor
 
 SearchTree .up.|> Visitor
+
+MainWebServer "1" *-down-> "1" WebServer
+WebServer "n" *-up-> "1" Activity
+
+
 
 @enduml
