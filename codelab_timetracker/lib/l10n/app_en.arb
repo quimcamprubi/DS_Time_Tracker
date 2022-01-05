@@ -83,5 +83,9 @@
     "to": "To",
     "@to": {
       "description": "Interval end"
+    },
+    "recentTaskTitle": "Recent Tasks",
+    "@recentTaskTitle": {
+      "description": "Recent Tasks"
     }
 }

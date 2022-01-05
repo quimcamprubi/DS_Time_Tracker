@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:ffi';
 
+import 'package:codelab_timetracker/main.dart';
 import 'package:codelab_timetracker/page_new_activity.dart';
+import 'package:codelab_timetracker/page_recent_activities.dart';
 import 'package:codelab_timetracker/page_report.dart';
 import 'package:codelab_timetracker/tree.dart' hide getTree;
 import 'package:codelab_timetracker/requests.dart';
@@ -12,6 +15,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:io';
 import 'package:intl/date_symbol_data_local.dart';
+import 'globals.dart' as globals;
 
 extension on Duration {
   String format() => '$this'.split('.')[0].padLeft(8, '0');
@@ -47,6 +51,7 @@ class _PageActivitiesState extends State<PageActivities> {
   String searchByTag = "Search by tag...";
   final String defaultLocale = Platform.localeName;
   late DateFormat formatter;
+
 
   @override
   void initState() {
@@ -142,7 +147,7 @@ class _PageActivitiesState extends State<PageActivities> {
                                 hintText: hint,
                                 hintStyle: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontStyle: FontStyle.italic,
                                 ),
                                 border: InputBorder.none,
@@ -161,6 +166,12 @@ class _PageActivitiesState extends State<PageActivities> {
                     },
                     icon: customIcon,
                   ),
+                  IconButton(
+                      icon: Icon(Icons.more_time),
+                      onPressed: () {
+                        _navigateDownRecentTasks(globals.recentTasks);
+
+                      }),
                   IconButton(
                       icon: Icon(Icons.home),
                       onPressed: () {
@@ -561,7 +572,7 @@ class _PageActivitiesState extends State<PageActivities> {
             Text('$strDuration'),
           ],
         ),
-        onTap: () => _navigateDownIntervals(activity.id),
+        onTap: () => _addTaskAndNavigate(activity),
       );
     } else {
       throw (Exception("Activity that is neither a Task or a Project"));
@@ -569,6 +580,21 @@ class _PageActivitiesState extends State<PageActivities> {
       // Exception is also a Widget?
     }
   }
+  void _addTaskAndNavigate(Task task){
+    _navigateDownIntervals(task.id);
+    //add to recent task
+    if (globals.recentTasks.contains(task)) {
+      globals.recentTasks.removeAt(globals.recentTasks.indexOf(task));
+      globals.recentTasks.add(task);
+    }
+    else{
+      if (globals.recentTasks.length >=5){
+        globals.recentTasks.removeAt(0);
+      }
+      globals.recentTasks.add(task);
+    }  }
+
+
 
   void _navigateDownActivities(int childId) {
     _timer.cancel();
@@ -576,6 +602,18 @@ class _PageActivitiesState extends State<PageActivities> {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
       builder: (context) => PageActivities(childId),
+    ))
+        .then((var value) {
+      _activateTimer();
+      _refresh();
+    });
+  }
+
+  void _navigateDownRecentTasks(List<Task> recentTasks) {
+    _timer.cancel();
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(
+      builder: (context) => PageRecentActivities(recentTasks),
     ))
         .then((var value) {
       _activateTimer();
