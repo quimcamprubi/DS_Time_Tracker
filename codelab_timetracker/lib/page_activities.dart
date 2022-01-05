@@ -583,7 +583,7 @@ class _PageActivitiesState extends State<PageActivities> {
   void _addTaskAndNavigate(Task task){
     _navigateDownIntervals(task.id);
     //add to recent task
-    if (globals.recentTasks.contains(task)) {
+    if (isInList(task)) {
       globals.recentTasks.removeAt(globals.recentTasks.indexOf(task));
       globals.recentTasks.add(task);
     }
@@ -594,7 +594,13 @@ class _PageActivitiesState extends State<PageActivities> {
       globals.recentTasks.add(task);
     }  }
 
-
+  bool isInList(Task task){
+    bool varbool = false;
+    for (var name in globals.recentTasks){
+      if (name.id == task.id)varbool = true;
+    }
+    return varbool;
+  }
 
   void _navigateDownActivities(int childId) {
     _timer.cancel();
