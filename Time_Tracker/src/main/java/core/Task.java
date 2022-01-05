@@ -97,6 +97,11 @@ public class Task extends Activity implements Observer {
   }
 
   @Override
+  public boolean isActive() {
+    return this.active;
+  }
+
+  @Override
   public JSONObject toJson(int depth) {
     JSONObject returnedJsonObject = new JSONObject();
     // We add all the important information for each core.Activity

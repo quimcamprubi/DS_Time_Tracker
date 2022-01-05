@@ -171,7 +171,6 @@ public class WebServer {
               IDgenerator.getInstance().getId());
           break;
         }
-        // TODO: edit task, project properties
         default:
           assert false;
       }

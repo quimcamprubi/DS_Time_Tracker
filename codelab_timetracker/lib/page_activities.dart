@@ -177,7 +177,8 @@ class _PageActivitiesState extends State<PageActivities> {
                 padding: const EdgeInsets.all(16.0),
                 itemCount: snapshot.data!.root.children.length,
                 itemBuilder: (BuildContext context, int index) =>
-                    _buildRow(snapshot.data!.root.children[index], index),
+                    _buildRow(snapshot.data!.root
+                        .childrenOrderedByDuration()[index], index),
                 separatorBuilder: (BuildContext context, int index) =>
                     const Divider(),
               ),
@@ -506,7 +507,17 @@ class _PageActivitiesState extends State<PageActivities> {
             color: CupertinoColors.inactiveGray,
           ),
         ),
-        trailing: Text('$strDuration'),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (activity.active) const Icon(
+              Icons.circle,
+              color: Colors.redAccent,
+              size: 15,),
+            if (activity.active) const SizedBox(width:7),
+            Text('$strDuration'),
+          ],
+        ),
         onTap: () => _navigateDownActivities(activity.id),
       );
     } else if (activity is Task) {
@@ -539,7 +550,17 @@ class _PageActivitiesState extends State<PageActivities> {
             color: CupertinoColors.inactiveGray,
           ),
         ),
-        trailing: trailing,
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (activity.active) const Icon(
+              Icons.circle,
+              color: Colors.redAccent,
+              size: 15,),
+            if (activity.active) SizedBox(width:7),
+            Text('$strDuration'),
+          ],
+        ),
         onTap: () => _navigateDownIntervals(activity.id),
       );
     } else {

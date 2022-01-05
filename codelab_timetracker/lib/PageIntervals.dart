@@ -118,7 +118,8 @@ class _PageIntervalsState extends State<PageIntervals> {
                               onPressed: () {
                                 if (task.active) {
                                   stop(task.id);
-                                  _refresh(); // to show immediately that task has started
+                                  _refresh(); // to show immediately that
+                                  // task has started
                                 } else {
                                   start(task.id);
                                   _refresh(); // to show immediately that task has stopped
@@ -326,7 +327,8 @@ class _PageIntervalsState extends State<PageIntervals> {
                         padding: const EdgeInsets.all(16.0),
                         itemCount: numChildren,
                         itemBuilder: (BuildContext context, int index) =>
-                            _buildRow(snapshot.data!.root.children[index], index),
+                            _buildRow(task.childrenOrderedByRecent()[index],
+                                index),
                         separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                       ),
@@ -376,7 +378,8 @@ class _PageIntervalsState extends State<PageIntervals> {
     }
     else {
       return ListTile(
-          title: Text('From:  ${strInitialDate}\nTo:       ${strFinalDate}',
+          title: Text('${AppLocalizations.of(context)!.from}:  ${strInitialDate}'
+              '\n${AppLocalizations.of(context)!.to}:       ${strFinalDate}',
             style: const TextStyle(
               fontSize: 18.0,
             ),

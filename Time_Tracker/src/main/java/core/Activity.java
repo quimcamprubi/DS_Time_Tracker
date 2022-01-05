@@ -161,6 +161,7 @@ public abstract class Activity {
   }
 
   public abstract JSONObject toJson(int depth);
+  public abstract boolean isActive();
 
   protected boolean invariant() {
     Boolean nameNotNull = this.name != null;

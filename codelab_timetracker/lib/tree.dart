@@ -14,6 +14,7 @@ abstract class Activity {
   int duration;
   List<dynamic> children = List<dynamic>.empty(growable: true);
   String tags;
+  bool active;
 
   // formerly List<dynamic>(); but now because of null safety it has to be
   // initialized like that
@@ -24,9 +25,14 @@ abstract class Activity {
         initialDate = json['initialDate'] == null ? null : _dateFormatter.parse(json['initialDate']),
         finalDate = json['finalDate'] == null ? null : _dateFormatter.parse(json['finalDate']),
         duration = json['duration'],
-        tags = json['tags'].join(', ');
-}
+        tags = json['tags'].join(', '),
+        active = json['active'];
 
+  List<dynamic> childrenOrderedByDuration() {
+    children.sort((b, a) => a.duration.compareTo(b.duration));
+    return children;
+  }
+}
 
 class Project extends Activity {
   Project.fromJson(Map<String, dynamic> json) : super.fromJson(json) {
@@ -55,6 +61,11 @@ class Task extends Activity {
     for (Map<String, dynamic> jsonChild in json['intervals']) {
       children.add(Interval.fromJson(jsonChild));
     }
+  }
+  List<dynamic> childrenOrderedByRecent() {
+    //List<Interval> list = children as List<Interval>;
+    children.sort((b, a) => a.initialDate.compareTo(b.initialDate));
+    return children;
   }
 }
 

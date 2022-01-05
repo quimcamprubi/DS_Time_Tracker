@@ -69,6 +69,11 @@ public class Project extends Activity implements Observer {
     }
   }
 
+  @Override
+  public boolean isActive() {
+    return activities.stream().anyMatch(a -> a.isActive());
+  }
+
   public void addChild(Activity child) {
     // Preconditions
     if (child == null) {
@@ -113,6 +118,7 @@ public class Project extends Activity implements Observer {
     returnedJsonObject.put("name", this.name);
     returnedJsonObject.put("class", this.getClass().getSimpleName().toLowerCase());
     returnedJsonObject.put("id", this.Id);
+    returnedJsonObject.put("active", this.isActive());
     // Since the timings can be null, we check before trying to parse them.
     if (this.startTime == null) {
       returnedJsonObject.put("initialDate", JSONObject.NULL);
