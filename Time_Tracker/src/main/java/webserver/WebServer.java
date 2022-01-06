@@ -4,6 +4,7 @@ import core.Activity;
 import core.IDgenerator;
 import core.Task;
 import core.Project;
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -169,6 +170,18 @@ public class WebServer {
           Project parentProject = (Project) parentActivity;
           Task newTask = new Task(name, tags, parentProject,
               IDgenerator.getInstance().getId());
+          break;
+        }
+        case "get_search":{
+          URLDecoder decoder = new URLDecoder();
+          String tag = decoder.decode(tokens[1], StandardCharsets.UTF_8);
+          Activity activity = findActivityById(0);
+          core.SearchTree searchTree = core.SearchTree.getInstance();
+          final ArrayList<core.Activity> searchedActivities = searchTree.searchByTag(activity, tag);
+          JSONArray json = new JSONArray();
+          for(Activity el : searchedActivities)
+            json.put(el.toJson(0));
+          body = json.toString();
           break;
         }
         default:

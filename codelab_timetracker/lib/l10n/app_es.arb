@@ -19,5 +19,6 @@
     "no_intervals": "Esta Tarea aún no contiene ningún Intervalo.",
     "from": "Desde",
     "to": "Hasta",
-    "recentTaskTitle": "Tareas recientes"
+    "recentTaskTitle": "Tareas recientes",
+    "searchResults": "Resultados de búsqueda para "
 }

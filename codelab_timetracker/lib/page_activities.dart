@@ -5,6 +5,7 @@ import 'package:codelab_timetracker/main.dart';
 import 'package:codelab_timetracker/page_new_activity.dart';
 import 'package:codelab_timetracker/page_recent_activities.dart';
 import 'package:codelab_timetracker/page_report.dart';
+import 'package:codelab_timetracker/page_search.dart';
 import 'package:codelab_timetracker/tree.dart' hide getTree;
 import 'package:codelab_timetracker/requests.dart';
 import 'package:flutter/cupertino.dart';
@@ -132,16 +133,7 @@ class _PageActivitiesState extends State<PageActivities> {
                             title: TextField(
                               onSubmitted: (tag) {
                                 //convert variable "tag" to id
-                                id_act = 4;
-                                _timer.cancel();
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute<void>(
-                                  builder: (context) => PageActivities(id_act),
-                                ))
-                                    .then((var value) {
-                                  _activateTimer();
-                                  _refresh();
-                                });
+                                _navigateDownSearch(tag);
                               },
                               decoration: InputDecoration(
                                 hintText: hint,
@@ -608,6 +600,19 @@ class _PageActivitiesState extends State<PageActivities> {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
       builder: (context) => PageActivities(childId),
+    ))
+        .then((var value) {
+      _activateTimer();
+      _refresh();
+    });
+  }
+
+  void _navigateDownSearch(String tag) async{
+    _timer.cancel();
+    List<dynamic> searchRes = await getSearch(tag);
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(
+      builder: (context) => PageSearch(searchRes, tag),
     ))
         .then((var value) {
       _activateTimer();

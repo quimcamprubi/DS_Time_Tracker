@@ -89,3 +89,30 @@ async {
     throw Exception('Failed to create Task');
   }
 }
+
+Future<List> getSearch(String tag) async {
+  var uri = Uri.parse("$baseUrl/get_search?$tag");
+  final response = await client.get(uri);
+  // response is NOT a Future because of await but since getSearch() is async,
+  // execution continues (leaves this function) until response is available,
+  // and then we come back here
+  if (response.statusCode == 200) {
+    print("statusCode=$response.statusCode");
+    print(response.body);
+    // If the server did return a 200 OK response, then parse the JSON.
+    List<Activity> finalList = List<Activity>.empty(growable: true);
+    List<dynamic> decoded = convert.jsonDecode(response.body);
+    decoded.forEach((element) =>  finalList.add(jsonFormatter(element)));
+    return finalList;
+  } else {
+    // If the server did not return a 200 OK response, then throw an exception.
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get search');
+  }
+}
+
+Activity jsonFormatter(dynamic o){
+  if (o['class'] == "project")
+    return Project.fromJson(o);
+  return Task.fromJson(o);
+}

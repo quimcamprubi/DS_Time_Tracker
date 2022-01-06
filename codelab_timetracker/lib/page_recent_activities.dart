@@ -96,34 +96,29 @@ class _PageRecentActivitiesState extends State<PageRecentActivities> {
       // at the moment is the same, maybe changes in the future
       Widget trailing;
       trailing = Text('$strDuration');
-      return ListTile(
-        leading: IconButton(
-          padding: EdgeInsets.zero,
-          constraints: BoxConstraints(),
-          iconSize: 28,
-          icon: task.active ? Icon(Icons.pause) : Icon(Icons.play_arrow),
-          color: task.active ? Colors.redAccent : Colors.greenAccent[400],
-          onPressed: () {
-            if (task.active) {
-              stop(activity.id);
-              _refresh(); // to show immediately that task has started
-            } else {
-              start(activity.id);
-              _refresh(); // to show immediately that task has stopped
-            }
-          },
+    return ListTile(
+      leading: Icon(Icons.text_snippet),
+      title: Text('${activity.name}'),
+      subtitle: Text(
+        AppLocalizations.of(context)!.task,
+        style: const TextStyle(
+          fontSize: 18.0,
+          color: CupertinoColors.inactiveGray,
         ),
-        title: Text('${activity.name}'),
-        subtitle: Text(
-          AppLocalizations.of(context)!.task,
-          style: const TextStyle(
-            fontSize: 18.0,
-            color: CupertinoColors.inactiveGray,
-          ),
-        ),
-        trailing: trailing,
-        onTap: () => _navigateDownIntervals(activity.id),
-      );
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (activity.active) const Icon(
+            Icons.circle,
+            color: Colors.redAccent,
+            size: 15,),
+          if (activity.active) const SizedBox(width:7),
+          Text('$strDuration'),
+        ],
+      ),
+      onTap: () => _navigateDownIntervals(activity.id),
+    );
 
   }
 

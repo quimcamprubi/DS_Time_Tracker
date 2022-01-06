@@ -19,5 +19,6 @@
     "no_intervals": "Aquesta Tasca encara no conté cap Interval.",
     "from": "Des de",
     "to": "Fins",
-    "recentTaskTitle": "Tasques recents"
+    "recentTaskTitle": "Tasques recents",
+    "searchResults": "Resultats de cerca per "
 }

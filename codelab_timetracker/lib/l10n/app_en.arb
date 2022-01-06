@@ -87,5 +87,10 @@
     "recentTaskTitle": "Recent Tasks",
     "@recentTaskTitle": {
       "description": "Recent Tasks"
-    }
+    },
+
+  "searchResults": "Search results for ",
+  "@searchResults": {
+    "description": "Search results for a concrete tag"
+  }
 }
