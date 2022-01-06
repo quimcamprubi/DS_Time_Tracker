@@ -573,25 +573,26 @@ class _PageActivitiesState extends State<PageActivities> {
     }
   }
   void _addTaskAndNavigate(Task task){
-    _navigateDownIntervals(task.id);
-    //add to recent task
-    if (isInList(task)) {
-      globals.recentTasks.removeAt(globals.recentTasks.indexOf(task));
-      globals.recentTasks.add(task);
+    //add to recent tasks list
+    int positionInList = isInListIndex(task);
+    if (positionInList != -1) {
+      globals.recentTasks.removeAt(positionInList);
     }
-    else{
-      if (globals.recentTasks.length >=5){
-        globals.recentTasks.removeAt(0);
+    else if (globals.recentTasks.length >= 5){
+        globals.recentTasks.removeLast();
       }
-      globals.recentTasks.add(task);
-    }  }
+    globals.recentTasks.insert(0, task);
+    _navigateDownIntervals(task.id);
+  }
 
-  bool isInList(Task task){
-    bool varbool = false;
+  int isInListIndex(Task task){
+    int i = 0;
+    int returnIndex = -1;
     for (var name in globals.recentTasks){
-      if (name.id == task.id)varbool = true;
+      if (name.id == task.id) returnIndex = i;
+      i += 1;
     }
-    return varbool;
+    return returnIndex;
   }
 
   void _navigateDownActivities(int childId) {
