@@ -357,16 +357,32 @@ class _PageIntervalsState extends State<PageIntervals> {
         .split('.')
         .first;
     String strInitialDate = interval.initialDate.toString().split('.')[0];
+    strInitialDate = strInitialDate.substring(2);
     // this removes the microseconds part
     String strFinalDate = interval.finalDate.toString().split('.')[0];
+    strFinalDate = strFinalDate.substring(2);
     if (!interval.active) {
       return ListTile(
-          title: Text('${AppLocalizations.of(context)!.from}:  '
-              '${strInitialDate}\n${AppLocalizations.of(context)!.to}:       '
-              '${strFinalDate}',
-            style: const TextStyle(
-              fontSize: 18.0,
-            ),
+          title: Row(
+            children: [
+              Container(
+                  width: 63,
+                  child:
+                  Text('${AppLocalizations.of(context)!.from}:\n'
+                      '${AppLocalizations.of(context)!.to}:',
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),)
+              ),
+              Container(
+                  width: 160,
+                  child:
+                  Text('$strInitialDate $strFinalDate',
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),)
+              ),
+            ],
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
@@ -378,13 +394,30 @@ class _PageIntervalsState extends State<PageIntervals> {
     }
     else {
       return ListTile(
-          title: Text('${AppLocalizations.of(context)!.from}:  ${strInitialDate}'
-              '\n${AppLocalizations.of(context)!.to}:       ${strFinalDate}',
-            style: const TextStyle(
-              fontSize: 18.0,
-            ),
+          title:
+          Row(
+            children: [
+              Container(
+                  width: 63,
+                  child:
+                  Text('${AppLocalizations.of(context)!.from}:\n'
+                      '${AppLocalizations.of(context)!.to}:',
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),)
+              ),
+              Container(
+                  width: 160,
+                  child:
+                  Text('$strInitialDate $strFinalDate',
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),)
+              ),
+            ],
           ),
-          trailing: Row(
+          trailing:
+          Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(
