@@ -95,17 +95,7 @@ class _PageSearchState extends State<PageSearch> {
             color: CupertinoColors.inactiveGray,
           ),
         ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (activity.active) const Icon(
-              Icons.circle,
-              color: Colors.redAccent,
-              size: 15,),
-            if (activity.active) const SizedBox(width:7),
-            Text('$strDuration'),
-          ],
-        ),
+        trailing: Text('$strDuration'),
         onTap: () => _navigateDownActivities(activity.id),
       );
     } else if (activity is Task) {
