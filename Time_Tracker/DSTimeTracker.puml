@@ -80,9 +80,7 @@ class SavetoJSON {
 + getInstance()
 + store()
 + visitProject(project: Project)
-+ recursiveVisitProject(project: Project, o: JSONObject)
 + visitTask(task: Task)
-+ recursiveVisitTask(task: Task, o: JSONObject)
 + visitInterval(interval: Interval)
 }
 
