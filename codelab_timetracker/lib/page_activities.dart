@@ -315,8 +315,7 @@ class _PageActivitiesState extends State<PageActivities> {
                                 onChanged: (value){ //get value when changed
                                   filterValue = value as String;
                                   filterIcon = Icon(Icons.filter_alt);
-                                  customDropdown = Text(AppLocalizations.of(context)!
-                                      .home);
+                                  customDropdown = Text(widget.name);
                                 },
                                 icon: const Padding( //Icon at tail, arrow bottom is default icon
                                     padding: EdgeInsets.only(left:20),
@@ -335,7 +334,7 @@ class _PageActivitiesState extends State<PageActivities> {
                           );
                         } else {
                           filterIcon = Icon(Icons.filter_alt);
-                          customDropdown = Text(pageTitle);
+                          customDropdown = Text(widget.name);
                         }
                       });
                     },
@@ -649,7 +648,7 @@ class _PageActivitiesState extends State<PageActivities> {
         ),
         onTap: () {
           filterIcon = Icon(Icons.filter_alt);
-          customDropdown = Text(pageTitle);
+          customDropdown = Text(widget.name);
           _navigateDownActivities(activity.id, activity.name);},
       );
     } else if (activity is Task) {
