@@ -207,7 +207,8 @@ SearchTreeById .up.|> Visitor
 SearchTree .up.|> Visitor
 
 MainWebServer "1" *-down-> "1" WebServer
-WebServer "n" *-up-> "1" Activity
+WebServer "1" *-up-> "1" Activity
+MainWebServer "1" *-down-> "n" Activity
 
 
 
