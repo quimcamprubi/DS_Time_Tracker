@@ -86,7 +86,7 @@ class _PageIntervalsState extends State<PageIntervals> {
                       while(Navigator.of(context).canPop()) {
                         Navigator.of(context).pop();
                       }
-                      PageActivities(0);
+                      PageActivities(0, "root");
                     }),
               ],
             ),

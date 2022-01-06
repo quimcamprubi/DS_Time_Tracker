@@ -71,7 +71,7 @@ class _PageRecentActivitiesState extends State<PageRecentActivities> {
                           print("pop");
                           Navigator.of(context).pop();
                         }
-                        PageActivities(0);
+                        PageActivities(0, "root");
                       }),
                 ],
               ),
@@ -112,12 +112,12 @@ class _PageRecentActivitiesState extends State<PageRecentActivities> {
 
   }
 
-  void _navigateDownActivities(int childId) {
+  void _navigateDownActivities(int childId, String name) {
     _timer.cancel();
     // we can not do just _refresh() because then the up arrow doesn't appear in the appbar
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
-      builder: (context) => PageActivities(childId),
+      builder: (context) => PageActivities(childId, name),
     ))
         .then((var value) {
       _activateTimer();

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        home: PageActivities(0),
+        home: PageActivities(0, "root"),
     );
   }
 }

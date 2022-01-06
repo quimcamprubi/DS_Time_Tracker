@@ -24,8 +24,9 @@ extension on Duration {
 
 class PageActivities extends StatefulWidget {
   final int id;
+  final String name;
 
-  PageActivities(this.id);
+  PageActivities(this.id, this.name);
 
   @override
   _PageActivitiesState createState() => _PageActivitiesState();
@@ -59,6 +60,7 @@ class _PageActivitiesState extends State<PageActivities> {
   @override
   void initState() {
     super.initState();
+    customDropdown = Text(widget.name);
     formatter = DateFormat(null, defaultLocale);
     switch (defaultLocale) {
       case "ca_ES":
@@ -115,7 +117,7 @@ class _PageActivitiesState extends State<PageActivities> {
           } else {
             pageTitle = snapshot.data!.root.name;
           }
-          customDropdown = Text(pageTitle);
+          //customDropdown = Text(pageTitle);
           if (snapshot.data!.root.id == 0) {
             return Scaffold(
               appBar: AppBar(
@@ -134,21 +136,21 @@ class _PageActivitiesState extends State<PageActivities> {
                         customMenuBar = ListTile(
                             title: DropdownButton(
                               value: filterValue,
-                              items: const <DropdownMenuItem<String>>[ //add items in the dropdown
+                              items: <DropdownMenuItem<String>>[ //add items in the dropdown
                                 DropdownMenuItem(
-                                  child: Text("Duration"),
+                                  child: Text(AppLocalizations.of(context)!.drop1),
                                   value: "duration",
                                 ),
                                 DropdownMenuItem(
-                                    child: Text("Start date"),
+                                    child: Text(AppLocalizations.of(context)!.drop2),
                                     value: "startDate"
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("End date"),
+                                  child: Text(AppLocalizations.of(context)!.drop3),
                                   value: "endDate",
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Alphabetical"),
+                                  child: Text(AppLocalizations.of(context)!.drop4),
                                   value: "name",
                                 )
 
@@ -238,7 +240,7 @@ class _PageActivitiesState extends State<PageActivities> {
                           print("pop");
                           Navigator.of(context).pop();
                         }
-                        PageActivities(0);
+                        PageActivities(0, "root");
                       }),
                 ],
               ),
@@ -291,21 +293,21 @@ class _PageActivitiesState extends State<PageActivities> {
                           customDropdown = ListTile(
                               title: DropdownButton(
                                 value: filterValue,
-                                items: const <DropdownMenuItem<String>>[ //add items in the dropdown
+                                items: <DropdownMenuItem<String>>[ //add items in the dropdown
                                   DropdownMenuItem(
-                                    child: Text("Duration"),
+                                    child: Text(AppLocalizations.of(context)!.drop1),
                                     value: "duration",
                                   ),
                                   DropdownMenuItem(
-                                      child: Text("Start date"),
+                                      child: Text(AppLocalizations.of(context)!.drop2),
                                       value: "startDate"
                                   ),
                                   DropdownMenuItem(
-                                    child: Text("End date"),
+                                    child: Text(AppLocalizations.of(context)!.drop3),
                                     value: "endDate",
                                   ),
                                   DropdownMenuItem(
-                                    child: Text("Alphabetical"),
+                                    child: Text(AppLocalizations.of(context)!.drop4),
                                     value: "name",
                                   )
 
@@ -345,7 +347,7 @@ class _PageActivitiesState extends State<PageActivities> {
                         while (Navigator.of(context).canPop()) {
                           Navigator.of(context).pop();
                         }
-                        PageActivities(0);
+                        PageActivities(0, "root");
                       }),
                 ],
               ),
@@ -645,7 +647,10 @@ class _PageActivitiesState extends State<PageActivities> {
             Text('$strDuration'),
           ],
         ),
-        onTap: () => _navigateDownActivities(activity.id),
+        onTap: () {
+          filterIcon = Icon(Icons.filter_alt);
+          customDropdown = Text(pageTitle);
+          _navigateDownActivities(activity.id, activity.name);},
       );
     } else if (activity is Task) {
       Task task = activity as Task;
@@ -719,12 +724,13 @@ class _PageActivitiesState extends State<PageActivities> {
     return returnIndex;
   }
 
-  void _navigateDownActivities(int childId) {
+  void _navigateDownActivities(int childId, String name) {
     _timer.cancel();
+    customDropdown = Text(name);
     // we can not do just _refresh() because then the up arrow doesn't appear in the appbar
     Navigator.of(context)
         .push(MaterialPageRoute<void>(
-      builder: (context) => PageActivities(childId),
+      builder: (context) => PageActivities(childId, name),
     ))
         .then((var value) {
       _activateTimer();

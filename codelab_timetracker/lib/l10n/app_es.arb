@@ -1,7 +1,7 @@
 {
     "home": "Inicio",
     "hello": "Hola {username}",
-    "search_by_tag": "Busca por tag...",
+    "search_by_tag": "Tag...",
     "project": "Proyecto",
     "task": "Tarea",
     "new_project": "Nuevo Proyecto",
@@ -20,5 +20,9 @@
     "from": "Desde",
     "to": "Hasta",
     "recentTaskTitle": "Tareas recientes",
-    "searchResults": "Resultados de búsqueda para "
+    "searchResults": "Resultados de búsqueda para ",
+    "drop1": "Duración",
+    "drop2": "Fecha inicio",
+    "drop3": "Fecha final",
+    "drop4": "Alfabético"
 }

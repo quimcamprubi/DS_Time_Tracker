@@ -12,7 +12,7 @@
          }
       }
     },
-    "search_by_tag": "Search by tag...",
+    "search_by_tag": "Tag...",
     "@search_by_tag": {
       "description": "Search bar hint"
     },
@@ -92,5 +92,25 @@
   "searchResults": "Search results for ",
   "@searchResults": {
     "description": "Search results for a concrete tag"
+  },
+
+  "drop1": "Duration",
+  "@drop1": {
+    "description": "Concrete tag for duration filtering"
+  },
+
+  "drop2": "Start date",
+  "@drop2": {
+    "description": "Concrete tag for start date"
+  },
+
+  "drop3": "Ending date",
+  "@drop3": {
+    "description": "Concrete tag for ending date"
+  },
+
+  "drop4": "Alphabetical",
+  "@drop4": {
+    "description": "Concrete tag for alphabetical"
   }
 }
