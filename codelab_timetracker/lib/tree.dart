@@ -48,7 +48,7 @@ abstract class Activity {
           aux.remove(aux2[i]);
           i++;}
 
-        aux.sort((b, a) => a.initialDate.compareTo(b.initialDate));
+        aux.sort((a, b) => a.initialDate.compareTo(b.initialDate));
 
         aux = aux + aux2;
         children = aux;
@@ -68,7 +68,7 @@ abstract class Activity {
           aux.remove(aux2[i]);
           i++;}
 
-        aux.sort((b, a) => a.finalDate.compareTo(b.finalDate));
+        aux.sort((a, b) => a.finalDate.compareTo(b.finalDate));
 
         aux = aux + aux2;
         children = aux;
