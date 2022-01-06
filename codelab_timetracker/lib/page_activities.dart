@@ -49,7 +49,6 @@ class _PageActivitiesState extends State<PageActivities> {
   final myController = TextEditingController();
   Icon customIcon = const Icon(Icons.search);
   late Widget customSearchBar;
-  String searchByTag = "Search by tag...";
   final String defaultLocale = Platform.localeName;
   late DateFormat formatter;
 
@@ -139,7 +138,7 @@ class _PageActivitiesState extends State<PageActivities> {
                                 hintText: hint,
                                 hintStyle: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 18,
                                   fontStyle: FontStyle.italic,
                                 ),
                                 border: InputBorder.none,
