@@ -55,7 +55,7 @@ public class SaveToJson implements Visitor {
     }
     logger.trace(first, "StartTime, EndTime and Duration stored for root");
 
-    obj.put("Parent", "null");
+    obj.put("parent", "null");
     // Then, we must propagate the Visitor through each children of the current Activity.
     for (Activity a : project.getActivities()) {
       // The handling of the activities differs depending on if the child is a Project (which has
@@ -94,7 +94,7 @@ public class SaveToJson implements Visitor {
       obj.put("duration", project.getDuration().toString());
     }
     logger.trace(first, "StartTime, EndTime and Duration stored for project {}", project.getName());
-    obj.put("Parent", project.getParent().getName());
+    obj.put("parent", project.getParent().getName());
     // Then, we must propagate the Visitor through each children of the current Activity.
     for (Activity a : project.getActivities()) {
       // The handling of the activities differs depending on if the child is a Project (which has
@@ -121,23 +121,23 @@ public class SaveToJson implements Visitor {
     logger.trace(first, "Tags, Name and Class stored for task {}", task.getName());
     // Since the timings can be null, we check before trying to parse them.
     if (task.getStartTime() == null) {
-      obj.put("startDate", "null");
-      obj.put("endDate", "null");
+      obj.put("initialDate", "null");
+      obj.put("finalDate", "null");
       obj.put("duration", "null");
     } else {
-      obj.put("startDate", task.getParsedStartTime());
-      obj.put("endDate", task.getParsedEndTime());
+      obj.put("initialDate", task.getParsedStartTime());
+      obj.put("finalDate", task.getParsedEndTime());
       obj.put("duration", task.getDuration().toString());
     }
     logger.trace(first, "StartTime, EndTime and Duration stored for task {}", task.getName());
-    obj.put("Parent", task.getParent().getName());
+    obj.put("parent", task.getParent().getName());
     // Since a Task contains intervals, we must loop through them and store them in the Intervals
     // JSONArray.
     JSONArray intervals = new JSONArray();
     for (Interval interval : task.getIntervals()) {
       JSONObject obj2 = new JSONObject();
-      obj2.put("startDate", interval.getParsedStartTime());
-      obj2.put("endDate", interval.getParsedEndTime());
+      obj2.put("initialDate", interval.getParsedStartTime());
+      obj2.put("finalDate", interval.getParsedEndTime());
       obj2.put("duration", interval.getDuration().toString());
       intervals.put(obj2);
     }

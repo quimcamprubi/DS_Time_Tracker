@@ -98,13 +98,13 @@ public class DataManager {
       return null;
     }
     // Creation of the tree's root, and addition to the list of all activities.
-    Project root = new Project(rootName, rootTags, null, rootDuration, rootStartTime, rootEndTime, 0);
+    Project root = new Project(rootName, rootTags, null, rootDuration, rootStartTime, rootEndTime, IDgenerator.getInstance().getId());
     loadedActivities.add(root);
 
     //Si ves esto, esta parte debería cambiar drásticamente en recorrido, he borrado mis intentos anteriores pero este era el fragmento
     //original que ellos tenían, aquí deberiamos profundizar a cada nivel sobre activities y yo he hecho un intento creando una función
     // recursiva que reconstruia en cada ciclo y luego llamaba al siguiente pero me ha acabado dando errores un poco chungos
-    /*
+
     logger.debug(first, "Entering the tree recovery loop");
     for (int i = 1; i < jsonArray.length(); i++) {
       // Parse all the attributes of the activities
@@ -120,7 +120,7 @@ public class DataManager {
         father.addChild(son);
       }
     }
-    */
+
 
     return root;
   }
@@ -161,12 +161,13 @@ public class DataManager {
         Objects.equals(x.getName(), parent)).findFirst().get();
 
     // The final creation of the new core.Activity differs a little bit between Projects and Tasks.
-    if (className.equals("core.Project")) {
-      Project project = new Project(name, tags, parentProject, duration, startTime, endTime, 0);
+    if (className.equals("Project")) {
+      Project project = new Project(name, tags, parentProject, duration, startTime, endTime, IDgenerator.getInstance().getId());
       loadedActivities.add(project);
-    } else if (className.equals("core.Task")) {
+    } else if (className.equals("Task")) {
       // If the activity is a core.Task, we must also instantiate its intervals
-      Task task = new Task(name, tags, parentProject, duration, startTime, endTime, 0);
+      Task task = new Task(name, tags, parentProject, duration, startTime, endTime,
+          IDgenerator.getInstance().getId());
       logger.debug(first, "Initializing intervals for task {}", name);
       JSONArray intervals = jsonActivity.getJSONArray("intervals");
       for (int j = 0; j < intervals.length(); j++) {
@@ -189,7 +190,7 @@ public class DataManager {
       }
       loadedActivities.add(task);
     } else {
-      logger.error("Error, one of the JSON objects is neither a core.Task nor a core.Project.");
+      logger.error("Error, one of the JSON objects is neither a Task nor a Project.");
     }
   }
 
