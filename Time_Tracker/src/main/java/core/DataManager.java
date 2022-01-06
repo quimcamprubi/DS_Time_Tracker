@@ -78,13 +78,13 @@ public class DataManager {
     // as each children needs to reference its parent.
     logger.trace(first, "Rebuilding root");
     JSONObject rootJsonActivity = jsonArray.getJSONObject(0);
-    LocalDateTime rootStartTime = LocalDateTime.parse(rootJsonActivity.getString("StartTime"),
+    LocalDateTime rootStartTime = LocalDateTime.parse(rootJsonActivity.getString("initialDate"),
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-    LocalDateTime rootEndTime = LocalDateTime.parse(rootJsonActivity.getString("EndTime"),
+    LocalDateTime rootEndTime = LocalDateTime.parse(rootJsonActivity.getString("finalDate"),
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-    Duration rootDuration = Duration.parse(rootJsonActivity.getString("Duration"));
-    String rootName = rootJsonActivity.getString("Name");
-    JSONArray tagsJsonArrayRoot = rootJsonActivity.getJSONArray("Tags");
+    Duration rootDuration = Duration.parse(rootJsonActivity.getString("duration"));
+    String rootName = rootJsonActivity.getString("name");
+    JSONArray tagsJsonArrayRoot = rootJsonActivity.getJSONArray("tags");
     ArrayList<String> rootTags = new ArrayList<String>();
     logger.trace(first, "Recovered tree root with values: startTime -> {}, endTime -> {}, "
         + "duration  -> {}", rootStartTime, rootEndTime, rootDuration);
@@ -128,9 +128,9 @@ public class DataManager {
   // Function used to create a new activity and append it to the loadedActivities list.
   private void instantiateActivity(JSONObject jsonActivity) {
     // Parsing the main values for each activity.
-    String jsonStartTime = jsonActivity.getString("StartTime");
-    String jsonEndTime = jsonActivity.getString("EndTime");
-    String jsonDuration = jsonActivity.getString("Duration");
+    String jsonStartTime = jsonActivity.getString("initialDate");
+    String jsonEndTime = jsonActivity.getString("finalDate");
+    String jsonDuration = jsonActivity.getString("duration");
     LocalDateTime startTime = null;
     LocalDateTime endTime = null;
     Duration duration = Duration.ZERO;
@@ -143,10 +143,10 @@ public class DataManager {
           + "HH:mm:ss"));
       duration = Duration.parse(jsonDuration);
     }
-    String className = jsonActivity.getString("Class");
-    String name = jsonActivity.getString("Name");
-    String parent = jsonActivity.getString("Parent");
-    JSONArray tagsJsonArray = jsonActivity.getJSONArray("Tags");
+    String className = jsonActivity.getString("class");
+    String name = jsonActivity.getString("name");
+    String parent = jsonActivity.getString("parent");
+    JSONArray tagsJsonArray = jsonActivity.getJSONArray("tags");
     logger.trace("Creating {} {} with values: startTime-> {}, endTime->{}, duration{}", className,
         name, startTime, endTime, duration);
     ArrayList<String> tags = new ArrayList<String>();
@@ -168,13 +168,13 @@ public class DataManager {
       // If the activity is a core.Task, we must also instantiate its intervals
       Task task = new Task(name, tags, parentProject, duration, startTime, endTime, 0);
       logger.debug(first, "Initializing intervals for task {}", name);
-      JSONArray intervals = jsonActivity.getJSONArray("Intervals");
+      JSONArray intervals = jsonActivity.getJSONArray("intervals");
       for (int j = 0; j < intervals.length(); j++) {
         JSONObject jsonInterval = intervals.getJSONObject(j);
         LocalDateTime intervalStartTime = null;
         LocalDateTime intervalEndTime = null;
-        String jsonIntervalStartTime = jsonInterval.getString("StartTime");
-        String jsonIntervalEndTime = jsonInterval.getString("EndTime");
+        String jsonIntervalStartTime = jsonInterval.getString("initialDate");
+        String jsonIntervalEndTime = jsonInterval.getString("finalDate");
         if (!Objects.equals(jsonIntervalStartTime, "null") && !Objects.equals(
             jsonIntervalEndTime, "null")) {
           intervalStartTime = LocalDateTime.parse(jsonIntervalStartTime,

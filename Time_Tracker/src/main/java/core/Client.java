@@ -106,7 +106,7 @@ public class Client {
     dataManager.saveUserData(root);
 
     // We can now load the tree from the JSON file we created on the previous call.
-    /*final core.Project loadedRoot = dataManager.loadUserData();
+    final core.Project loadedRoot = dataManager.loadUserData();
 
     // Initialization of the printWholeTree visitor, which runs through the whole tree from the
     // top to the bottom. We use this core.Visitor to print both trees (the one we created manually
@@ -127,7 +127,7 @@ public class Client {
     final ArrayList<core.Activity> searchedActivities = searchTree.searchByTag(loadedRoot, "Java");
     searchTree.prettyPrintActivitiesWithTag();
 
-    logger.info(first, "Here ends second release");*/
+    logger.info(first, "Here ends second release");
 
     System.exit(0);
   }
