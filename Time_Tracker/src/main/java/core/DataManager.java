@@ -46,7 +46,7 @@ public class DataManager {
       FileWriter f = new FileWriter("out.json", false);
       // Store is the core.SaveToJson function which runs through the tree and stores the data into
       // the JSON file.
-      JSONObject data = treeRecovery.store(project);
+      JSONArray data = treeRecovery.store(project);
       logger.debug(first, "File created and opened");
       f.write(data.toString());
       f.write("\n");

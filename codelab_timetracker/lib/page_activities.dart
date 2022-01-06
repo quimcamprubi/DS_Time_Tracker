@@ -35,6 +35,7 @@ class _PageActivitiesState extends State<PageActivities> {
   late int id;
   late Future<Tree> futureTree;
   late Timer _timer;
+  late String filterValue;
   static const int periodeRefresh = 2;
   late String pageTitle;
   late String activityName;
@@ -48,7 +49,9 @@ class _PageActivitiesState extends State<PageActivities> {
   late int id_act;
   final myController = TextEditingController();
   Icon customIcon = const Icon(Icons.search);
-  late Widget customSearchBar;
+  Icon filterIcon = const Icon(Icons.filter_alt);
+  late Widget customMenuBar;
+  late Widget customDropdown;
   final String defaultLocale = Platform.localeName;
   late DateFormat formatter;
 
@@ -59,15 +62,16 @@ class _PageActivitiesState extends State<PageActivities> {
     formatter = DateFormat(null, defaultLocale);
     switch (defaultLocale) {
       case "ca_ES":
-        customSearchBar = const Text("Inici");
+        customMenuBar = const Text("Inici");
         break;
       case "es_ES":
-        customSearchBar = const Text("Inicio");
+        customMenuBar = const Text("Inicio");
         break;
       default:
-        customSearchBar = const Text("Home");
+        customMenuBar = const Text("Home");
         break;
     }
+    filterValue = "duration";
     id = widget.id; // of PageActivities
     futureTree = getTree(id);
     _activateTimer();
@@ -111,19 +115,83 @@ class _PageActivitiesState extends State<PageActivities> {
           } else {
             pageTitle = snapshot.data!.root.name;
           }
+          customDropdown = Text(pageTitle);
           if (snapshot.data!.root.id == 0) {
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.cyanAccent[700],
-                title: customSearchBar,
+                title: customMenuBar,
                 automaticallyImplyLeading: false,
                 actions: <Widget>[
+                  IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (filterIcon.icon == Icons.filter_alt) {
+                        customIcon = Icon(Icons.search);
+                        customMenuBar = Text(AppLocalizations.of(context)!
+                            .home);
+                        filterIcon = Icon(Icons.cancel);
+                        customMenuBar = ListTile(
+                            title: DropdownButton(
+                              value: filterValue,
+                              items: const <DropdownMenuItem<String>>[ //add items in the dropdown
+                                DropdownMenuItem(
+                                  child: Text("Duration"),
+                                  value: "duration",
+                                ),
+                                DropdownMenuItem(
+                                    child: Text("Start date"),
+                                    value: "startDate"
+                                ),
+                                DropdownMenuItem(
+                                  child: Text("End date"),
+                                  value: "endDate",
+                                ),
+                                DropdownMenuItem(
+                                  child: Text("Alphabetical"),
+                                  value: "name",
+                                )
+
+                              ],
+                              onChanged: (value){ //get value when changed
+                                  filterValue = value as String;
+                                  filterIcon = Icon(Icons.filter_alt);
+                                  customMenuBar = Text(AppLocalizations.of(context)!
+                                      .home);
+                              },
+                              icon: const Padding( //Icon at tail, arrow bottom is default icon
+                                  padding: EdgeInsets.only(left:20),
+                                  child:Icon(Icons.arrow_circle_down_sharp)
+                              ),
+                              iconEnabledColor: Colors.white, //Icon color
+                              style: const TextStyle(  //te
+                                  color: Colors.white, //Font color
+                                  fontSize: 20 //font size on dropdown button
+                              ),
+
+                              dropdownColor: Colors.cyanAccent[700], //dropdown background color
+                              underline: Container(), //remove underline
+                              isExpanded: true, //make true to make width 100%
+                            )
+                        );
+                      } else {
+                        filterIcon = Icon(Icons.filter_alt);
+                        customMenuBar = Text(AppLocalizations.of(context)!
+                            .home);
+                      }
+                    });
+                  },
+                  icon: filterIcon,
+                ),
                   IconButton(
                     onPressed: () {
                       setState(() {
                         if (customIcon.icon == Icons.search) {
+                          filterIcon = Icon(Icons.filter_alt);
+                          customMenuBar = Text(AppLocalizations.of(context)!
+                              .home);
                           customIcon = Icon(Icons.cancel);
-                          customSearchBar = ListTile(
+                          customMenuBar = ListTile(
                             leading: const Icon(
                               Icons.search,
                               color: Colors.white,
@@ -150,7 +218,7 @@ class _PageActivitiesState extends State<PageActivities> {
                           );
                         } else {
                           customIcon = Icon(Icons.search);
-                          customSearchBar = Text(AppLocalizations.of(context)!
+                          customMenuBar = Text(AppLocalizations.of(context)!
                               .home);
                         }
                       });
@@ -174,13 +242,14 @@ class _PageActivitiesState extends State<PageActivities> {
                       }),
                 ],
               ),
-              body: ListView.separated(
+              body:
+              ListView.separated(
                 // it's like ListView.builder() but better because it includes a separator between items
                 padding: const EdgeInsets.all(16.0),
                 itemCount: snapshot.data!.root.children.length,
                 itemBuilder: (BuildContext context, int index) =>
                     _buildRow(snapshot.data!.root
-                        .childrenOrderedByDuration()[index], index),
+                        .childrenOrderedByMethod(filterValue)[index], index),
                 separatorBuilder: (BuildContext context, int index) =>
                     const Divider(),
               ),
@@ -212,8 +281,64 @@ class _PageActivitiesState extends State<PageActivities> {
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.cyanAccent[700],
-                title: Text(pageTitle),
+                title: customDropdown,
                 actions: <Widget>[
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        if (filterIcon.icon == Icons.filter_alt) {
+                          filterIcon = Icon(Icons.cancel);
+                          customDropdown = ListTile(
+                              title: DropdownButton(
+                                value: filterValue,
+                                items: const <DropdownMenuItem<String>>[ //add items in the dropdown
+                                  DropdownMenuItem(
+                                    child: Text("Duration"),
+                                    value: "duration",
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("Start date"),
+                                      value: "startDate"
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("End date"),
+                                    value: "endDate",
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Alphabetical"),
+                                    value: "name",
+                                  )
+
+                                ],
+                                onChanged: (value){ //get value when changed
+                                  filterValue = value as String;
+                                  filterIcon = Icon(Icons.filter_alt);
+                                  customDropdown = Text(AppLocalizations.of(context)!
+                                      .home);
+                                },
+                                icon: const Padding( //Icon at tail, arrow bottom is default icon
+                                    padding: EdgeInsets.only(left:20),
+                                    child:Icon(Icons.arrow_circle_down_sharp)
+                                ),
+                                iconEnabledColor: Colors.white, //Icon color
+                                style: const TextStyle(  //te
+                                    color: Colors.white, //Font color
+                                    fontSize: 20 //font size on dropdown button
+                                ),
+
+                                dropdownColor: Colors.cyanAccent[700], //dropdown background color
+                                underline: Container(), //remove underline
+                                isExpanded: true, //make true to make width 100%
+                              )
+                          );
+                        } else {
+                          filterIcon = Icon(Icons.filter_alt);
+                          customDropdown = Text(pageTitle);
+                        }
+                      });
+                    },
+                    icon: filterIcon,
+                  ),
                   IconButton(
                       icon: Icon(Icons.home),
                       onPressed: () {
@@ -448,7 +573,7 @@ class _PageActivitiesState extends State<PageActivities> {
                           itemCount: snapshot.data!.root.children.length,
                           itemBuilder: (BuildContext context, int index) =>
                               _buildRow(snapshot.data!.root.
-                              childrenOrderedByDuration()[index], index),
+                              childrenOrderedByMethod(filterValue)[index], index),
                           separatorBuilder: (BuildContext context, int index) =>
                               const Divider(),
                         ),

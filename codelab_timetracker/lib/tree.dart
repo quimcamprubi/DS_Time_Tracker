@@ -28,8 +28,58 @@ abstract class Activity {
         tags = json['tags'].join(', '),
         active = json['active'];
 
-  List<dynamic> childrenOrderedByDuration() {
-    children.sort((b, a) => a.duration.compareTo(b.duration));
+  List<dynamic> childrenOrderedByMethod(String method) {
+    switch (method) {
+      case "duration":
+        children.sort((b, a) => a.duration.compareTo(b.duration));
+        break;
+      case "startDate":
+        List<dynamic> aux = children;
+        List<dynamic> aux2 =List<dynamic>.empty(growable: true);
+        int i=0;
+        while(i < aux.length){
+          if(aux[i].initialDate == null) {
+            aux2.add(aux[i]);
+          }
+          i++;
+        }
+        i = 0;
+        while(i < aux2.length){
+          aux.remove(aux2[i]);
+          i++;}
+
+        aux.sort((b, a) => a.initialDate.compareTo(b.initialDate));
+
+        aux = aux + aux2;
+        children = aux;
+        break;
+      case "endDate":
+        List<dynamic> aux = children;
+        List<dynamic> aux2 =List<dynamic>.empty(growable: true);
+        int i=0;
+        while(i < aux.length){
+          if(aux[i].finalDate == null) {
+            aux2.add(aux[i]);
+          }
+          i++;
+        }
+        i = 0;
+        while(i < aux2.length){
+          aux.remove(aux2[i]);
+          i++;}
+
+        aux.sort((b, a) => a.finalDate.compareTo(b.finalDate));
+
+        aux = aux + aux2;
+        children = aux;
+        break;
+      case "name":
+        children.sort((a, b) => a.name.compareTo(b.name));
+        break;
+      default:
+        break;
+    }
+
     return children;
   }
 }
