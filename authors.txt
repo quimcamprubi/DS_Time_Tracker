@@ -49,5 +49,5 @@ First milestone:
 Second milestone:
   - Implementation of the logging system
   - Design by contract of class Task
-Third milestone:
-  -
+Third milestone:s
+  - Modification of SaveToJson
