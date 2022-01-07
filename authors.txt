@@ -38,7 +38,8 @@ First milestone:
 Second milestone:
   - Implementation of the logging system and migration from all the logs in the program, also implementation of the strackTrace marks.
 Third milestone:
-  -
+  - Complete revamp of JsonSaver, later used in webserver adaptation and discarded as the save core engine.
+  - Coded tasks 7 and 11 of the milestone.
   
 Alberto Vallespín Herranz 1528948
 First milestone:
