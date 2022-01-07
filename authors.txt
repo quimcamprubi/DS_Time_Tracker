@@ -27,7 +27,11 @@ Second milestone:
   - DbC: Implementation of Activity invariant function for Tasks and Projects. DbC preconditions, invariants and postconditions for Activity and Project.
   - Search By Tag: Improvements on the Search By Tag algorithm. Case insensitive search.
 Third milestone:
-  -
+  - Completed Flutter Codelab to prepare for the milestone's tasks.
+  - Various refactors to use our TimeTracker Java project with the provided WebServer (functionalities findActivityById, toJson, create project and create task).
+  - Observer implementation for Tasks and Projects in order to properly update duration in real time. 
+  - Developed Tasks 1-6 and 8-10 of the Flutter app. 
+  - Helped with the development of tasks 7, 11 and 12. 
   
 Javier Méndez Leiva 1496052
 First milestone:
