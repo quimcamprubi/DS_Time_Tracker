@@ -9,6 +9,11 @@ Second milestone:
   - Running Checkstyle and correct the errors (with Quim).
   - DbC: Helped creating DbC preconditions, invariants and postconditions for Activity and Project.
   - Search By Tag: Created the functionality of Search By Tag.
+Third milestone:
+  - Created and updated the UML diagram.
+  - Coded the point 11 (recent tasks) and part of point 7 (search by tag).
+  - Helped complete the 9 steps of codelab tutorial.
+  - Helped in point 1 and 2 of the milestone.
   
 Quim Camprubí Casas 1528104
 First milestone:
@@ -21,6 +26,8 @@ Second milestone:
   - Code inspection improvements. Fixed style of the program after running Checkstyle.
   - DbC: Implementation of Activity invariant function for Tasks and Projects. DbC preconditions, invariants and postconditions for Activity and Project.
   - Search By Tag: Improvements on the Search By Tag algorithm. Case insensitive search.
+Third milestone:
+  -
   
 Javier Méndez Leiva 1496052
 First milestone:
@@ -30,7 +37,9 @@ First milestone:
  - Coded some parts of project, activity, task and intervals
 Second milestone:
   - Implementation of the logging system and migration from all the logs in the program, also implementation of the strackTrace marks.
-
+Third milestone:
+  -
+  
 Alberto Vallespín Herranz 1528948
 First milestone:
   - Class design and implementation in UML
@@ -40,3 +49,5 @@ First milestone:
 Second milestone:
   - Implementation of the logging system
   - Design by contract of class Task
+Third milestone:
+  -
